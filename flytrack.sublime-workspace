@@ -1,0 +1,747 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Shelf",
+				"ShelfFilesList"
+			],
+			[
+				"XTick",
+				"XTickLabel"
+			],
+			[
+				"Odour",
+				"OdourDuration"
+			],
+			[
+				"File",
+				"FileName2GenoDate"
+			],
+			[
+				"V",
+				"Valve"
+			],
+			[
+				"Th",
+				"Thrusto"
+			],
+			[
+				"Cluster",
+				"ClusterDataButton"
+			],
+			[
+				"Thru",
+				"Thrustc"
+			],
+			[
+				"Thr",
+				"Thrusto"
+			],
+			[
+				"THR",
+				"Thrusto"
+			],
+			[
+				"WB",
+				"WBFc"
+			],
+			[
+				"WBF",
+				"WBFo"
+			],
+			[
+				"Tri",
+				"TrialVariabilityCallback"
+			],
+			[
+				"font-",
+				"font-weight"
+			],
+			[
+				"background",
+				"background	background: color image repeat attachment position"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "AngularDifference.m",
+			"settings":
+			{
+				"buffer_size": 185,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Track3.m",
+			"settings":
+			{
+				"buffer_size": 7266,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "AssignObjects3.m",
+			"settings":
+			{
+				"buffer_size": 7965,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "PrepImage.m",
+			"settings":
+			{
+				"buffer_size": 345,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"Package Control: Install Package",
+				"Package Control: Install Package"
+			],
+			[
+				"packag",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"Package",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"packa",
+				"Package Control: Disable Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"save",
+				"File: Save All"
+			],
+			[
+				"newfile",
+				"File: New View into File"
+			],
+			[
+				"sidebar",
+				"View: Toggle Side Bar"
+			],
+			[
+				"syntax js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"syntax matlb",
+				"Set Syntax: MATLAB"
+			],
+			[
+				"Package Control: Install",
+				"Package Control: Install Package"
+			],
+			[
+				"disp",
+				"Snippet: disp"
+			],
+			[
+				"error",
+				"Snippet: error"
+			],
+			[
+				"Snippet: error",
+				"Snippet: error"
+			]
+		],
+		"width": 770.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/usr/local/bin/ConvertVideo",
+		"/Users/sigbhu/Dropbox/code/tracking/Track3.m",
+		"/Users/sigbhu/Dropbox/code/tracking/SplitCollidingFlies.m",
+		"/Users/sigbhu/Dropbox/code/tracking/DetectWingExtention.m",
+		"/Users/sigbhu/Dropbox/code/tracking/PrepImage.m",
+		"/Users/sigbhu/Dropbox/code/tracking/DetectObjects.m",
+		"/Users/sigbhu/Dropbox/code/bash/wfmount.sh",
+		"/Users/sigbhu/Dropbox/code/bash/.newton",
+		"/.newton",
+		"/RSSBlackList.txt",
+		"/Users/sigbhu/Dropbox/code/b/FileName2GenoDate.m",
+		"/Users/sigbhu/Dropbox/code/b/TFAViewer2.m",
+		"/Library/WebServer/Documents/wiki/LocalSettings.php",
+		"/Users/sigbhu/Dropbox/code/b/PlotTFAResponses3.m",
+		"/Users/sigbhu/Dropbox/code/core/TrialPlot.m",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/pages/people.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/nfsim/download/index.php",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/nfsim/download/processRegistration.php",
+		"/Users/sigbhu/.ssh/known_hosts",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/pages/publications.html",
+		"/Users/sigbhu/Dropbox/code/zoidberg/make_fig_15_metrics.m",
+		"/Users/sigbhu/Dropbox/code/b/PlotTFAResponses2.m",
+		"/Users/sigbhu/Dropbox/code/b/PlotTrialVariability.m",
+		"/Users/sigbhu/Dropbox/code/b/AnalyseAirspeedsMultiPuffs.m",
+		"/Users/sigbhu/Dropbox/code/b/PlotDoseResponses.m",
+		"/Users/sigbhu/Dropbox/code/b/PlotTFATurns.m",
+		"/Users/sigbhu/Dropbox/code/b/PlotTFAPIDAirspeeds.m",
+		"/Users/sigbhu/Dropbox/code/b/Convert2v2.m",
+		"/Users/sigbhu/Dropbox/code/b/PlotPIDResponse.m",
+		"/Users/sigbhu/Dropbox/code/core/FrameGrabM/FrameGrabM_0_8/Readme.txt",
+		"/Users/sigbhu/Dropbox/code/b/AnalysePIDMultiPuffs3.m",
+		"/Users/sigbhu/Dropbox/code/core/oval.m",
+		"/Users/sigbhu/Dropbox/code/b/AnalysePIDMultiPuffs.m",
+		"/Users/sigbhu/Dropbox/code/b/AnalysePIDMultiPuffs2.m",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/sigbhu/Dropbox/code/b/AnalyseTrialTrends.m",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/Snippets/matlab_snippets/plot(ts,linespec).sublime-snippet",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/index.html",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/Matlab.sublime-settings",
+		"/Users/sigbhu/Downloads/soda-theme-master/Soda Dark.sublime-theme",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/JSON.sublime-settings",
+		"/Users/sigbhu/Dropbox/code/b/PlotTFAResponses.m",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/pages/resources.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/biology.yale.edu/index.html",
+		"/Users/sigbhu/.ssh/id_rsa.pub",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/seldon/2/index.html",
+		"/web/seldon/3/index.html",
+		"/web/seldon/3/css/base.css",
+		"/Users/sigbhu/Desktop/Untitled.html",
+		"/Users/sigbhu/Desktop/Untitled.webarchive",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/index.html",
+		"/web/seldon/1/index.html",
+		"/web/seldon/1/css/skeleton.css",
+		"/web/seldon/1/css/layout.css",
+		"/web/seldon/1/css/docs.css",
+		"/web/seldon/1/css/base.css",
+		"/web/seldon/2/index.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/seldon/1/index.html",
+		"/web/seldon/index.html",
+		"/web/seldon/2/css/base.css",
+		"/Users/sigbhu/Desktop/My Notes/1: Introduction.html",
+		"/Users/sigbhu/Dropbox/lobster_draft/data/STGDataExplorer.m",
+		"/Users/sigbhu/Dropbox/code/orn-analysis/spikesort_7_19_a.m",
+		"/Users/sigbhu/Dropbox/code/zoidberg/STG.m",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/nfsim/pages/feedback.php",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/nfsim/index.html",
+		"/labweb/pages/people.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/pages/contact.html",
+		"/private/etc/hosts",
+		"/Users/sigbhu/Desktop/feedback.php",
+		"/Users/sigbhu/Desktop/processRegistration.php",
+		"/Users/sigbhu/Desktop/index.php",
+		"/Users/sigbhu/Desktop/index.html",
+		"/labweb/pages/contact.html",
+		"/Users/sigbhu/Desktop/Daring Fireball: Email.html",
+		"/Users/sigbhu/Dropbox/lobster_draft/data/ZoidbergExplorer.m",
+		"/Users/sigbhu/Dropbox/code/zoidberg/RecomputePyloricityCodes.m",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/essays/books/index.html",
+		"/Users/sigbhu/Desktop/My Notes/5: Brace for the coming Food Riots.html",
+		"/web/seldon/books/index.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonetnew.biology.yale.edu/nfsim/index.html",
+		"/labweb/pages/software.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/b/css.css",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/articles/children-of-men/index.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/articles/books/index.html",
+		"/web/articles/children-of-men/css/base.css",
+		"/web/articles/children-of-men/index.html",
+		"/web/articles/books/index.html",
+		"/web/articles/books/css/base.css",
+		"/web/articles/books/css/skeleton.css",
+		"/web/articles/books/css/docs.css",
+		"/web/articles/books/css/layout.css",
+		"/labweb/pages/publications.html",
+		"/web/in-development/article-template/001-books.html",
+		"/web/essays/books/index.html",
+		"/web/in-development/article-template/css/docs.css",
+		"/web/in-development/css/template.css",
+		"/web/in-development/css/article-css.css",
+		"/Users/sigbhu/Dropbox/code/b/AnalyseOdourResponse.m",
+		"/Users/sigbhu/Dropbox/code/core/AnalyseWingBeatSignal.m",
+		"/Users/sigbhu/Dropbox/code/zoidberg/MakeValidationFigures.m",
+		"/Users/sigbhu/Desktop/er/index.html",
+		"/Users/sigbhu/Dropbox/code/orn-analysis/spikesort.m",
+		"/web/index.html",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/HTML.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"collision",
+			"stats",
+			"nfig",
+			"figure",
+			"Turns",
+			"Thrust",
+			"Thrusts",
+			"allfiles",
+			"sem",
+			"line",
+			"equalise",
+			"figure",
+			"thesetrials",
+			"thesetrials =",
+			"thesetrials",
+			"TrialPlot",
+			"plottrials",
+			"plotthis",
+			"plot",
+			"/dt",
+			"3",
+			"title",
+			"odour",
+			"FileName",
+			"title",
+			"FileName2",
+			"plot(",
+			"sublime",
+			"plot",
+			"TrialPlot",
+			"gca",
+			"a",
+			"a(3)",
+			"TrialPlot",
+			"subplot",
+			"mx",
+			"dt",
+			"title",
+			"wbfylim",
+			"thrustylim",
+			"wbfylim",
+			"TrialPlot",
+			"Trial",
+			"fly",
+			"fit",
+			"Airspeed",
+			"Maximum",
+			"Airspeed",
+			"'b'",
+			"TrialPlot",
+			"'b'",
+			"fit",
+			"'k'",
+			"function",
+			"sx",
+			"disp",
+			"YLim",
+			"data.raw",
+			"keyboard",
+			"tue",
+			"mon",
+			"GenotypeID",
+			"FoundFilesList",
+			"GenotypeID",
+			"sebas",
+			"TrialPlot",
+			"\"thu\",",
+			"thu",
+			"mon\ntue\nwed\nthu",
+			"];\n",
+			"tue, man, tue\ntur\ntue, man",
+			"tur",
+			"mon",
+			"tur",
+			"omcWBFpeak",
+			"$wgFileExtensions ",
+			"png",
+			"listbox",
+			"<p class=\"p2\"><br></p>",
+			"<p class=\"p6\"><br></p>",
+			"<p class=\"p4\"><br></p>",
+			"<p class=\"p2\"><br></p>",
+			"wiki",
+			"sneddon",
+			"mousecallback",
+			"mouse",
+			"mous",
+			"button",
+			"font",
+			"nfsimwebregister",
+			"please contact",
+			"sneddon",
+			"michael",
+			"sneddon",
+			"microbe",
+			"michael",
+			"wiener",
+			"sneddon",
+			"michael",
+			"mich",
+			"blog",
+			"description",
+			"none",
+			"description",
+			"s",
+			"description",
+			"style",
+			"body",
+			"head",
+			"transform",
+			"description",
+			"h3",
+			"por",
+			"porc",
+			"doc-section",
+			"fig1",
+			"p",
+			"doc-section",
+			"h1",
+			"hr",
+			"h1",
+			"header",
+			"h1",
+			"doc-section",
+			"twelve ",
+			"twelve columns",
+			"twelve columns offset-by-one content",
+			"title"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"PID",
+			"",
+			"s2",
+			"s3",
+			"PY",
+			"LP",
+			"AB"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "AngularDifference.m",
+					"settings":
+					{
+						"buffer_size": 185,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								185,
+								185
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Track3.m",
+					"settings":
+					{
+						"buffer_size": 7266,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								963,
+								963
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1267.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "AssignObjects3.m",
+					"settings":
+					{
+						"buffer_size": 7965,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3286,
+								3286
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1442.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "PrepImage.m",
+					"settings":
+					{
+						"buffer_size": 345,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								320,
+								264
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"prep",
+				"PrepImage.m"
+			],
+			[
+				"",
+				"AssignObjects3.m"
+			],
+			[
+				"track",
+				"Track3.m"
+			],
+			[
+				"detec",
+				"DetectWingExtention.m"
+			],
+			[
+				"trial",
+				"core/TrialPlot.m"
+			],
+			[
+				"filenam",
+				"b/FileName2GenoDate.m"
+			],
+			[
+				"plot",
+				"b/PlotTFAResponses2.m"
+			],
+			[
+				"plottfa",
+				"b/PlotTFAResponses2.m"
+			],
+			[
+				"conver",
+				"b/Convert2v2.m"
+			],
+			[
+				"pid",
+				"b/PlotTFAPIDAirspeeds.m"
+			],
+			[
+				"tria",
+				"core/TrialPlot.m"
+			],
+			[
+				"tuns",
+				"b/PlotTFATurns.m"
+			],
+			[
+				"plotdose",
+				"b/PlotDoseResponses.m"
+			],
+			[
+				"file",
+				"b/FileName2GenoDate.m"
+			],
+			[
+				"oval",
+				"core/oval.m"
+			],
+			[
+				"anlysepi",
+				"b/AnalysePIDMultiPuffs.m"
+			],
+			[
+				"analysepid",
+				"b/AnalysePIDMultiPuffs3.m"
+			],
+			[
+				"analyseair",
+				"b/AnalyseAirspeedsMultiPuffs.m"
+			],
+			[
+				"plotres2",
+				"b/PlotTFAResponses2.m"
+			],
+			[
+				"plottr",
+				"PlotTrialVariability.m"
+			],
+			[
+				"plotdos",
+				"PlotDoseResponses.m"
+			],
+			[
+				"tfa",
+				"TFAViewer2.m"
+			],
+			[
+				"plottf",
+				"PlotTFAResponses2.m"
+			],
+			[
+				"plottri",
+				"PlotTrialVariability.m"
+			],
+			[
+				"error",
+				"/Users/sigbhu/Dropbox/code/b/PlotDoseResponses.m"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 215.0,
+	"status_bar_visible": true
+}

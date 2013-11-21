@@ -6,7 +6,7 @@
 % attention is not required. 
 % created by Srinivas Gorur-Shandilya at 19:56 , 29 August 2013. Contact me
 % at http://srinivas.gs/contact/
-function [] = Track2(v)
+function [] = Track2(v,StartFromHere)
 %% global params
 min_area = 400;
 jump = 100;
@@ -38,15 +38,18 @@ rp = [];
 displayfigure= [];
 fps = [];
 movie = [];
-background = [];
 t=[];
 collision = [];
+adjacency = []; % adjancency is like collision, but indicates that the k-means algo. was used to seperate flies. 
 WingExtention = [];
-pause = 0;
-PauseButton = [];
+
+
 CopulationTimes = [];
 Copulation = [];
 WingExtention = [];
+if nargin < 2
+    StartFromHere = [];
+end
 
 
 
@@ -64,11 +67,81 @@ else
 end
 
 for fi = 1:length(thesefiles)
+    % clear all variables
+    n = [];
+    narenas=  [];
+    moviefile = [];
+    thresh = [];
+    ROIs= [];
+    w=[];
+    h= [];
+    ff = [];
+    nframes=[];
+    frame= [];
+    posx = [];
+    posy = [];
+    orientation = [];
+    flymissing = [];
+    heading = [];
+    allflies= [];
+    area=[];
+    mask = [];
+    rp = [];
+    displayfigure= [];
+    fps = [];
+    movie = [];
+    t=[];
+    collision = [];
+    adjacency = []; % adjancency is like collision, but indicates that the k-means algo. was used to seperate flies. 
+    WingExtention = [];
+    StartTracking =[];
+    StopTracking=[];
+    
+    
+    disp('Loading new file....')
+    disp(thesefiles(fi).name)
     load(thesefiles(fi).name)
-    TrackCore2;
-    close(displayfigure)
+    
+    % check if this file is fully analysed
 
+
+    if ~isempty(posx)
+        if ~any(isnan(posx(:,StopTracking-1)))
+            % fully analysed
+            if nargin == 1
+                disp('This file looks fully analysed. I will skip this...')
+            else
+                if StartFromHere == 0
+                    disp('Trashing all old data and re-starting...')
+                    StartFromHere = StartTracking;
+                    TrackCore2;
+                else
+                    disp('Starting from specified location...')
+                    TrackCore2;
+                end
+                
+            end
+        else
+            % not fully analysed. maybe partially anlysed?
+            % start from where you stopped before
+            if StartFromHere == 0
+                StartFromHere = StartTracking;
+                disp('Trashing all old data and re-starting...')
+            end
+            TrackCore2;
+        end
+    else
+        % new file.
+        TrackCore2;
+    end
+    
+    
+   
+    close(displayfigure)
+    disp('All done with this file!')
 end
+
+
 
 
 %% subfunctions
@@ -79,7 +152,7 @@ end
         CheckThresh;
         
         t = tic;
-        for frame = StartTracking:StopTracking  
+        for frame = StartFromHere:StopTracking  
             
             
             PrepImage;
@@ -104,9 +177,6 @@ end
                     d(d==0) = Inf;
                     d = d<50;
                     collision(logical(sum(d)),frame) = 1;
-                    
-                    % attempt to split colliding objects
-                    SplitBigObjects;
                 else
                     % flies did not come close, assuming fly missing.
                 end
@@ -117,50 +187,104 @@ end
 
             
       
-            AssignObjects2;
-            
+           AssignObjects2; 
+           
+   
            DetectWingExtention;
+           
+           CleanWingExtention;
             
-            UpdateDisplay;
+           UpdateDisplay;
             
-            if pause
-                keyboard 
-            end 
-            
-            
+
+            % save every 1000 frames of data
+            if  ~(ceil(frame/1000)-(frame/1000))
+                disp('Saving...')
+                save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','-append')
+        
+            end
         end
         % save all data
-        save(thesefiles(fi).name,'posx','posy','orientation','heading','flymissing','collision','area','WingExtention','-append')
+        save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','-append')
         
     end
 
-    function [] = PauseCallback(eo,ed)
-        if ~pause
-            pause = 1;
-            set(PauseButton,'String','Paused','BackgroundColor',[0.7 0 0])
-        else
-            pause = 0;
-            set(PauseButton,'String','Pause','BackgroundColor',[1 1 1])
+
+
+    function []  = CleanWingExtention()
+        % if there are two flies in the same arena with wings extended,
+        % resolve them:
+        for ni=1:narenas
+            otherfly = ni*2;
+            thisfly = ni*2-1;
+            if sum(WingExtention(thisfly:otherfly,frame)) == 2
+                % in the previous frame, did only one of them have the wing
+                % extended?
+                if sum(WingExtention(thisfly:otherfly,frame-1)) == 1
+                    % only one had we in previous frame
+                    if WingExtention(thisfly,frame-1) 
+                        WingExtention(otherfly,frame)=0;
+                    else
+                        WingExtention(thisfly,frame)=0;
+                    end
+                elseif sum(WingExtention(thisfly:otherfly,frame==1)) == 0
+                    % neither had we in previous frame
+                    % so we remove both
+                    WingExtention(thisfly:otherfly,frame)=0;
+                end
+                
+            end
             
         end
     end
 
     function [] = InitialiseTracking()
+        disp('Initialising tracking....')
         % get movie parameters and initlaise movie reader
-        movie = VideoReader(moviefile);
+        movie = VideoReader(moviefile)
         % grab params and make placeholders
         h =  get(movie,'Height');
         w=get(movie,'Width');
         nframes = get(movie,'NumberOfFrames');
-        flymissing = zeros(n,nframes);
-        collision =  flymissing;
-        allflies= 1:n;
-        posx = NaN(n,nframes);
-        posy = posx;
-        orientation = posx;
-        area = posx;
-        WingExtention = collision;
-        heading = zeros(n,nframes);
+        
+        % check if there is already some data here
+        if ~isempty(posx) && any(~isnan(posx(1,:)))
+            % this has already been at least partially analysed.
+            disp('Looks like this file has already been analysed.')
+            % do we want to start tracking from somewhere particular?
+            if ~isempty(StartFromHere)
+                disp('OK. Starting from custom location...')
+                
+            else
+                % start from where you stopped
+                StartFromHere = find(~isnan(posx(1,:)),1,'last') - 1;
+            end
+            % wipe all info from StartFromHere onwards
+            posx(:,StartFromHere:end) = NaN;
+            posy(:,StartFromHere:end) = NaN;
+            orientation(:,StartFromHere:end) = NaN;
+            collision(:,StartFromHere:end) = 0;
+            adjacency(:,StartFromHere:end) = 0;
+            flymissing(:,StartFromHere:end) = 0;
+            WingExtention(:,StartFromHere:end) = 0;
+            heading(:,StartFromHere:end) = 0;
+            allflies= 1:n;
+        else
+            % nope. raw file.
+            disp('Looks like this is a new video file. Will begin tracking from beginning...')
+            flymissing = zeros(n,nframes);
+            collision =  flymissing;
+            adjacency = flymissing;
+            allflies= 1:n;
+            posx = NaN(n,nframes);
+            posy = posx;
+            orientation = posx;
+            area = posx;
+            WingExtention = collision;
+            heading = zeros(n,nframes);
+            StartFromHere = StartTracking;
+        end
+        
         
         % build logical array of ROIs
         disp('Building ROI mask...')
@@ -181,8 +305,7 @@ end
         if v
             % create a display
             displayfigure=figure; hold on
-            PauseButton = uicontrol(displayfigure,'Position',[10 10 80 20],'Style','pushbutton','String','Pause','Callback',@PauseCallback);
-            imagesc(ff), hold on
+             imagesc(ff), hold on
         end
 
     end
@@ -192,42 +315,7 @@ end
         frame = StartTracking;
         PrepImage;
         thresh = graythresh(ff);
-        return
-        notok = 1;
         
-        while notok
-            disp(thresh)
-            DetectObjects(0);
-            rp  =DiscardSmallObjects(rp);
-            % explicilty assume that there are no combined flies in the
-            % first frame
-            % so no need to split big objects
-            fatass = [];
-            for j = 1:length(rp)
-                if rp(j).Area > max_area
-                    fatass = [fatass j];
-                end
-            end
-            if length(rp) < n
-                % too few objects. lower thresh
-                thresh = thresh - 0.02;
-            elseif length(rp) > n
-                % too many objects. raise thresh
-                thresh = thresh + 0.02;
-            elseif length(rp) == n && any(fatass)
-                % right number of objects, but they're too big. raise
-                % thresh
-                thresh = thresh + 0.02;
-            else
-                % all OK
-                notok = 0;
-            end
-
-            % determine background pixel levels
-            bw = 1-im2bw(ff,thresh);
-            background = mean(nonzeros(ff.*uint8(bw)));
-        end
-
         
     end
 
@@ -242,11 +330,11 @@ end
         if bb
             rp =[];
             l = logical(im2bw(ff,thresh));
-            rp = regionprops(l,'Orientation','Centroid','Area','MajorAxisLength','BoundingBox');
+            rp = regionprops(l,'Orientation','Centroid','Area','PixelList','BoundingBox');
         else
             rp =[];
             l = logical(im2bw(ff,thresh));
-            rp = regionprops(l,'Orientation','Centroid','Area','MajorAxisLength');
+            rp = regionprops(l,'Orientation','Centroid','Area','PixelList');
         end
     end
 
@@ -256,223 +344,6 @@ end
         regions(badregion) = [];
     end
 
-    function [] = SplitBigObjects()
-        DetectObjects(1);
-        rp=DiscardSmallObjects(rp);
-        startn = length(rp);
-        
-        mashedupobjects = [];
-        for i = 1:length(rp)
-            if rp(i).Area > max_area
-                % only those objects that are close to putatively colloding flies
-                % will be looked at.
-                temp = rp(i).Centroid;
-                d = pdist2([posx(logical(collision(:,frame)),frame-1),posy(logical(collision(:,frame)),frame-1)],temp);
-                if min(d) < 30
-                    mashedupobjects = [mashedupobjects i];
-                end
-            end
-        end
-
-        unmashedflies = []; % this contains a regionprops struct array with (newly) unmashed flies. 
-        formerlymashedflies= [];
-        if any(mashedupobjects)
-            % try to separate them by increasing threshold
-            for i = mashedupobjects
-                bb = round(rp(i).BoundingBox);
-                megafly= ff(bb(2)+1:bb(2)+bb(4),bb(1)+1:bb(1)+bb(3));
-                % open up the image
-                megafly= imopen(megafly,strel('disk',2));
-                newthresh = graythresh(megafly)-0.05;
-                split=1;
-                while split < 2 && newthresh < 0.95
-                    newthresh = newthresh+0.01;
-                    splitflies=regionprops(im2bw(megafly,newthresh),'Orientation','MajorAxisLength','Centroid','Area','BoundingBox');
-                    splitflies = DiscardSmallObjects(splitflies);                    
-                    split = length(splitflies);
-                    % fix centroids
-                    for j = 1:split
-                        splitflies(j).Centroid(1) = splitflies(j).Centroid(1) + bb(1);
-                        splitflies(j).Centroid(2) = splitflies(j).Centroid(2) + bb(2);
-                    end
-                end
-                if split > 1 % succesful split
-                    unmashedflies = [unmashedflies; splitflies];  
-                    formerlymashedflies = [ formerlymashedflies i];
-                end
-
-
-                
-            end
-            % now delete the mashed up flies
-            rp(formerlymashedflies) = [];
-            % and add the unmashed flies
-            if ~isempty(unmashedflies)
-                try
-                    rp = [rp;unmashedflies];
-                catch
-                    keyboard
-                end
-            end
-            
-            % check that the number of regions has not decreSED
-            if length(rp) < startn
-                keyboard
-            end
-        else
-            % no mashed up flies
-        end
-    end
-
-    function  [] = AssignObjects()
-        % WARNING: AssignObjects is depreceated. Use AssignObjects2 instead.
-        warning('AssignObjects is depreceated. Use AssignObjects2 instead.')
-        if frame == StartTracking
-            % special case
-            for i = 1:n
-                posx(i,StartTracking) = rp(i).Centroid(1);
-                posy(i,StartTracking) = rp(i).Centroid(2);
-                orientation(i,StartTracking) = -rp(i).Orientation;
-                area(i,StartTracking) = rp(i).Area;
-                
-               
-            end
-        else
-            % generic case. assigns closest object to last known location
-            for i = [allflies(flymissing(:,frame-1)==0) allflies(flymissing(:,frame-1)==1)]  % this prioritises OK flies
-                o_centroids = [];
-                for j = 1:length(rp)
-                    o_centroids=[o_centroids; rp(j).Centroid]; % rearranging all object centroids into a matrix
-                end
-                temp = [posx(i,frame-1) posy(i,frame-1); o_centroids];
-
-                % figure out if fly is on left or right arena
-                if posx(i,frame-1) < DividingLine
-                    % on left
-                    temp(temp(:,1) > DividingLine,:) = Inf;
-                else
-                    temp(temp(:,1) < DividingLine,:) = Inf;
-                end
-
-                % find closest object to ith fly
-                d = squareform(pdist(temp));
-                if ~isempty(d)
-                    d = d(1,2:end);
-                else
-                    % something is wrong. skip this frame
-                    posx(i,frame) = posx(i,frame-1);
-                    posy(i,frame) = posy(i,frame-1);
-                    area(i,frame) = 0;
-                    flymissing(i,frame) = 1;
-                    return
-                end
-                [step,thisobj] = min(d);
-                if step < jump
-                    % assign this object to this fly
-                    posx(i,frame) = rp(thisobj).Centroid(1);
-                    posy(i,frame) = rp(thisobj).Centroid(2);
-                    area(i,frame) = rp(thisobj).Area;
-                    orientation(i,frame) = -rp(thisobj).Orientation;
-                    % mark it as assigned
-                    rp(thisobj).Centroid = [Inf Inf];
-                elseif isinf(step)
-                    % if this is a missing fly, keep going
-                    % this means the fly has just gone missing, and other
-                    % flies elsewhere in other arenas are segmented
-                    posx(i,frame) = posx(i,frame-1);
-                    posy(i,frame) = posy(i,frame-1);
-                    area(i,frame) = 0;
-                    flymissing(i,frame) = 1;
-
-                else
-                    % step exceeds bounds
-                    % if this is a missing fly, OK it
-                    if flymissing(i,frame-1)
-                        % assign this object to this fly
-                        posx(i,frame) = rp(thisobj).Centroid(1);
-                        posy(i,frame) = rp(thisobj).Centroid(2);
-                        area(i,frame) = rp(thisobj).Area;
-                        orientation(i,frame) = -rp(thisobj).Orientation;
-                        % mark it as assigned
-                        rp(thisobj).Centroid = [Inf Inf];
-                    else
-                        % fly goes missing now
-                        posx(i,frame) = posx(i,frame-1);
-                        posy(i,frame) = posy(i,frame-1);
-                        area(i,frame) = 0;
-                        flymissing(i,frame) = 1;
-
-                    end
-                end
-                
-            
-                
-                % build a headings matrix
-                if frame - StartTracking > 6
-                    hh = [posx(i,frame)-posx(i,frame-5) posy(i,frame)-posy(i,frame-5)];                   
-                else
-                     hh = [posx(i,frame)-posx(i,frame-1) posy(i,frame)-posy(i,frame-1)];
-                end
-                if hh(1) < 0
-                    heading(i,frame)=180+atand(hh(2)/hh(1));
-                else
-                    heading(i,frame)=atand(hh(2)/hh(1));
-                end
-                if heading(i,frame) < 0
-                    heading(i,frame) = 360+heading(i,frame);
-                    
-                end
-                
-                % attempt to fix orientations
-                min_step=10;
-                % is the heading closer to the orientation or to
-                % 90+orientation?
-                
-                if orientation(i,frame) < 0
-                    orientation(i,frame) = 360+orientation(i,frame);
-                    
-                end
-                
-                
-                
-                flipo = mod(orientation(i,frame)+180,360);
-                step = sqrt((posx(i,frame)-posx(i,frame-1)).^2 +(posy(i,frame)-posy(i,frame-1)).^2);
-                if  (abs(heading(i,frame)-orientation(i,frame)) > abs(heading(i,frame) - flipo)) && step>min_step
-                    orientation(i,frame) = 180+orientation(i,frame);
-                elseif step<min_step && AngularDifference(orientation(i,frame),orientation(i,frame-1)) > 120
-                    % use old orientation
-                    orientation(i,frame) = orientation(i,frame-1);
-            
-                end
-                
-                
-                % collision check
-                % if it was in a collision in the last frame and is misisng
-                % now, then it's in a collision now
-                if collision(i,frame-1) && flymissing(i,frame)
-                    collision(i,frame) =1;
-                end
-                
-                  
-            end
-            % for i = 1:n
-            %     % if fly is close to another fly, then it is colliding with
-            %     % it
-            %     temp = [posx(i,frame);posy(i,frame)];
-            %     temp =  pdist2(temp',[posx(:,frame) posy(:,frame)]);
-            %     if min(nonzeros(temp)) < 40
-            %         collision(i,frame) = 1;
-                    
-            %     end  
-            % end
-
-           
-            
-        end
-        % fix orientations to all positive
-        orientation(:,frame)= mod(orientation(:,frame),360);
-        
-    end
 
     function [] = AssignObjects2()
         % this has two different cases: when there are more objects than
@@ -491,6 +362,7 @@ end
             end
         else
             if length(rp) < n
+             
                 % assign objects to flies
                 for j = 1:length(rp)
                     temp = [rp(j).Centroid; posx(:,frame-1) posy(:,frame-1) ];
@@ -515,55 +387,31 @@ end
                         % any fly. what do i do? who's flying this thing?
                         
                     end
-                    [step,thisfly] = min(d);
+                    [step,thisfly] = min(d); 
                     if step < jump
                         % assign this fly to this object
                         posx(thisfly,frame) = rp(j).Centroid(1);
                         posy(thisfly,frame) = rp(j).Centroid(2);
                         area(thisfly,frame) = rp(j).Area;
                         orientation(thisfly,frame) = -rp(j).Orientation;
+            
                     elseif isinf(step)
                         % fly is jumping, probably
                         
-                        keyboard
+                        % keyboard
                     elseif step > jump
                         if flymissing(thisfly,frame-1) 
                             % fly was missing last frame, so it's OK
                             posx(thisfly,frame) = rp(j).Centroid(1);
                             posy(thisfly,frame) = rp(j).Centroid(2);
                             area(thisfly,frame) = rp(j).Area;
+             
                             orientation(thisfly,frame) = -rp(j).Orientation;
                         else
-                            % wtf? not ok.
-                            % this is probably because of a fly coming out
-                            % a jump, but it's not thisfly
-                            % the solution is to assign it to the nearest
-                            % formerly missing fly
-                            temp = [rp(j).Centroid; posx(logical(flymissing(:,frame-1)),frame-1) posy(logical(flymissing(:,frame-1)),frame-1)];
-                            % figure out if fly is on left or right arena
-                            if rp(j).Centroid(1) < DividingLine
-                                % on left
-                                temp(temp(:,1) > DividingLine,:) = Inf;
-                            else
-                                temp(temp(:,1) < DividingLine,:) = Inf;
-                            end
+                            % this is a pathological case. skip it -- its
+                            % too messy otherwise
                             
-                            
-                            d = squareform(pdist(temp));
-                            if ~isempty(d)
-                                d = d(1,2:end);
-                            else
-                                keyboard
-                                % something is wrong. can't assign this object to
-                                % any fly. what do i do? who's flying this thing?
-                            end
-                            [~,assignthis] = min(d);
-                            FliesMissingInLastFrame = find(flymissing(:,frame-1));
-                            thisfly = FliesMissingInLastFrame(assignthis); 
-                            posx(thisfly,frame) = rp(j).Centroid(1);
-                            posy(thisfly,frame) = rp(j).Centroid(2);
-                            area(thisfly,frame) = rp(j).Area;
-                            orientation(thisfly,frame) = -rp(j).Orientation;
+                           
                             
                             
                         end
@@ -582,6 +430,7 @@ end
                         flymissing(i,frame) = 1;
                     end
                 end
+                
             else % at least as many objects as flies
                 % assingn flies to objects
                 for i = [allflies(flymissing(:,frame-1)==0) allflies(flymissing(:,frame-1)==1)]  % this prioritises OK flies
@@ -654,11 +503,13 @@ end
                      
                
             end
-            
-            % safety check
-            if posx(2,frame) - posx(2,frame-1) > 300
+            if any(isinf(posx(:,frame)))
+                disp('inf')
                 keyboard
-            end
+            end 
+            
+        
+            
             
             for i = 1:n
                 % build a headings matrix
@@ -694,9 +545,10 @@ end
                 if  (abs(heading(i,frame)-orientation(i,frame)) > abs(heading(i,frame) - flipo)) && step>min_step
                     orientation(i,frame) = 180+orientation(i,frame);
                 elseif step<min_step && AngularDifference(orientation(i,frame),orientation(i,frame-1)) > 120
-                    % use old orientation
-                    orientation(i,frame) = orientation(i,frame-1);
-
+                    % using old orientation not a good idea, just used the
+                    % flipped one
+                    % orientation(i,frame) = orientation(i,frame-1);
+                    orientation(i,frame) = 180+orientation(i,frame);
                 end
 
 
@@ -718,7 +570,229 @@ end
             end
                 
         end
+   
+        
+
+        % now we have another check that looks for flies that suddenly
+        % double in area from the last frame. 
+        for i = 1:n
+            if area(i,frame)/area(i,frame-1) > 1.5 % 50% increase in 1 frame
+                % suspicious
+                switch mod(i,2)
+                    case 1
+                        otherfly=i+1;
+                    case 0
+                        otherfly=i-1;
+                end
+                % are these flies in a collision?
+                if (collision(i,frame)*collision(otherfly,frame)) && length(rp)<4%#ok<BDLOG>
+                    % so this has been counted as a collision
+                    % find the region that was assigned to this and attempt
+                    % to split it
+                    o_centroids = [];
+                    for j = 1:length(rp)
+                        o_centroids=[o_centroids; rp(j).Centroid]; % rearranging all object centroids into a matrix
+                    end
+                    temp = [posx(i,frame-1) posy(i,frame-1); o_centroids];
+
+                    % figure out if fly is on left or right arena
+                    if posx(i,frame-1) < DividingLine
+                        % on left
+                        temp(temp(:,1) > DividingLine,:) = Inf;
+                    else
+                        temp(temp(:,1) < DividingLine,:) = Inf;
+                    end
+
+                    % find closest object to ith fly
+                    d = squareform(pdist(temp));
+                    d = d(1,2:end);
+                    [~,thisobj] = min(d);
+                    
+                    [rp2, SuccessfulSplit] = SeperateCollidingFlies(rp,thisobj);
+                    if SuccessfulSplit == 1
+                        % assign newly identified objects to this fly and
+                        % otherfly
+                        rp2=ForceAssignObjects2Flies(rp2,i,otherfly);
+                        % unmark the collision
+                        collision(i,frame) = 0;
+                        collision(otherfly,frame) = 0;
+                        % unmark the missing fly
+                        flymissing(i,frame)=0;
+                        flymissing(otherfly,frame) = 0;
+                        % m,erge objects
+                        rp(thisobj) = [];
+
+                        rp = [rp; rp2];
+                        keyboard
+                    elseif SuccessfulSplit == 0
+                        % split failure. give up.
+                        if any(abs(pdist2([rp(thisobj).Centroid],ROIs([1 2],:)')-mean(ROIs(3,:)))<35)
+                            % flies are colliding really close to the edge.
+                            % mark both flies are colliding, and missing,
+                            % and do not attempt to assign anything.
+                            flymissing(i,frame)=1;
+                            flymissing(i,otherfly)= 1;
+                            posx(i,frame) = posx(i,frame-1); posy(i,frame) = posy(i,frame-1);
+                            posx(otherfly,frame) = posx(otherfly,frame-1); posy(otherfly,frame) = posy(otherfly,frame-1);
+                            collision(i,frame) = 1;
+                            collision(otherfly,frame) = 1;
+                        end
+                    elseif SuccessfulSplit == 2
+                        % adjacnect flies
+                        % assign newly identified objects to this fly and
+                        % otherfly
+                        rp2=ForceAssignObjects2Flies(rp2,i,otherfly);
+                        % MARK the collision
+                        collision(i,frame) = 1;
+                        collision(otherfly,frame) = 1;
+                        adjacency(i,frame)=1;
+                        adjacency(otherfly,frame)=1;
+                        % unmark the missing fly
+                        flymissing(i,frame)=0;
+                        flymissing(otherfly,frame) = 0;
+                        % merge objects
+                        rp(thisobj) = [];
+                        if length(rp2) == 2
+                          rp =[rp; reshape(rp2,2,1)];
+                        end
+                        keyboard
+
+                    end
+
+                end
+            end
+        end
+        
+        
+        
     end
+
+    function [thisobj] = FindClosestObject2Fly(rp,thisfly)
+        % finds the closest object among a list of regions to a fly
+        o_centroids = [];
+        for j = 1:length(rp)
+            o_centroids=[o_centroids; rp(j).Centroid]; % rearranging all object centroids into a matrix
+        end
+        temp = [posx(thisfly,frame-1) posy(thisfly,frame-1); o_centroids];
+
+        % figure out if fly is on left or right arena
+        if posx(thisfly,frame-1) < DividingLine
+            % on left
+            temp(temp(:,1) > DividingLine,:) = Inf;
+        else
+            temp(temp(:,1) < DividingLine,:) = Inf;
+        end
+
+        % find closest object to ith fly
+        d = squareform(pdist(temp));
+        d = d(1,2:end);
+        [~,thisobj] = min(d);
+    end
+
+    function [rp2] = ForceAssignObjects2Flies(rp2,thisfly,otherfly)
+        keyboard
+        % what is says on the tin. called only in special cases.
+        % explicitly assumes that there are 2 flies and 2 objects
+        
+        % assign i
+        [thisobj] = FindClosestObject2Fly(rp2,thisfly);
+        posx(thisfly,frame) = rp2(thisobj).Centroid(1);
+        posy(thisfly,frame) = rp2(thisobj).Centroid(2);
+        area(thisfly,frame) = sum([rp2.Area])/2; % areas can't be trusted
+            orientation(thisfly,frame) = -rp2(thisobj).Orientation;
+
+        % mark it as assigned
+        rp2(thisobj).Centroid = [Inf Inf];
+        
+        % assign otherfly
+        thisfly=otherfly;
+        [thisobj] = FindClosestObject2Fly(rp2,thisfly);
+        posx(thisfly,frame) = rp2(thisobj).Centroid(1);
+        posy(thisfly,frame) = rp2(thisobj).Centroid(2);
+        area(thisfly,frame) = sum([rp2.Area])/2; % areas can't be trusted
+        orientation(thisfly,frame) = -rp2(thisobj).Orientation;
+        % mark it as assigned
+        rp2(thisobj).Centroid = [Inf Inf];
+        
+        
+        
+        % change the areas
+        rp2(1).Area = area(thisfly,frame);
+        rp2(2).Area = area(thisfly,frame);
+        
+        keyboard
+        
+    end
+
+    function [rp2,SuccessfulSplit] = SeperateCollidingFlies(rp,thisobj)
+        cx = round(rp(thisobj).Centroid(1));
+        cy = round(rp(thisobj).Centroid(2));
+        % make sure we are cutting it nicely
+        thisfly = CutImage(ff,[cy cx],75);
+        disc_sizes = [1:2:6 7 8 9];
+        SuccessfulSplit=0;
+        rp2=[];
+        for k = disc_sizes
+            % open the image using a disc
+            if ~SuccessfulSplit
+                rp2=regionprops(logical(im2bw(imopen(thisfly,strel('disk',k)),thresh)),'Orientation','Centroid','Area','PixelList');
+                if length(rp2) == 2
+                    % check that the sum of the sizes of the two flies is the
+                    % same
+                    if abs((sum([rp2.Area])/rp(thisobj).Area-1))<0.5
+                        % check that the two objects have approximately the
+                        % same area
+                        if  abs((rp2(1).Area-rp2(2).Area))/(sum([rp2.Area])) < 0.4
+                            % delete the old large object
+                            rp(thisobj) = [];
+                            % fix the positions of the new objects
+                            rp2(1).Centroid(1) = rp2(1).Centroid(1)+cx-75;
+                            rp2(2).Centroid(1) = rp2(2).Centroid(1)+cx-75;
+                            rp2(1).Centroid(2) = rp2(1).Centroid(2)+cy-75;
+                            rp2(2).Centroid(2) = rp2(2).Centroid(2)+cy-75;
+                            % fix the pixel lists
+                            rp2(1).PixelList(:,1) =  floor(rp2(1).PixelList(:,1) + cx  - 75);
+                            rp2(1).PixelList(:,2) =  floor(rp2(1).PixelList(:,2) + cy  - 75);
+                            rp2(2).PixelList(:,1) =  floor(rp2(2).PixelList(:,1) + cx  - 75);
+                            rp2(2).PixelList(:,2) =  floor(rp2(2).PixelList(:,2) + cy  - 75);
+                            SuccessfulSplit = 1;
+                        end
+                    end
+                end
+            end
+            
+            
+        end
+        if SuccessfulSplit ==0 
+            % disp('Split failure...trying k-means seperation...')
+            % try to seperate them using k-means
+            k=5;
+            thisfly= (logical(im2bw(imopen(thisfly,strel('disk',k)),thresh)));
+            [xk,yk]=ind2sub([151,151],find(thisfly));
+            [~,rp2centroid]=kmeans([xk yk],2);
+            
+            % reconstruct a fake regionprops struct
+            rp2(1).Area = rp(thisobj).Area/2;
+            rp2(2).Area = rp(thisobj).Area/2;
+            rp2(1).Centroid(1) = rp2centroid(1,2) + cx - 75;
+            rp2(1).Centroid(2) = rp2centroid(1,1) + cy - 75;
+            rp2(2).Centroid(1) = rp2centroid(2,2) + cx - 75;
+            rp2(2).Centroid(2) = rp2centroid(2,1) + cy - 75;
+            
+            
+            
+            SuccessfulSplit = 2;
+            
+            % inherit orientation.
+            rp2(1).Orientation = rp(thisobj).Orientation;
+            rp2(2).Orientation = rp(thisobj).Orientation;
+            
+        end
+        
+        
+        
+        
+    end 
 
     function [] = DetectWingExtention()
         % this function detects Wing Extension events. 
@@ -741,12 +815,10 @@ end
         % - remove the body by removing all bright pixels
         % - compare pixel intensities of the right to the left. 
 
-        if frame == 1048
-           % keyboard
-        end
         for i = 1:n
             % set rejectthis variable.
             rejectthis = 1; % automatically assume that we won't look at this fly
+            rejectreason=0;
             if ~flymissing(i,frame)  % ------------------------------- step 1 passed
                 cx = round(posx(i,frame));
                 cy = round(posy(i,frame));
@@ -759,13 +831,16 @@ end
                 end
                 if flymissing(otherfly,frame)
                     % reject
+                    rejectreason = 1;
                 else % ------------------------------------------------ step 2 passed
                     % are the two flies very far apart?
                     if  pdist2([posx(i,frame),posy(i,frame)],[posx(otherfly,frame),posy(otherfly,frame)])>200
                         % reject
+                        rejectreason = 2;
                     else % ------------------------------------------------ step 3 passed
                         % extract fly
-                        thisfly = ff(cy-50:cy+50,cx-50:cx+50);
+                            thisfly = CutImage(ff,[cy cx],50);
+
                         % find points orthogonal to body axis,around 27 pixels off
                         [left,right,leftw,rightw] = ExtractWingPixelValues(thisfly,orientation(i,frame));
                         left(1) = posx(i,frame)+left(1)-50;
@@ -775,9 +850,9 @@ end
                         % are flies wing locations clear of edge
                         temp= abs(pdist2([left;right],ROIs([1 2],:)')-mean(ROIs(3,:))); % radial distances to circle edge
 
-                        if max(max(temp<15))
+                        if max(max(temp))<15
                             % fail. reject.
-                             
+                             rejectreason = 3;
                         else
                             % ------------------------------------------------ step 4 passed
                             % are flies wing locations clear of other fly?
@@ -785,6 +860,7 @@ end
                             temp(temp<26) = []; % remove reference to this fly
                             if any(temp<30)
                                 % fail. reject.
+                                rejectreason = 4;
                             else
                                 % ------------------------------------------------ step 5 passed
                                 % all OK!
@@ -796,10 +872,46 @@ end
                     
                 end
                 
+                
+                % remove other fly
+                thisfly = ff;
+                otherflyregion=find(area(otherfly,frame)==[rp.Area]);
+                if isempty(otherflyregion)
+                        % cant find other fly propeorly
+                        rejectreason=9;
+                        rejectthis=1;
+                elseif length(otherflyregion) > 1
+                    % probably colliding flies, that have been seoerated
+                    % forecefully by k-means
+                    % try to find the other fly anyway
+                    if any((orientation(otherfly,frame) - [rp.Orientation]) == 0)
+                        otherflyregion = find((orientation(otherfly,frame) - [rp.Orientation]) == 0);
+                    elseif any((orientation(otherfly,frame) + [rp.Orientation]) == 0)
+                        otherflyregion = find((orientation(otherfly,frame) + [rp.Orientation]) == 0);
+                    end
+                    if length(otherflyregion) > 1 
+                        rejectthis = 1;
+                        rejecttreason = 13;
+                    end
+                    
+                end
+                
+                % findally, see if fly was missing in the past
+                if any(flymissing(i,frame-5:frame))
+                    rejectthis = 1;
+                    rejectreason  =11;
+                end
+                
 
-
+                
                 if ~rejectthis
                     % we will consider this for wing extention
+
+                     thisfly(rp(otherflyregion).PixelList(:,2),rp(otherflyregion).PixelList(:,1))=0;
+
+
+
+                    thisfly = CutImage(thisfly,[cy cx],50);
                     thisfly=imerode(thisfly,strel('disk',2)); % remove legs
                     % find orientation of fly
                     thisfly2 = thisfly>max(max(thisfly))/2;
@@ -807,46 +919,39 @@ end
                     r([r.Area]<max([r.Area])/4) = []; % remove small objects
                     [~,flybod]=min(sum(abs(vertcat(r.Centroid)-50)'));
                     % rotate fly so that is oriented vertically
-                    thisfly=imrotate(thisfly,90-(r(flybod).Orientation),'crop');
+                        thisfly=imrotate(thisfly,90-(r(flybod).Orientation),'crop');
+
                     % remove fly body
                     thisfly(thisfly>max(max(thisfly))/2) = 0;
                     % remove background noise
                     thisfly(thisfly<11) = 0;
                     % remove remants of the body
                     thisfly = imerode(thisfly,strel('disk',2));
+                    
+                    % just remove all the middle
+                     thisfly(:,40:60) = 0;
+                    
                     % find the wing
                     r = regionprops(thisfly>5,thisfly,'Centroid','Area','MeanIntensity');
-                    r([r.Area]<60) = []; % remove small objects
+                    r([r.Area]<60) = []; % remove small objects 
                     if ~isempty(r)
-                        for ri = 1:length(r)
-                            % where is this object?
-                            if abs(r(ri).Centroid(1)-50) > 15 && abs(r(ri).Centroid(2)-50) < 25 && r(ri).MeanIntensity >15
+                        if length(r) == 1
+                            if (abs(r.Centroid(1)-50) > 15) && (abs(r.Centroid(1)-50) < 40) && abs(r.Centroid(2)-50) < 10 && r.MeanIntensity > 15
                                 % far away from midline horizontally, but
                                 % close to midline vertically.
-                                WingExtention(i,frame) = 1;
-                                UpdateDisplay;
-                                if i == 4
-                                    
-                                end 
-                                
-                            end
-                        end
-                         
-                    end
-                    
-%                     leftw(leftw<5) = 0; % remove background noise
-%                     rightw(rightw<5) = 0;
-                    
-%                     if max(max([leftw  rightw])) > 10*min(min([leftw  rightw])) && abs(mean(mean(leftw)) - mean(mean(rightw))) > 20
-%                         WingExtention(i,frame) = 1;
-%                         keyboard
-%                     end
-%                     
-                end
+                                WingExtention(i,frame) = 1;  
 
-            end
-            
-        end
+
+                            end
+                        else
+                            % reject.
+                        end
+
+                    end
+                end
+                
+            end            
+        end 
 
     end
 
@@ -885,7 +990,7 @@ end
            
             
             tt=toc(t);
-            fps = oval((frame-StartTracking)/tt,3);
+            fps = oval((frame-StartFromHere)/tt,3);
             cf = [];
             if any(WingExtention(:,frame))
                 scatter(posx(find(WingExtention(:,frame)),frame),posy(find(WingExtention(:,frame)),frame),1500,'g')
@@ -901,17 +1006,18 @@ end
             
         
         else
-            if rand > 0.9
+            if rand > 0.95
                 tt=toc(t);
-                fps = oval((frame-StartTracking)/tt,3);
+                fps = oval((frame-StartFromHere)/tt,3);
                 fprintf(strkat('\n Frame # ', mat2str(frame), '   @ ', fps, 'fps'));
             end
         end
         
+
+        
     end
 
         
-
 
 
 end

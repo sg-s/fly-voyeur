@@ -6,117 +6,167 @@
 % trajectories. 
 function []  = FlyTrack()
 %% global parameters
+global n
 n = 4; % number of flies
-min_area = 100; % minimum area for a fly
 startframe = 1;
 narenas = 2;
 frame = 1; % current frame
-thresh = 100; % from 0 to 255
 StartTracking = [];
 StopTracking  = [];
 LeftStart = [];
 RightStart = [];
 DividingLine = [];
 ROIs=  []; % each row has 3 elements. the first is x cood of circle, the second is y, and the third is the radius
-wings= []; % stores pixel intensity of wing picels. rough estimate.
-body = []; % stores pixel intensity of body pixels
 
-%% choose file
-filename = uigetfile('*');
+moviefigure= [];
+f1=  [];
+framecontrol = [];
+framecontrol2= [];
+threshcontrol = [];
+showthreshcontrol=[];
+markstartbutton = [];
+markstopbutton = [];
+markleftbutton =[];
+markrightbutton  =[];
+marklinebutton = [];
+markroibutton = [];
+nextfilebutton = [];
 
-% process
-movie = VideoReader(filename);
-h =  get(movie,'Height');
-
-% working variables
-nframes = get(movie,'NumberOfFrames');
-posx = NaN(n,nframes);
-posy = posx;
-%% create gui
-moviefigure = figure('Position',[250 250 900 600],'Toolbar','none','Menubar','none','NumberTitle','off','Resize','off','HandleVisibility','on');
-
-f1 = figure('Position',[50 50 1100 100],'Toolbar','none','Menubar','none','NumberTitle','off','Resize','on','HandleVisibility','on');
-nfliescontrol = uicontrol(f1,'Position',[83 5 40 20],'Style','edit','String',mat2str(n),'Callback',@nfliescallback);
-uicontrol(f1,'Position',[20 5 60 20],'Style','text','String','# flies');
-
-narenascontrol = uicontrol(f1,'Position',[223 5 50 20],'Style','edit','String',mat2str(narenas),'Callback',@narenascallback);
-uicontrol(f1,'Position',[160 5 60 20],'Style','text','String','# arenas');
-
-framecontrol = uicontrol(f1,'Position',[53 45 600 20],'Style','slider','Value',startframe,'Min',1,'Max',nframes,'SliderStep',[100/nframes 1000/nframes],'Callback',@framecallback);
-uicontrol(f1,'Position',[1 45 50 20],'Style','text','String','frame #');
-
-framecontrol2 = uicontrol(f1,'Position',[383 5 60 20],'Style','edit','String',mat2str(frame),'Callback',@frame2callback);
-uicontrol(f1,'Position',[320 5 60 20],'Style','text','String','frame #');
-
-threshcontrol = uicontrol(f1,'Position',[543 5 60 20],'Style','edit','String',mat2str(thresh),'Callback',@threshcontrolcallback);
-uicontrol(f1,'Position',[480 5 60 20],'Style','text','String','Threshold');
-showthreshcontrol = uicontrol(f1,'Position',[643 5 60 20],'Style','checkbox','Value',1,'Callback',@checkboxcallback);
-
-markstartbutton = uicontrol(f1,'Position',[700 10 80 20],'Style','pushbutton','String','Mark Start','Callback',@markstart);
-markstopbutton = uicontrol(f1,'Position',[700 50 80 20],'Style','pushbutton','String','Mark Stop','Callback',@markstop);
-
-markleftbutton = uicontrol(f1,'Position',[800 10 100 20],'Style','pushbutton','String','Mark Left start','Callback',@markleft);
-markrightbutton = uicontrol(f1,'Position',[800 50 100 20],'Style','pushbutton','String','Mark right start','Callback',@markright);
-
-marklinebutton = uicontrol(f1,'Position',[910 10 100 20],'Style','pushbutton','String','Mark Dividing Line','Callback',@markline);
-markroibutton = uicontrol(f1,'Position',[910 50 100 20],'Style','pushbutton','String','Mark Circles','Callback',@markroi);
+nframes=  [];
+h = [];
+movie = [];
+mi= [];
+moviefile= [];
 
 
-%% intialise
-ff = read(movie,startframe);
-figure(moviefigure)
-bw = im2bw(ff,thresh/255);
-ff(:,:,1) = ff(:,:,1)*0;
-ff(:,:,1) = bw*255;
-imshow(ff);
+%% choose files
+source = cd;
+allfiles = uigetfile('*.avi','MultiSelect','on'); % makes sure only avi files are chosen
+if ~ischar(allfiles)
+% convert this into a useful format
+thesefiles = [];
+for fi = 1:length(allfiles)
+    thesefiles = [thesefiles dir(strcat(source,oss,cell2mat(allfiles(fi))))];
+end
+else
+    thesefiles(1).name = allfiles;
+end
+mi=1;
+InitialiseAnnotate(mi);
 
 
+    
+
+
+%% make GUI function
+
+    function [] = CreateGUI(eo,ed)
+        titletext = thesefiles(mi).name;
+        moviefigure = figure('Position',[250 250 900 600],'Name',titletext,'Toolbar','none','Menubar','none','NumberTitle','off','Resize','off','HandleVisibility','on');
+
+        f1 = figure('Position',[50 50 1100 100],'Toolbar','none','Menubar','none','NumberTitle','off','Resize','on','HandleVisibility','on');
+        %nfliescontrol = uicontrol(f1,'Position',[83 5 40 20],'Style','edit','String',mat2str(n),'Callback',@nfliescallback);
+        %uicontrol(f1,'Position',[20 5 60 20],'Style','text','String','# flies');
+
+        %narenascontrol = uicontrol(f1,'Position',[223 5 50 20],'Style','edit','String',mat2str(narenas),'Callback',@narenascallback);
+        %uicontrol(f1,'Position',[160 5 60 20],'Style','text','String','# arenas');
+
+        framecontrol = uicontrol(f1,'Position',[53 45 600 20],'Style','slider','Value',startframe,'Min',1,'Max',nframes,'SliderStep',[100/nframes 1000/nframes],'Callback',@framecallback);
+        uicontrol(f1,'Position',[1 45 50 20],'Style','text','String','frame #');
+
+        framecontrol2 = uicontrol(f1,'Position',[383 5 60 20],'Style','edit','String',mat2str(frame),'Callback',@frame2callback);
+        uicontrol(f1,'Position',[320 5 60 20],'Style','text','String','frame #');
+
+
+        markstartbutton = uicontrol(f1,'Position',[700 10 80 20],'Style','pushbutton','String','Mark Start','Callback',@markstart);
+        markstopbutton = uicontrol(f1,'Position',[700 50 80 20],'Style','pushbutton','String','Mark Stop','Callback',@markstop);
+
+        markleftbutton = uicontrol(f1,'Position',[800 10 100 20],'Style','pushbutton','String','Mark Left start','Callback',@markleft);
+        markrightbutton = uicontrol(f1,'Position',[800 50 100 20],'Style','pushbutton','String','Mark Right start','Callback',@markright);
+
+        marklinebutton = uicontrol(f1,'Position',[910 10 100 20],'Style','pushbutton','String','Mark Dividing Line','Callback',@markline);
+        markroibutton = uicontrol(f1,'Position',[910 50 100 20],'Style','pushbutton','String','Mark Circles','Callback',@markroi);
+
+        nextfilebutton = uicontrol(f1,'Position',[223 5 50 20],'Style','pushbutton','String','NextFile','Enable','off','Callback',@nextcallback);
+    end
+
+    function [] = nextcallback(eo,ed)
+        if mi == length(thesefiles)
+            delete(moviefigure)
+            delete(f1)
+        else
+            mi = mi+1;
+            movie = VideoReader(thesefiles(mi).name);
+            h =  get(movie,'Height');
+
+            % working variables
+            nframes = get(movie,'NumberOfFrames');
+            
+            % clear variables
+            frame=1;
+            markroi; % clears ROIs
+            markline; % clears dividing line
+            markstart;
+            markstop;
+            markleft;
+            markright;
+            
+            delete(framecontrol)
+            framecontrol = uicontrol(f1,'Position',[53 45 600 20],'Style','slider','Value',startframe,'Min',1,'Max',nframes,'SliderStep',[100/nframes 1000/nframes],'Callback',@framecallback);
+        
+            
+            % update GUI
+             titletext = thesefiles(mi).name;
+             set(moviefigure,'Name',titletext);
+             set(framecontrol,'Value',1);
+             set(framecontrol2,'String','1')
+            
+            showimage;
+            
+        end
+    end
+
+
+%% intialise function
+
+    function [] = InitialiseAnnotate(mi)
+
+        
+        movie = VideoReader(thesefiles(mi).name);
+        h =  get(movie,'Height');
+
+        % working variables
+        nframes = get(movie,'NumberOfFrames');
+        
+        CreateGUI;
+        showimage;
+
+    end
+
+
+  
 %% callback functions
 
-    function [] = markwings(eo,ed)
-        figure(moviefigure)
-        [x,y]=(ginput(1));
-        x = round(x); y = round(y);
-        
-        wings = [wings ff(y,x)];
-        
-    end
-
-    function [] = markbody(eo,ed)
-        figure(moviefigure)
-        [x,y]=(ginput(1));
-        x = round(x); y = round(y);
-        body = [body ff(y,x)];
-        
-    end
-
-    function [] = checkboxcallback(eo,ed)
-        showimage;
-    end
-
-    function  [] = nfliescallback(eo,ed)
-        n = floor(str2double(get(nfliescontrol,'String')));
-        savetrackdata;
-    end
 
     function [] = markroi(eo,ed)
-    if isempty(ROIs)
-        ROIs = NaN(3,narenas);
-        figure(moviefigure), axis image
-        for i = 1:narenas
-            [he]=imellipse();
-            position = wait(he);
-            [cx,cy,cr]=circfit(position(:,1),position(:,2)); % horrible hack. I'm ashamed of this. 
-            ROIs(:,i) = [cx cy cr];
+
+        if isempty(ROIs)
+            ROIs = NaN(3,narenas);
+            figure(moviefigure), axis image
+            for i = 1:narenas
+                [he]=imellipse();
+                position = wait(he);
+                [cx,cy,cr]=circfit(position(:,1),position(:,2)); % horrible hack. I'm ashamed of this. 
+                ROIs(:,i) = [cx cy cr];
+            end
+            drawline;
+            set(markroibutton,'String','ROIs marked','BackgroundColor',[0.7 0 0])
+        else
+            ROIs= [];
+            set(markroibutton,'String','Mark circles','BackgroundColor',[1 1 1])
+            showimage;
         end
-        drawline;
-        set(markroibutton,'String','ROIs marked','BackgroundColor',[0.7 0 0])
-    else
-        ROIs= [];
-        set(markroibutton,'String','Mark circles','BackgroundColor',[1 1 1])
-        showimage;
-    end
-    savetrackdata;
+        savetrackdata;
 
     end
 
@@ -138,35 +188,18 @@ end
         ff = read(movie,frame);
         ff = 255-ff(:,:,1);
         figure(moviefigure), axis image
-        if get(showthreshcontrol,'Value')
-            % separate wing, body and background
-            % assign foreground to channgel 1
-            bw = im2bw(ff,thresh/255);
-            ff(:,:,1) = ff(:,:,1)*0;
-            ff(:,:,1) = bw*255;
-            
-
-            
-            
-        else
-        end
-        
         imshow(ff);
+        axis equal
         title(frame)
         drawline;
         savetrackdata;
+        % try to draw the circles
+        if ~isempty(ROIs)
+            viscircles(ROIs(1:2,:)',ROIs(3,:),'EdgeColor','r');
+        end
     end
 
-    function  [] = threshcontrolcallback(eo,ed)
-        thresh = str2double(get(threshcontrol,'String'));
-        showimage;
-        savetrackdata;
-    end
 
-    function [] = narenascallback(eo,ed)
-        narenas = round(str2double(get(narenascontrol,'String')));
-        savetrackdata;
-    end
 
     function  [] = markstart(eo,ed)
         if isempty(StartTracking)
@@ -236,10 +269,15 @@ end
     end
 
     function  [] = savetrackdata(eo,ed)
-        moviefile = filename;
-        thresh = thresh/255;
-        save(strcat(filename(1:end-3),'mat'),'DividingLine','n','StartTracking','StopTracking','LeftStart','RightStart','thresh','narenas','moviefile','ROIs');
-        thresh = thresh*255; 
+        moviefile = thesefiles(mi).name;
+        filename = thesefiles(mi).name;
+        save(strcat(filename(1:end-3),'mat'),'DividingLine','n','StartTracking','StopTracking','LeftStart','RightStart','narenas','moviefile','ROIs');
+        if ~isempty(DividingLine) && ~isempty(n) && ~isempty(StartTracking) && ~isempty(StopTracking) && ~isempty(LeftStart) && ~isempty(RightStart) && ~isempty(ROIs)
+            set(nextfilebutton,'Enable','on');
+        else
+            set(nextfilebutton,'Enable','off');
+        end
+        
     end
 
 end
