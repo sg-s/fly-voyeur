@@ -8,7 +8,7 @@
 % at http://srinivas.gs/contact/
 % Track3 is a large re-write of Track2 where all the subfunctions have been
 % split up into smaller files for better sanity of debugging.
-function [] = Track3(v,ForceStartFromHere)
+function [] = Track4(v,ForceStartFromHere)
 %% choose files to track
 source = cd;
 allfiles = uigetfile('*.mat','MultiSelect','on'); % makes sure only annotated files are chosen
@@ -60,7 +60,10 @@ for fi = 1:length(thesefiles)
     heading = [];
     area=[];
     collision = [];
-    adjacency = []; % adjancency is like collision, but indicates that the k-means algo. was used to seperate flies. 
+    adjacency = []; 
+    MajorAxis = [];
+    MinorAxis = [];
+    LookingAtOtherFly = [];
     WingExtention = [];
    
     % housekeeping
@@ -127,6 +130,9 @@ for fi = 1:length(thesefiles)
         collision = zeros(n,nframes);
         adjacency = zeros(n,nframes);
         flymissing = zeros(n,nframes);
+        MajorAxis = zeros(n,nframes);
+        MinorAxis = zeros(n,nframes);
+        LookingAtOtherFly = zeros(n,nframes);
         WingExtention = zeros(n,nframes);
         heading = NaN(n,nframes);
         allflies= 1:n;
@@ -161,7 +167,7 @@ function  [] = TrackCore3()
     if StartFromHere < StartTracking
         error('Cannot track here as this part of the movie is before StartTrackig')
     end
-    
+    flylimits = zeros(2,n);
     for frame = StartFromHere:StopTracking  
         % prep image
         
@@ -176,8 +182,8 @@ function  [] = TrackCore3()
 
         
         % assign objects
-        
-        [posx,posy,orientation,heading,area,flymissing,collision] = AssignObjects3(frame,StartTracking,rp,posx,posy,orientation,heading,area,flymissing,DividingLine,collision);
+        [posx,posy,orientation,area,flymissing,collision,MajorAxis,MinorAxis] = AssignObjects4(frame,StartTracking,rp,posx,posy,orientation,area,flymissing,DividingLine,collision,MajorAxis,MinorAxis);
+
         
         
         if length(rp) == n
@@ -190,10 +196,10 @@ function  [] = TrackCore3()
         
         
         % find putative colliding flies
-        
+
         if frame - StartFromHere > 6
             for i = 1:narenas
-                 thisfly = 2*i;
+                thisfly = 2*i;
                 otherfly = 2*i-1;
                 % find colliding flies
                 CollidingFly = FindPutativeCollidingFlies(i,collision,flymissing,frame,area);
@@ -206,7 +212,7 @@ function  [] = TrackCore3()
 
                 if ~isempty(CollidingFly)
                      % separate the putative colliding flies
-                     [SeperationDifficulty, rp,posx,posy,area,orientation]=SplitCollidingFlies(CollidingFly,rp,posx,posy,area,orientation,ff,DividingLine,frame,thresh,adjacency);
+                     [SeperationDifficulty, rp,posx,posy,area,orientation,MajorAxis,MinorAxis]=SplitCollidingFlies(CollidingFly,rp,posx,posy,area,orientation,ff,DividingLine,frame,thresh,adjacency,MajorAxis,MinorAxis);
                      if isinf(SeperationDifficulty)
                          adjacency(CollidingFly,frame)=1;
                          flymissing(CollidingFly,frame)=0;
@@ -220,20 +226,29 @@ function  [] = TrackCore3()
 
             end
 
-
-            % detect Wing Extention
-
-            [WingExtention] = DetectWingExtention3(ff,frame,ROIs,posx,posy,area,rp,WingExtention,orientation,flymissing);
         end
+
+
+        % some fixes
+        [orientation,heading,theseflies,flylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,flylimits,MajorAxis,MinorAxis);
+
+        LookingAtOtherFly(:,frame) = IsFlyLookingAtOtherFly(posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame));
+
+        %detect Wing Extension
+        %[WingExtention,flylimits] = DetectWingExtention4(theseflies,frame,ROIs,posx,posy,area,WingExtention,flymissing,flylimits,MajorAxis,MinorAxis);
+        
         
         % update display
-        UpdateDisplay(v,frame,ff,flymissing,posx,posy,WingExtention,orientation,heading,t,StartFromHere,collision);
+        UpdateDisplay4(v,frame,ff,flymissing,posx,posy,WingExtention,orientation,heading,t,StartFromHere,collision,MajorAxis,MinorAxis,LookingAtOtherFly,displayfigure);
+
+
+
         
         % save
         % save every 1000 frames of data
         if  ~(ceil(frame/1000)-(frame/1000))
             disp('Saving...')
-            save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','-append')
+            save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','MajorAxis','MinorAxis','-append')
             movie
         end
         
@@ -241,7 +256,7 @@ function  [] = TrackCore3()
         
         
     end
-    save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','-append')
+    save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','MajorAxis','MinorAxis','-append')
         
             
     
@@ -264,6 +279,9 @@ function [] = InitialiseTracking()
         collision(:,StartFromHere:end) = 0;
         adjacency(:,StartFromHere:end) = 0;
         flymissing(:,StartFromHere:end) = 0;
+        MajorAxis(:,StartFromHere:end) = 0;
+        MinorAxis(:,StartFromHere:end) = 0;
+        LookingAtOtherFly(:,StartFromHere:end) = 0;
         WingExtention(:,StartFromHere:end) = 0;
         heading(:,StartFromHere:end) = NaN;
         allflies= 1:n;
@@ -275,8 +293,9 @@ function [] = InitialiseTracking()
         
         if v
             % create a display
-            displayfigure=figure; hold on
-             imagesc(ff), hold on
+            scrsz = get(0,'ScreenSize');
+            displayfigure=figure('Position',[100 scrsz(4)/2 2*scrsz(3)/3 2*scrsz(4)/3]); hold on
+            imagesc(ff), hold on
         end
 end
 

@@ -4,6 +4,7 @@
 function [FirstWE, TotalWE] = ComputeWEMetrics(WingExtention,CopulationTimes,narenas,posx,posy,orientation,flymissing)
 % debug
 owe = WingExtention; % original data
+backupwe = owe;
 
 % create data structures
 FirstWE = zeros(1,narenas);
@@ -13,7 +14,12 @@ TotalWE = zeros(1,narenas);
 for i = 1:4
     wee =  find(WingExtention(i,:));
     for j = wee
-        fm = max(flymissing(i,j-5:j+5));
+        fm = 0;
+        try
+            fm = max(flymissing(i,j-5:j+5));
+        catch
+            % no worries
+        end
         if fm
             WingExtention(i,j) = 0;
         end
@@ -32,6 +38,7 @@ for i = 1:4
     temp(temp<0.5) = 0;
     temp(temp>0) = 1;
     WingExtention(i,:) =temp;
+    backupwe(i,:) = temp;
 end
 
 
@@ -43,6 +50,8 @@ for i = 1:narenas
 
         WingExtention(thisfly,CopulationTimes(i):end) = 0;
         WingExtention(otherfly,CopulationTimes(i):end) = 0;
+        backupwe(thisfly,CopulationTimes(i):end) = 0;
+        backupwe(otherfly,CopulationTimes(i):end) = 0;
     end
 end
 
@@ -107,18 +116,27 @@ if ~isempty(find(WingExtention(1,:)))
 else
     if CopulationTimes(1) > 0
         disp('Copulation but no WE?')
-        keyboard
+        try
+            FirstWE(1)=min([find(backupwe(1,:),1,'first') find(backupwe(2,:),1,'first')]);
+        end
+        %keyboard
+    else
+        FirstWE(1) = Inf;
     end
-    FirstWE(1) = Inf;
+
 end
 if ~isempty(find(WingExtention(3,:)))
     FirstWE(2)=find(WingExtention(3,:),1,'first');
 else
     if CopulationTimes(2) > 0
         disp('Copulation but no WE?')
-        keyboard
+        try
+            FirstWE(2)=min([find(backupwe(3,:),1,'first') find(backupwe(4,:),1,'first')]);
+        end
+        %keyboard
+    else
+        FirstWE(2) = Inf;
     end
-    FirstWE(2) = Inf;
 end
 
 % find total WE

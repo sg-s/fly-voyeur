@@ -69,7 +69,7 @@ for fi = 1:length(thesefiles)
     displayfigure= [];
     fps = [];
     
-
+    close(gcf)
     disp('Loading new file....')
     disp(thesefiles(fi).name)
     warning off

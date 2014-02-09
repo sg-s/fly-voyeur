@@ -1,23 +1,36 @@
 % created by Srinivas Gorur-Shandilya at 19:18 , 18 November 2013. Contact
 % me at http://srinivas.gs/contact/
 % part of the track3 codebase
-function [SeperationDifficulty, rp,posx,posy,area,orientation,MajorAxis,MinorAxis]=SplitCollidingFlies(CollidingFly,rp,posx,posy,area,orientation,ff,DividingLine,frame,thresh,adjacency,MajorAxis,MinorAxis)
-% find the object to split
-mergedfly = CollidingFly(1);
-otherfly = CollidingFly(2);
-[thisobj] = FindClosestObject2Fly(rp,mergedfly,posx,posy,DividingLine,frame);
+function [SeperationDifficulty, rp,posx,posy,area,orientation]=SplitCollidingFlies2(ff,SplitThisObject,f1,f2,posx,posy,area,orientation,DividingLine,frame,rp,adjacency,thresh,maskthis)
 
-cx = round(rp(thisobj).Centroid(1));
-cy = round(rp(thisobj).Centroid(2));
+% new algorithm
+% delete all tracking data from flies f1 and f2
+posx(f1,frame) =  NaN;
+posx(f2,frame) =  NaN;
+posy(f1,frame) =  NaN;
+posy(f2,frame) =  NaN;
+area(f1,frame) = NaN;
+area(f2,frame) = NaN;
+orientation(f1,frame) = NaN;
+orientation(f2,frame) = NaN;
+
+% take object provided and split it
+cx = round(rp(SplitThisObject).Centroid(1));
+cy = round(rp(SplitThisObject).Centroid(2));
+% mask the third fly
+for i = 1:length(rp(maskthis).PixelList) % how do i vecotirse this??
+    ff(rp(maskthis).PixelList(i,2),rp(maskthis).PixelList(i,1)) = 0;
+end
+
 % make sure we are cutting it nicely
 thisfly = CutImage(ff,[cy cx],75);
 disc_sizes = [1:2:6 7 8 9];
 SeperationDifficulty=0;
 rp2=[];
-if min(min(adjacency(CollidingFly,frame-10:frame-1))) == 1
+if min(min(adjacency([f1 f2],frame-10:frame-1))) == 1
     % flies have been adjacent for a long time, so skip morpholigcal
     % seperation
-  
+
 else
     for k = disc_sizes
         % open the image using a disc
@@ -26,12 +39,10 @@ else
             if length(rp2) == 2
                 % check that the sum of the sizes of the two flies is the
                 % same
-                if abs((sum([rp2.Area])/rp(thisobj).Area-1))<0.5
+                if abs((sum([rp2.Area])/rp(SplitThisObject).Area-1))<0.5
                     % check that the two objects have approximately the
                     % same area
                     if  abs((rp2(1).Area-rp2(2).Area))/(sum([rp2.Area])) < 0.4
-                        % delete the old large object
-                        rp(thisobj) = [];
                         % fix the positions of the new objects
                         rp2(1).Centroid(1) = rp2(1).Centroid(1)+cx-75;
                         rp2(2).Centroid(1) = rp2(2).Centroid(1)+cx-75;
@@ -61,32 +72,26 @@ if SeperationDifficulty ==0
     [idx,rp2centroid]=kmeans([xk yk],2);
 
     % reconstruct a fake regionprops struct
-    rp2(1).Area = rp(thisobj).Area/2;
-    rp2(2).Area = rp(thisobj).Area/2;
+    rp2(1).Area = rp(SplitThisObject).Area/2;
+    rp2(2).Area = rp(SplitThisObject).Area/2;
     rp2(1).Centroid(1) = rp2centroid(1,2) + cx - 75;
     rp2(1).Centroid(2) = rp2centroid(1,1) + cy - 75;
     rp2(2).Centroid(1) = rp2centroid(2,2) + cx - 75;
     rp2(2).Centroid(2) = rp2centroid(2,1) + cy - 75;
     rp2(1).PixelList = [xk(idx==1) yk(idx==1)];
     rp2(2).PixelList = [xk(idx==2) yk(idx==2)];
-
-    
-    rp2(1).MajorAxisLength = rp(thisobj).MajorAxisLength/2;
-    rp2(1).MinorAxisLength = rp(thisobj).MinorAxisLength/2;
-    rp2(2).MajorAxisLength = rp(thisobj).MajorAxisLength/2;
-    rp2(2).MinorAxisLength = rp(thisobj).MinorAxisLength/2;
          
 
     % inherit orientation.
-    rp2(1).Orientation = rp(thisobj).Orientation;
-    rp2(2).Orientation = rp(thisobj).Orientation;
+    rp2(1).Orientation = rp(SplitThisObject).Orientation;
+    rp2(2).Orientation = rp(SplitThisObject).Orientation;
     SeperationDifficulty = Inf;
-    rp(thisobj) = [];
-
 
 end
       
-
+% assign halves of split object to f1 and f2. 
+% delete old object
+rp(SplitThisObject) = [];
 % merge objects
 if length(rp2) ~= 2
     beep
@@ -104,38 +109,39 @@ catch
 end
 
 % update positions--force assign objects
-% assign mergedfly
-[thisobj] = FindClosestObject2Fly(rp2,mergedfly,posx,posy,DividingLine,frame);
-posx(mergedfly,frame) = rp2(thisobj).Centroid(1);
-posy(mergedfly,frame) = rp2(thisobj).Centroid(2);
-MajorAxis(mergedfly,frame) = rp2(thisobj).MajorAxisLength;
-MinorAxis(mergedfly,frame) = rp2(thisobj).MinorAxisLength;
+% assign f1
+[f1obj] = FindClosestObject2Fly(rp2,f1,posx,posy,DividingLine,frame);
+posx(f1,frame) = rp2(f1obj).Centroid(1);
+posy(f1,frame) = rp2(f1obj).Centroid(2);
 if isinf(SeperationDifficulty)
-    area(mergedfly,frame) = sum([rp2.Area])/2; % areas can't be trusted
+    area(f1,frame) = sum([rp2.Area])/2; % areas can't be trusted
 else
-    area(mergedfly,frame) = rp2(thisobj).Area; 
+    area(f1,frame) = rp2(f1obj).Area; 
 end
-orientation(mergedfly,frame) = -rp2(thisobj).Orientation;
+orientation(f1,frame) = -rp2(f1obj).Orientation;
 
 % mark it as assigned
-rp2(thisobj).Centroid = [Inf Inf];
+rp2(f1obj).Centroid = [Inf Inf];
 
 % assign otherfly
-thisfly=otherfly;
-[thisobj] = FindClosestObject2Fly(rp2,thisfly,posx,posy,DividingLine,frame);
-posx(thisfly,frame) = rp2(thisobj).Centroid(1);
-posy(thisfly,frame) = rp2(thisobj).Centroid(2);
-MajorAxis(thisfly,frame) = rp2(thisobj).MajorAxisLength;
-MinorAxis(thisfly,frame) = rp2(thisobj).MinorAxisLength;
+[f2obj] = FindClosestObject2Fly(rp2,f2,posx,posy,DividingLine,frame);
+posx(f2,frame) = rp2(f2obj).Centroid(1);
+posy(f2,frame) = rp2(f2obj).Centroid(2);
 if isinf(SeperationDifficulty)
-    area(thisfly,frame) = sum([rp2.Area])/2; % areas can't be trusted
+    area(f2,frame) = sum([rp2.Area])/2; % areas can't be trusted
 else
-    area(thisfly,frame) = rp2(thisobj).Area; 
+    area(f2,frame) = rp2(f2obj).Area; 
 end
-orientation(thisfly,frame) = -rp2(thisobj).Orientation;
+orientation(f2,frame) = -rp2(f2obj).Orientation;
 % mark it as assigned
-rp2(thisobj).Centroid = [Inf Inf];
+rp2(f2obj).Centroid = [Inf Inf];
 
+% check that everyhting is OK
+if any(isinf(posx(:,frame)))
+    disp('infinite distance')
+    keyboard
+    error('Infinite distance')
+end 
 
 
         

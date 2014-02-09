@@ -17,7 +17,7 @@ if any(flymissing(otherfly:thisfly,frame))
         missingfly =  intersect(find(flymissing(:,frame)),[otherfly thisfly]);
         mergedfly = setdiff([otherfly thisfly],missingfly);
         
-        if area(mergedfly,frame)/area(mergedfly,frame-1) > 1.5 
+        if area(mergedfly,frame)/area(mergedfly,frame-1) > 1.4
             if (collision(mergedfly,frame)*collision(missingfly,frame)) %#ok<BDLOG>
                 PutativeCollidingFlies = [mergedfly missingfly];
             end

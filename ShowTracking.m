@@ -1,17 +1,21 @@
 % ShowTracking.m
 % shows the tracking done by track2, superimposed on the video.
 %% choose files to show
-function [] = ShowTracking()
+function [] = ShowTracking(varargin)
 source = cd;
-allfiles = uigetfile('*.mat','MultiSelect','off'); % makes sure only annotated files are chosen
-if ~ischar(allfiles)
-% convert this into a useful format
-thesefiles = [];
-for fi = 1:length(allfiles)
-    thesefiles = [thesefiles dir(strcat(source,oss,cell2mat(allfiles(fi))))];
-end
+if nargin == 0 
+    allfiles = uigetfile('*.mat','MultiSelect','off'); % makes sure only annotated files are chosen
+    if ~ischar(allfiles)
+    % convert this into a useful format
+    thesefiles = [];
+    for fi = 1:length(allfiles)
+        thesefiles = [thesefiles dir(strcat(source,oss,cell2mat(allfiles(fi))))];
+    end
+    else
+        thesefiles(1).name = allfiles;
+    end
 else
-    thesefiles(1).name = allfiles;
+    thesefiles(1).name = varargin{1};
 end
 
 %% global vairables
@@ -38,6 +42,7 @@ heading = [];
 allflies= [];
 area=[];
 mask = [];
+spot =[];
 rp = [];
 displayfigure= [];
 fps = [];
@@ -52,15 +57,34 @@ PauseButton = [];
 CopulationTimes = [];
 Copulation = [];
 WingExtention = [];
+MajorAxis = [];
+MinorAxis = [];
+wh = zeros(1,4); % handles for wing extension signal
+
 frame = StartTracking; % current frame
+Channel = 1;
 %% load 
+warning off
 load(thesefiles(1).name)
+warning on
 movie = VideoReader(moviefile)
 frame = StartTracking; % current frame
 %% make the figure
 f1 = figure('Position',[250 250 900 600],'Name',thesefiles(1).name,'Toolbar','none','Menubar','none','NumberTitle','off','Resize','off','HandleVisibility','on');
 
-framecontrol = uicontrol(f1,'Position',[110 47 690 20],'Style','slider','Value',StartTracking,'Min',1,'Max',StopTracking,'SliderStep',[0.001 0.1],'Callback',@framecallback);
+
+if isempty(StartTracking)
+    error('StartTracking is empty. Are you sure this file is analysed/OK?')
+end
+
+
+if nargin == 2
+    InitialValue = varargin{2};
+else
+    InitialValue = StopTracking;
+end
+
+framecontrol = uicontrol(f1,'Position',[110 47 690 20],'Style','slider','Value',InitialValue,'Min',1,'Max',StopTracking,'SliderStep',[0.001 0.1],'Callback',@framecallback);
 
 gobackbutton = uicontrol(f1,'Position',[73 45 30 30],'Style','pushbutton','String','<','Callback',@gobackCallback);
 goforwardbutton = uicontrol(f1,'Position',[813 45 30 30],'Style','pushbutton','String','>','Callback',@goforwardCallback);
@@ -78,7 +102,7 @@ framecontrol2 = uicontrol(f1,'Position',[383 5 60 20],'Style','edit','String',ma
 uicontrol(f1,'Position',[320 5 60 20],'Style','text','String','frame #');
 
 %% intialise
-ff = read(movie,StartTracking);
+ff = read(movie,InitialValue);
 figure(f1)
 imshow(ff);
 axis equal
@@ -183,12 +207,21 @@ end
 
 %% show image
 function [] = showimage(eo,ed)
+    cla
     ff = read(movie,frame);
     figure(f1), axis image
     imshow(ff);
     axis equal
     if frame > StartTracking && StopTracking
         for i = 1:n
+            % if wh(i) ~= 0
+            %     try
+            %         delete(wh(i))
+            %     catch
+            %         keyboard
+            %     end
+            % end
+
             if flymissing(i,frame)
                 scatter(posx(i,frame),posy(i,frame),'r','filled')
 
@@ -197,6 +230,9 @@ function [] = showimage(eo,ed)
                 triangle([posx(i,frame) posy(i,frame)],heading(i,frame),10,'b');
 
             end
+            if abs(WingExtention(i,frame)) > 0
+                text(posx(i,frame)-50,posy(i,frame)-50,oval(abs(WingExtention(i,frame)),2));
+            end
 
         end
         cf = [];
@@ -204,6 +240,8 @@ function [] = showimage(eo,ed)
 
             scatter(posx(find(WingExtention(:,frame)),frame),posy(find(WingExtention(:,frame)),frame),1500,'g')
             scatter(posx(find(WingExtention(:,frame)),frame),posy(find(WingExtention(:,frame)),frame),1600,'g')
+            
+
         end
         if any(collision(:,frame))
             cf = mat2str(find(collision(:,frame)));

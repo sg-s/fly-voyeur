@@ -3,9 +3,11 @@ function [rp] = DetectObjects(bb,ff,thresh)
 if bb
     rp =[];
     l = logical(im2bw(ff,thresh));
+
     rp = regionprops(l,'Orientation','Centroid','Area','PixelList','BoundingBox');
 else
     rp =[];
     l = logical(im2bw(ff,thresh));
-    rp = regionprops(l,'Orientation','Centroid','Area','PixelList');
+    l = bwconncomp(l);
+    rp = regionprops(l,'Orientation','Centroid','Area','PixelList','MajorAxisLength','MinorAxisLength');
 end

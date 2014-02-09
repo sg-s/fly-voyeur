@@ -123,7 +123,7 @@ for i = 1:n
             r([r.Area]<max([r.Area])/4) = []; % remove small objects
             [~,flybod]=min(sum(abs(vertcat(r.Centroid)-50)'));
             % rotate fly so that is oriented vertically
-                thisfly=imrotate(thisfly,90-(r(flybod).Orientation),'crop');
+            thisfly=imrotate(thisfly,90-(r(flybod).Orientation),'crop');
 
             % remove fly body
             thisfly(thisfly>max(max(thisfly))/2) = 0;
@@ -140,7 +140,7 @@ for i = 1:n
             r([r.Area]<60) = []; % remove small objects 
             if ~isempty(r)
                 if length(r) == 1
-                    if (abs(r.Centroid(1)-50) > 15) && (abs(r.Centroid(1)-50) < 40) && abs(r.Centroid(2)-50) < 10 && r.MeanIntensity > 15
+                    if (abs(r.Centroid(1)-50) > 15) && (abs(r.Centroid(1)-50) < 40) && abs(r.Centroid(2)-50) < 10 %&& r.MeanIntensity > 15
                         % far away from midline horizontally, but
                         % close to midline vertically.
                         WingExtention(i,frame) = 1;  

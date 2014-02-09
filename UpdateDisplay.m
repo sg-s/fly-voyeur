@@ -11,13 +11,13 @@ if v
             che = che+1;
         else
             triangle([posx(i,frame) posy(i,frame)],orientation(i,frame),10,'k');
-            triangle([posx(i,frame) posy(i,frame)],heading(i,frame),10,'b');
+            %triangle([posx(i,frame) posy(i,frame)],heading(i,frame),10,'b');
             che = che+1;
         end
 
     end
     if che~=n
-        keyboard
+        error('Some awful error')
     end
 
 
