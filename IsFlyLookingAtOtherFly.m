@@ -45,7 +45,13 @@ for i = 1:length(posx)
         FlyLookingAtOtherFly(i) = 1;
         
     else
-        %disp('I DONT think this fly is looking at the other fly.')
+        % make sure it's not just missing it
+        if abs(min(angles) -  thisflyo) < 5 || abs(max(angles) -  thisflyo) < 5
+            if  FlySeperation(i,otherfly,posx,posy,MajorAxis,MinorAxis,orientation) < 25
+                % it is looking at the other fly, dammit
+                FlyLookingAtOtherFly(i) = 1;
+            end
+        end
         
     end
 

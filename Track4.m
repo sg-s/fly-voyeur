@@ -107,11 +107,17 @@ for fi = 1:length(thesefiles)
                 disp('Partially analysed file; Trashing all old data and re-starting...')
                 TrackCore3;
             else
-                disp('Partially analysed file; will continue where I left off...')
-                StartFromHere= find(isnan(posx(1,:))==0,1,'last');
-                disp('...and that is:')
-                disp(StartFromHere)
-                TrackCore3;
+                if nargin == 2
+                    disp('Partially analysed file; but will start from :')
+                    disp(StartFromHere)
+                    TrackCore3;
+                else
+                    disp('Partially analysed file; will continue where I left off...')
+                    StartFromHere= find(isnan(posx(1,:))==0,1,'last');
+                    disp('...and that is:')
+                    disp(StartFromHere)
+                    TrackCore3;
+                end
             end
         end
     else
