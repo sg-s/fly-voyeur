@@ -33,18 +33,21 @@ for i = 1:length(posx)
     angles(4) = atan2d(right(2) - posy(i),right(1) - posx(i));
 
 
-    ad = orientation(i) - angles;
-    ad(ad<-180) = 360 + ad(ad<-180);
-    ad(ad>180) = 360 - ad(ad>180);
-
-
-    if mean(abs(ad)) < 90 && min(ad) < 0 && max(ad) > 0
-		FlyLookingAtOtherFly(i) =1;
-
+    angles(angles<0) = angles(angles<0)+360; 
+    if orientation(i)<0
+        thisflyo = orientation(i) + 360;
     else
-    	%disp('i dont think it is looking at the other fly')
+        thisflyo = orientation(i);
+    end
 
-	end
+    if thisflyo > min(angles) && thisflyo < max(angles)
+        %disp('I think this fly is looking at the other fly.')
+        FlyLookingAtOtherFly(i) = 1;
+        
+    else
+        %disp('I DONT think this fly is looking at the other fly.')
+        
+    end
 
 
 end

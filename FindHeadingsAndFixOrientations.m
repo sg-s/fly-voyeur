@@ -20,8 +20,7 @@ for i = 1:n
     if (orientation(i,frame)) > 180
         orientation(i,frame) =  orientation(i,frame) - 360;
     elseif  (orientation(i,frame)) < -180
-        disp('WHY IS ORIENTATION SO NEGATIVE? BAAAA line 22')
-        keyboard
+        orientation(i,frame) =  orientation(i,frame) + 360;
     end
 
 
@@ -132,19 +131,9 @@ for i = 1:n
     if (orientation(i,frame)) > 180
         orientation(i,frame) =  orientation(i,frame) - 360;
     elseif  (orientation(i,frame)) < -180
-        disp('WHY IS ORIENTATION SO NEGATIVE? BAAAA')
-        keyboard
+        orientation(i,frame) =  orientation(i,frame) + 360;
     end
 
-    % some final checks
-    if ~flymissing(i,frame)
-        % there should be a fly image
-        if max(max(thisfly)) == 0
-            disp('thisfly image not cut?')
-            keyboard
-        end
-
-    end
 
 
     

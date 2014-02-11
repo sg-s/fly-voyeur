@@ -1,4 +1,4 @@
-function [WingExtention,allflylimits] = DetectWingExtention4(theseflies,frame,ROIs,posx,posy,area,WingExtention,flymissing,allflylimits,MajorAxis,MinorAxis)
+function [WingExtention,allflylimits] = DetectWingExtention4(theseflies,frame,ROIs,posx,posy,area,WingExtention,flymissing,allflylimits,MajorAxis,MinorAxis,LookingAtOtherFly)
 % created by Srinivas Gorur-Shandilya at 9:20 , 18 January 2014. Contact me at http://srinivas.gs/contact/
 % DetectWingExtention4 is a rewrite of the wing detection algorithm. it is now heavily reliant on the orientation and the size of the fly reported by AssignObjects4. 
 
@@ -38,6 +38,15 @@ for i = 1:n
     if any(flymissing(i,frame-5:frame))
         rejectthis = 1;
         rejectreason  = 3;
+    end
+
+    % is fly looking at the other fly? 
+    if ~LookingAtOtherFly(i,frame)
+
+            % no, screw this
+            rejectthis = 1;
+            rejectreason = 7;
+
     end
 
 
@@ -100,7 +109,7 @@ for i = 1:n
                 rightex2 = sum(nonzeros(thisfly(50-round(3*a/4):45,50+side3:50+side4)));
             else
                 disp('WEX 324')
-                keyboard
+                %keyboard
             end
         end
         

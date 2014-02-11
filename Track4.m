@@ -100,7 +100,7 @@ for fi = 1:length(thesefiles)
                 
             end  
         else
-            % not fully analysed. maybe partially anlysed?
+            % not fully analysed. maybe partially analysed?
             % start from where you stopped before
             if StartFromHere == 0
                 StartFromHere = StartTracking;
@@ -141,7 +141,7 @@ for fi = 1:length(thesefiles)
             TrackCore3;
         % catch
         %    disp('Something wrong with tracking. I will try the next file.')
-        %    msubject= ('Track 3 failed somewhere');
+        %    msubject= ('Track 4 failed somewhere');
         %    mbody = moviefile;
         %    sendmail('track4crash@srinivas.gs',msubject,mbody);
         %     % something wrong somewhere in the tracking. move on to the next file
@@ -234,8 +234,8 @@ function  [] = TrackCore3()
 
         LookingAtOtherFly(:,frame) = IsFlyLookingAtOtherFly(posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame));
 
-        %detect Wing Extension
-        %[WingExtention,flylimits] = DetectWingExtention4(theseflies,frame,ROIs,posx,posy,area,WingExtention,flymissing,flylimits,MajorAxis,MinorAxis);
+        % detect Wing Extension
+        [WingExtention,flylimits] = DetectWingExtention4(theseflies,frame,ROIs,posx,posy,area,WingExtention,flymissing,flylimits,MajorAxis,MinorAxis, LookingAtOtherFly);
         
         
         % update display
