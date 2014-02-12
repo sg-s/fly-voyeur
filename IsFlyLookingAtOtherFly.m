@@ -2,7 +2,7 @@
 % created by Srinivas Gorur-Shandilya at 13:02 , 09 February 2014. Contact me at http://srinivas.gs/contact/
 function [FlyLookingAtOtherFly] = IsFlyLookingAtOtherFly(FlyLookingAtOtherFly,posx,posy,MajorAxis,MinorAxis,orientation)
 FlyLookingAtOtherFlyPreviousFrame = FlyLookingAtOtherFly;
-FlyLookingAtOtherFly = 0*FlyLookingAtOtherFly;
+FlyLookingAtOtherFly = zeros(1,length(FlyLookingAtOtherFly));
 for i = 1:length(posx)
 	switch i 
         case 1
@@ -41,20 +41,34 @@ for i = 1:length(posx)
         thisflyo = orientation(i);
     end
 
-    if thisflyo > min(angles) && thisflyo < max(angles)
-        %disp('I think this fly is looking at the other fly.')
-        FlyLookingAtOtherFly(i) = 1;
-        
-    else
-        % make sure it's not just missing it
-        if any(abs(angles-thisflyo) < 5)
-            if  FlySeperation(i,otherfly,posx,posy,MajorAxis,MinorAxis,orientation) < 30
-                % it is looking at the other fly, dammit
-                FlyLookingAtOtherFly(i) = 1;
-
-            end
+    if min(angles) < 90 && max(angles) > 270
+        % the damn object spans 0
+        if thisflyo < min(angles) || thisflyo > max(angles)
+            FlyLookingAtOtherFly(i) = 1;
         end
-        
+        % make sure it's not just missing it
+            if any(abs(angles-thisflyo) < 5)
+                if  FlySeperation(i,otherfly,posx,posy,MajorAxis,MinorAxis,orientation) < 30
+                    % it is looking at the other fly, dammit
+                    FlyLookingAtOtherFly(i) = 1;
+
+                end
+            end
+    elseif thisflyo > min(angles) && thisflyo < max(angles)
+            %disp('I think this fly is looking at the other fly.')
+            FlyLookingAtOtherFly(i) = 1;
+
+        else
+            % make sure it's not just missing it
+            if any(abs(angles-thisflyo) < 5)
+                if  FlySeperation(i,otherfly,posx,posy,MajorAxis,MinorAxis,orientation) < 30
+                    % it is looking at the other fly, dammit
+                    FlyLookingAtOtherFly(i) = 1;
+
+                end
+            end
+            
+        end
     end
 
 

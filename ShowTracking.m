@@ -59,6 +59,7 @@ Copulation = [];
 WingExtention = [];
 MajorAxis = [];
 MinorAxis = [];
+LookingAtOtherFly = [];
 wh = zeros(1,4); % handles for wing extension signal
 
 frame = StartTracking; % current frame
