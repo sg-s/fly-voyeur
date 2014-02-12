@@ -1,7 +1,8 @@
 % determines is each fly is looking at the other fly in the arena. uses information about position, orientation, and major and minor axes. 
 % created by Srinivas Gorur-Shandilya at 13:02 , 09 February 2014. Contact me at http://srinivas.gs/contact/
-function [FlyLookingAtOtherFly] = IsFlyLookingAtOtherFly(posx,posy,MajorAxis,MinorAxis,orientation)
-FlyLookingAtOtherFly = 0*posx;
+function [FlyLookingAtOtherFly] = IsFlyLookingAtOtherFly(FlyLookingAtOtherFly,posx,posy,MajorAxis,MinorAxis,orientation)
+FlyLookingAtOtherFlyPreviousFrame = FlyLookingAtOtherFly;
+FlyLookingAtOtherFly = 0*FlyLookingAtOtherFly;
 for i = 1:length(posx)
 	switch i 
         case 1
@@ -46,10 +47,11 @@ for i = 1:length(posx)
         
     else
         % make sure it's not just missing it
-        if abs(min(angles) -  thisflyo) < 5 || abs(max(angles) -  thisflyo) < 5
-            if  FlySeperation(i,otherfly,posx,posy,MajorAxis,MinorAxis,orientation) < 25
+        if any(abs(angles-thisflyo) < 5)
+            if  FlySeperation(i,otherfly,posx,posy,MajorAxis,MinorAxis,orientation) < 30
                 % it is looking at the other fly, dammit
                 FlyLookingAtOtherFly(i) = 1;
+
             end
         end
         

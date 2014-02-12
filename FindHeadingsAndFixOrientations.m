@@ -48,7 +48,6 @@ for i = 1:n
         else
             orientation(i,frame) = orientation(i,frame) - 180;
         end
-        flip = -1*flip;
     end
 
 
@@ -81,13 +80,9 @@ for i = 1:n
             
             if max(slice([1:10, 90:101])) > 0
                 slice(1:10) = 0; slice(90:101) = 0;
-                flylimits(1) = find(slice>1,1,'first');
-                flylimits(2) = flylimits(1) + find(slice(flylimits(1):end)>1,1,'last');
-            else
-                flylimits(1) = find(slice>1,1,'first');
-                flylimits(2) = flylimits(1) + find(slice(flylimits(1):end)>1,1,'last');
-                allflylimits(:,i) = flylimits';
             end
+            flylimits(1) = find(slice(1:50)==0,1,'last'); % this should be the tail
+            flylimits(2) = 50+find(slice(51:end)==0,1,'first'); % this should be the head
 
             if max(allflylimits(:,i)) == 0
                 allflylimits(:,i) = flylimits';
@@ -113,20 +108,18 @@ for i = 1:n
                     flip = -1*flip;
                 end
             else
-                % can't tell which is tail and which is head
+                disp('cant tell which is tail and which is head')
             end
 
 
         end
+        
         theseflies(i,:,:) = thisfly;
-
     end
 
 
-    if flip == 1
-        theseflies(i,:,:) = flipud(squeeze(theseflies(i,:,:)));
-        thisfly = squeeze(theseflies(i,:,:));
-    end
+
+
     % and make sure orientations are OK
     if (orientation(i,frame)) > 180
         orientation(i,frame) =  orientation(i,frame) - 360;
