@@ -215,20 +215,17 @@ function [] = showimage(eo,ed)
     axis equal
     if frame > StartTracking && StopTracking
         for i = 1:n
-            % if wh(i) ~= 0
-            %     try
-            %         delete(wh(i))
-            %     catch
-            %         keyboard
-            %     end
-            % end
+            
 
             if flymissing(i,frame)
                 scatter(posx(i,frame),posy(i,frame),'r','filled')
 
             else
-                triangle([posx(i,frame) posy(i,frame)],orientation(i,frame),10,'k');
-                triangle([posx(i,frame) posy(i,frame)],heading(i,frame),10,'b');
+                if LookingAtOtherFly(i,frame)
+                    triangle([posx(i,frame) posy(i,frame)],orientation(i,frame),10,'k',3);
+                else
+                    triangle([posx(i,frame) posy(i,frame)],orientation(i,frame),10,'k');
+                end
 
             end
             if abs(WingExtention(i,frame)) > 0

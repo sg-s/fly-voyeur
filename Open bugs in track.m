@@ -10,3 +10,10 @@ suggesiton: if orientaiton flips and the fly was looking at the other fly in the
 what should the orientation policy be?
 
 - always trust wing-based orientation, EXCEPT when fly is very close another fly (use actual minimum distance)
+
+roadmap 
+
+1. run it again on the first file, and check for bugs
+2. fix orientation bugs as they crop up
+3. get to a point where it works well for the first file (orientation wise)
+4. look at the WE signal. 

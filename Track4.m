@@ -238,6 +238,7 @@ function  [] = TrackCore3()
         % some fixes
         [orientation,heading,theseflies,flylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,flylimits,MajorAxis,MinorAxis);
 
+        
         LookingAtOtherFly(:,frame) = IsFlyLookingAtOtherFly(LookingAtOtherFly(:,frame-1),posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame));
 
         % detect Wing Extension
@@ -254,7 +255,7 @@ function  [] = TrackCore3()
         % save every 1000 frames of data
         if  ~(ceil(frame/1000)-(frame/1000))
             disp('Saving...')
-            save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','MajorAxis','MinorAxis','-append')
+            save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','MajorAxis','MinorAxis','LookingAtOtherFly','-append')
             movie
         end
         

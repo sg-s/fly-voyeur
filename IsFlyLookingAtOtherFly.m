@@ -46,30 +46,33 @@ for i = 1:length(posx)
         if thisflyo < min(angles) || thisflyo > max(angles)
             FlyLookingAtOtherFly(i) = 1;
         end
-        % make sure it's not just missing it
-            if any(abs(angles-thisflyo) < 5)
-                if  FlySeperation(i,otherfly,posx,posy,MajorAxis,MinorAxis,orientation) < 30
-                    % it is looking at the other fly, dammit
-                    FlyLookingAtOtherFly(i) = 1;
-
-                end
-            end
-    elseif thisflyo > min(angles) && thisflyo < max(angles)
+    else
+        if thisflyo > min(angles) && thisflyo < max(angles)
             %disp('I think this fly is looking at the other fly.')
             FlyLookingAtOtherFly(i) = 1;
-
-        else
-            % make sure it's not just missing it
-            if any(abs(angles-thisflyo) < 5)
-                if  FlySeperation(i,otherfly,posx,posy,MajorAxis,MinorAxis,orientation) < 30
-                    % it is looking at the other fly, dammit
-                    FlyLookingAtOtherFly(i) = 1;
-
-                end
-            end
-            
         end
     end
+
+    % make sure it's not just missing it
+    c1 = FlySeperation(i,otherfly,posx,posy,MajorAxis,MinorAxis,orientation) < 30;
+    c2 = any(abs(angles-thisflyo) < 20);
+    c3 = FlyLookingAtOtherFlyPreviousFrame(i);
+    if c1 + c2 + c3 > 1
+        % it is looking at the other fly, dammit
+        FlyLookingAtOtherFly(i) = 1;
+    end
+
+    
+    
+    % debug
+    % if FlyLookingAtOtherFlyPreviousFrame(i) == 1
+    %     if FlyLookingAtOtherFly(i) == 0
+    %         disp('I think I made a mistake in fly looking at other fly')
+    %         keyboard
+    %     end    
+    % end
+
+
 
 
 end

@@ -108,7 +108,7 @@ for i = 1:n
                     flip = -1*flip;
                 end
             else
-                disp('cant tell which is tail and which is head')
+                %disp('cant tell which is tail and which is head')
             end
 
 
