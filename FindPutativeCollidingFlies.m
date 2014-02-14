@@ -20,6 +20,9 @@ if any(flymissing(otherfly:thisfly,frame))
         if area(mergedfly,frame)/area(mergedfly,frame-1) > 1.4
             if (collision(mergedfly,frame)*collision(missingfly,frame)) %#ok<BDLOG>
                 PutativeCollidingFlies = [mergedfly missingfly];
+            elseif (flymissing(mergedfly,frame)*flymissing(missingfly,frame))
+                % both flies missing in last frame, and one monster fly re-appears? fishy.
+                PutativeCollidingFlies = [mergedfly missingfly];
             end
         end
         

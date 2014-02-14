@@ -207,6 +207,8 @@ function  [] = TrackCore3()
         
         % find putative colliding flies
 
+        
+
         if frame - StartFromHere > 6
             for i = 1:narenas
                 thisfly = 2*i;
@@ -219,6 +221,8 @@ function  [] = TrackCore3()
                     % one of them is missing? fishy.
                     CollidingFly=  [otherfly thisfly];
                 end
+
+                
 
                 if ~isempty(CollidingFly)
                      % separate the putative colliding flies
