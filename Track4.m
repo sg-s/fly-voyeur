@@ -209,7 +209,7 @@ function  [] = TrackCore3()
 
         
 
-        if frame - StartFromHere > 6
+        % if frame - StartFromHere > 6
             for i = 1:narenas
                 thisfly = 2*i;
                 otherfly = 2*i-1;
@@ -240,7 +240,10 @@ function  [] = TrackCore3()
 
             end
 
+        if any(flymissing(:,frame))
+            keyboard
         end
+        %end
 
 
         % some fixes

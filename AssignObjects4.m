@@ -36,6 +36,10 @@ if length(rp) < n
     % more flies than objects. some flies missing/colliding
     % assign objects to flies
     for j = 1:length(rp)
+        j
+        flymissing(:,frame)
+        keyboard
+
         temp = [rp(j).Centroid; posx(:,frame-1) posy(:,frame-1) ];
 
         % figure out if fly is on left or right arena
@@ -89,6 +93,7 @@ if length(rp) < n
             end
 
         end
+        
     end
     % all objects assigned
     % now any flies without assignations are to be declared
@@ -233,8 +238,10 @@ end
 leftflies = find(posx(:,frame) < DividingLine);
 rightflies = find(posx(:,frame) > DividingLine);
 if length(leftflies) ~= n/2
+
     error('265') 
 end
 if length(rightflies) ~= n/2
-  error('265') 
+    
+  error('2625') 
 end
