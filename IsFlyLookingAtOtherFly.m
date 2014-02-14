@@ -57,9 +57,12 @@ for i = 1:length(posx)
     c1 = FlySeperation(i,otherfly,posx,posy,MajorAxis,MinorAxis,orientation) < 30;
     c2 = any(abs(angles-thisflyo) < 20);
     c3 = FlyLookingAtOtherFlyPreviousFrame(i);
-    if c1 + c2 + c3 > 1
-        % it is looking at the other fly, dammit
-        FlyLookingAtOtherFly(i) = 1;
+    if c2 && (c1 || c3)
+        % but add an override
+        if ~FlyLookingAtOtherFlyPreviousFrame(otherfly)
+            % it is looking at the other fly, dammit
+            FlyLookingAtOtherFly(i) = 1;
+        end
     end
 
     

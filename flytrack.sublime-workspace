@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"other",
+				"otherfly"
+			],
+			[
+				"debug",
+				"debugstatus"
+			],
+			[
 				"rejec",
 				"rejectreason"
 			],
@@ -199,31 +207,7 @@
 			"file": "Track4.m",
 			"settings":
 			{
-				"buffer_size": 10078,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "DetectWingExtention4.m",
-			"settings":
-			{
-				"buffer_size": 4155,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "FindHeadingsAndFixOrientations.m",
-			"settings":
-			{
-				"buffer_size": 4449,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "UpdateDisplay4.m",
-			"settings":
-			{
-				"buffer_size": 2693,
+				"buffer_size": 10215,
 				"line_ending": "Unix"
 			}
 		},
@@ -231,7 +215,7 @@
 			"file": "IsFlyLookingAtOtherFly.m",
 			"settings":
 			{
-				"buffer_size": 2325,
+				"buffer_size": 2970,
 				"line_ending": "Unix"
 			}
 		},
@@ -239,16 +223,16 @@
 			"file": "Open bugs in track.m",
 			"settings":
 			{
-				"buffer_size": 801,
+				"buffer_size": 818,
 				"line_ending": "Unix",
 				"name": "Open bugs in track"
 			}
 		},
 		{
-			"file": "FlySeperation.m",
+			"file": "FindHeadingsAndFixOrientations.m",
 			"settings":
 			{
-				"buffer_size": 1529,
+				"buffer_size": 5862,
 				"line_ending": "Unix"
 			}
 		}
@@ -357,17 +341,21 @@
 	},
 	"file_history":
 	[
+		"/Users/sigbhu/Dropbox/code/tracking/FlipOrientation.m",
+		"/private/etc/hosts",
+		"/Users/sigbhu/Dropbox/code/tracking/WipeAllTrackingInfo.m",
+		"/Users/sigbhu/Dropbox/code/tracking/FlySeperation.m",
+		"/Users/sigbhu/Dropbox/code/tracking/FindHeadingsAndFixOrientations.m",
+		"/Users/sigbhu/Dropbox/code/tracking/DetectWingExtention4.m",
+		"/Users/sigbhu/Dropbox/code/tracking/UpdateDisplay4.m",
+		"/Users/sigbhu/Dropbox/code/tracking/ShowTracking.m",
 		"/Users/sigbhu/.gitconfig",
 		"/usr/local/git/etc/gitconfig",
-		"/Users/sigbhu/Dropbox/code/tracking/FlySeperation.m",
 		"/Users/sigbhu/Dropbox/code/core/visualisation-tools/triangle.m",
 		"/Users/sigbhu/Dropbox/code/tracking/IsFlyLookingAtOtherFly.m",
-		"/Users/sigbhu/Dropbox/code/tracking/UpdateDisplay4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/FindClosestObject2Fly.m",
 		"/Users/sigbhu/Dropbox/code/tracking/RemoveAllOtherFlies.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ShowTracking.m",
 		"/Users/sigbhu/Dropbox/code/tracking/AssignObjects4.m",
-		"/Users/sigbhu/Dropbox/code/tracking/FindHeadingsAndFixOrientations.m",
 		"/Users/sigbhu/Dropbox/code/core/math-tools/sum2.m",
 		"/Users/sigbhu/Dropbox/code/tracking/UpdateDisplay.m",
 		"/Users/sigbhu/Dropbox/code/tracking/DetectWingExtention3.m",
@@ -472,7 +460,6 @@
 		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/nfsim/index.html",
 		"/labweb/pages/people.html",
 		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/pages/contact.html",
-		"/private/etc/hosts",
 		"/Users/sigbhu/Desktop/feedback.php",
 		"/Users/sigbhu/Desktop/processRegistration.php",
 		"/Users/sigbhu/Desktop/index.php",
@@ -481,10 +468,7 @@
 		"/Users/sigbhu/Desktop/Daring Fireball: Email.html",
 		"/Users/sigbhu/Dropbox/lobster_draft/data/ZoidbergExplorer.m",
 		"/Users/sigbhu/Dropbox/code/zoidberg/RecomputePyloricityCodes.m",
-		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/essays/books/index.html",
-		"/Users/sigbhu/Desktop/My Notes/5: Brace for the coming Food Riots.html",
-		"/web/seldon/books/index.html",
-		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonetnew.biology.yale.edu/nfsim/index.html"
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/essays/books/index.html"
 	],
 	"find":
 	{
@@ -507,6 +491,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Looking",
+			"IsFly",
 			"Partially analysed file; will continue where I left off...",
 			",frame",
 			"MinorAxis",
@@ -632,9 +618,7 @@
 			"mouse",
 			"mous",
 			"button",
-			"font",
-			"nfsimwebregister",
-			"please contact"
+			"font"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -659,13 +643,13 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -673,15 +657,15 @@
 					"file": "Track4.m",
 					"settings":
 					{
-						"buffer_size": 10078,
+						"buffer_size": 10215,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3107,
-								3107
+								7695,
+								7695
 							]
 						],
 						"settings":
@@ -735,25 +719,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1504.0,
+						"translation.y": 4041.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "DetectWingExtention4.m",
+					"file": "IsFlyLookingAtOtherFly.m",
 					"settings":
 					{
-						"buffer_size": 4155,
+						"buffer_size": 2970,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3947,
-								3947
+								2519,
+								2519
 							]
 						],
 						"settings":
@@ -807,241 +791,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1470.0,
+						"translation.y": 648.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "FindHeadingsAndFixOrientations.m",
-					"settings":
-					{
-						"buffer_size": 4449,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4116,
-								4116
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1708.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "UpdateDisplay4.m",
-					"settings":
-					{
-						"buffer_size": 2693,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1796,
-								1796
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "IsFlyLookingAtOtherFly.m",
-					"settings":
-					{
-						"buffer_size": 2325,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2302,
-								2302
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 331.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "Open bugs in track.m",
 					"settings":
 					{
-						"buffer_size": 801,
+						"buffer_size": 818,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								801,
-								801
+								818,
+								818
 							]
 						],
 						"settings":
@@ -1100,19 +868,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "FlySeperation.m",
+					"buffer": 3,
+					"file": "FindHeadingsAndFixOrientations.m",
 					"settings":
 					{
-						"buffer_size": 1529,
+						"buffer_size": 5862,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								220,
-								152
+								340,
+								340
 							]
 						],
 						"settings":
@@ -1161,7 +929,9 @@
 								"bh_single_quote_open",
 								"bh_single_quote_close"
 							],
-							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1214,6 +984,22 @@
 		"selected_items":
 		[
 			[
+				"flip",
+				"tracking/FlipOrientation.m"
+			],
+			[
+				"fl",
+				"tracking/FlipOrientation.m"
+			],
+			[
+				"upda",
+				"tracking/UpdateDisplay4.m"
+			],
+			[
+				"show",
+				"tracking/ShowTracking.m"
+			],
+			[
 				"fly",
 				"tracking/FlySeperation.m"
 			],
@@ -1244,10 +1030,6 @@
 			[
 				"remove",
 				"tracking/RemoveAllOtherFlies.m"
-			],
-			[
-				"show",
-				"tracking/ShowTracking.m"
 			],
 			[
 				"findheadingsandfixorientations",
@@ -1509,6 +1291,10 @@
 		"height": 500.0,
 		"selected_items":
 		[
+			[
+				"",
+				"/Users/sigbhu/Dropbox/code/MFC-setup/mfc-setup.sublime-project"
+			]
 		],
 		"width": 380.0
 	},

@@ -1,8 +1,10 @@
-function [orientation,heading,theseflies,allflylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,allflylimits,MajorAxis,MinorAxis)
+function [orientation,heading,theseflies,allflylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,allflylimits,MajorAxis,MinorAxis,LookingAtOtherFly,WingExtention)
 
 n  =size(posx,1);
 %% some final computations
 theseflies = zeros(n,101,101); % cut out images of flies
+
+debugstatus = 0;
 
 for i = 1:n
     switch i 
@@ -14,6 +16,10 @@ for i = 1:n
             otherfly= 4;
         case 4
             otherfly= 3;
+    end
+
+    if debugstatus
+        disp(i)
     end
 
     % and make sure orientations are OK
@@ -42,12 +48,11 @@ for i = 1:n
     end
 
     % if orientation flips, flip it back. but this is overridden by wing-based orientation
-    if AngularDifference(orientation(i,frame),orientation(i,frame-1)) > 160
-        if orientation(i,frame) < 0
-            orientation(i,frame) = orientation(i,frame) + 180;
-        else
-            orientation(i,frame) = orientation(i,frame) - 180;
+    if AngularDifference(orientation(i,frame),orientation(i,frame-1)) > 120
+        if debugstatus
+            disp('flipping orientation because it flipped from last frame')
         end
+        orientation(i,frame) = FlipOrientation(orientation(i,frame));
     end
 
 
@@ -75,6 +80,10 @@ for i = 1:n
         fs = FlySeperation(i,otherfly,posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame));
         if length(rp)==n &&  fs > 20
 
+            if debugstatus
+                disp('OK, i am going to try to do wing-based orientation detection')
+            end
+
             % check orientation OK
             slice = mean(thisfly(:,47:53)');
             
@@ -99,16 +108,14 @@ for i = 1:n
                 else
                     % orientation is 180° off
                     
-                    if orientation(i,frame) < 0
-                        orientation(i,frame) = orientation(i,frame) + 180;
-                    else
-                        orientation(i,frame) = orientation(i,frame) - 180;
-                    end
+                    orientation(i,frame) = FlipOrientation(orientation(i,frame));
                     thisfly= flipud(thisfly);
                     flip = -1*flip;
                 end
             else
-                %disp('cant tell which is tail and which is head')
+                if debugstatus
+                    disp('cant tell which is tail and which is head')
+                end
             end
 
 
@@ -128,7 +135,35 @@ for i = 1:n
     end
 
 
+    % check for flips
+    if AngularDifference(orientation(i,frame),orientation(i,frame-1)) > 90
+        if FlySeperation(i,otherfly,posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame)) < 20
+            if debugstatus
+                disp('A large change, close to another fly--suspicious. flip back')
+            end
+            if AngularDifference(FlipOrientation(orientation(i,frame)),orientation(i,frame-1)) < 30
+                % the flipped orientation seems good
+                orientation(i,frame) = FlipOrientation(orientation(i,frame));
+                theseflies(i,:,:) = flipud(squeeze(theseflies(i,:,:)));
+            else
+                % use the old one
+                orientation(i,frame) = orientation(i,frame-1);
+            end
 
+        else
+            if debugstatus
+                disp('large change, but other fly far away. I will check for extenuating factors like wing extensiton or looking at other fly in the alst 5 frames to override wing-based detection.')
+            end
+            if any([LookingAtOtherFly(i,frame-5:frame-1) WingExtention(i,frame-5:frame-1)]);
+                if debugstatus
+                    disp('Overriding wing-based detection!!! restoring original orientation...')
+                end
+                orientation(i,frame) = FlipOrientation(orientation(i,frame));
+                theseflies(i,:,:) = flipud(squeeze(theseflies(i,:,:)));
+            end
+
+        end
+    end
     
   
 end

@@ -90,7 +90,6 @@ for fi = 1:length(thesefiles)
             else
                 if StartFromHere == 0
                     disp('File fully analysed, BUT Trashing all old data and re-starting...')
-                   
                     StartFromHere = StartTracking;
                     TrackCore3;
                 else
@@ -105,6 +104,7 @@ for fi = 1:length(thesefiles)
             if StartFromHere == 0
                 StartFromHere = StartTracking;
                 disp('Partially analysed file; Trashing all old data and re-starting...')
+                LookingAtOtherFly = zeros(n,nframes);
                 TrackCore3;
             else
                 if nargin == 2
@@ -174,6 +174,10 @@ function  [] = TrackCore3()
         error('Cannot track here as this part of the movie is before StartTrackig')
     end
     flylimits = zeros(2,n);
+
+    if StartFromHere < 2
+        StartFromHere = 2;
+    end
     for frame = StartFromHere:StopTracking  
         % prep image
         
@@ -236,7 +240,8 @@ function  [] = TrackCore3()
 
 
         % some fixes
-        [orientation,heading,theseflies,flylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,flylimits,MajorAxis,MinorAxis);
+        [orientation,heading,theseflies,flylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,flylimits,MajorAxis,MinorAxis,LookingAtOtherFly,WingExtention);
+
 
         
         LookingAtOtherFly(:,frame) = IsFlyLookingAtOtherFly(LookingAtOtherFly(:,frame-1),posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame));
@@ -263,8 +268,7 @@ function  [] = TrackCore3()
         
         
     end
-    save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','MajorAxis','MinorAxis','-append')
-        
+    save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','MajorAxis','MinorAxis','LookingAtOtherFly','-append') 
             
     
 end
