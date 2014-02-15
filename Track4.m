@@ -163,9 +163,9 @@ function  [] = TrackCore3()
     ff=PrepImage(movie,frame,mask,Channel);
     thresh = graythresh(ff);
     
-    if StartFromHere < 2
-        StartFromHere = 2;
-        StartTracking = 2; 
+    if StartFromHere < 6
+        StartFromHere = 6;
+        StartTracking = 6; 
     end
 
     t = tic;
