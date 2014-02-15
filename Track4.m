@@ -163,7 +163,11 @@ function  [] = TrackCore3()
     ff=PrepImage(movie,frame,mask,Channel);
     thresh = graythresh(ff);
     
-    
+    if StartFromHere < 2
+        StartFromHere = 2;
+        StartTracking = 2; 
+    end
+
     t = tic;
     
     disp('Movie has usable data starting from:')
@@ -175,9 +179,7 @@ function  [] = TrackCore3()
     end
     flylimits = zeros(2,n);
 
-    if StartFromHere < 2
-        StartFromHere = 2;
-    end
+    
     for frame = StartFromHere:StopTracking  
         % prep image
         
