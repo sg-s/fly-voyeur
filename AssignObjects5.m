@@ -15,12 +15,12 @@ assigned_objects = NaN(1,n); % keeps track of which objects are assigned to whic
 if frame == StartTracking
     % special case, first frame. assume everything OK.
     for i = 1:n
-        posx(i,StartTracking) = rp_thisarena(i).Centroid(1);
-        posy(i,StartTracking) = rp_thisarena(i).Centroid(2);
-        orientation(i,StartTracking) = -rp_thisarena(i).Orientation;
-        area(i,StartTracking) = rp_thisarena(i).Area;
-        MajorAxis(i,StartTracking) = rp_thisarena(i).MajorAxisLength;
-        MinorAxis(i,StartTracking) = rp_thisarena(i).MinorAxisLength;
+        posx(i,StartTracking) = rp(i).Centroid(1);
+        posy(i,StartTracking) = rp(i).Centroid(2);
+        orientation(i,StartTracking) = -rp(i).Orientation;
+        area(i,StartTracking) = rp(i).Area;
+        MajorAxis(i,StartTracking) = rp(i).MajorAxisLength;
+        MinorAxis(i,StartTracking) = rp(i).MinorAxisLength;
     end
     return
     
@@ -43,6 +43,7 @@ for arena = 1:2
         rp_thisarena = rp(regionx<DividingLine);
     else
         rp_thisarena = rp(regionx>DividingLine);
+        
     end
 
     if length(rp_thisarena) < n/2
@@ -90,22 +91,9 @@ for arena = 1:2
             end
         
         end
-        % all objects assigned
-        % now any flies without assignations are to be declared
-        % missing
-        for i = 1:n
-            if isnan(posx(i,frame))
-                posx(i,frame) = posx(i,frame-1);
-                posy(i,frame) = posy(i,frame-1);
-                area(i,frame) = area(i,frame-1);
-                flymissing(i,frame) = 1;
-            end
-        end
-
-
 
     else
-        % at least as many objects as flies
+        % disp('at least as many objects as flies')
         % assign flies to objects
         for i = allflies
             o_centroids = [];
@@ -122,7 +110,7 @@ for arena = 1:2
                 posy(i,frame) = posy(i,frame-1);
                 area(i,frame) = 0;
                 flymissing(i,frame) = 1;
-                break
+                %break
             end
 
 
@@ -190,9 +178,20 @@ for arena = 1:2
         end
 
     end
+
 end
 
-
+% all objects assigned
+% now any flies without assignations are to be declared
+% missing
+for i = 1:n
+    if isnan(posx(i,frame))
+        posx(i,frame) = posx(i,frame-1);
+        posy(i,frame) = posy(i,frame-1);
+        area(i,frame) = area(i,frame-1);
+        flymissing(i,frame) = 1;
+    end
+end
 
 
 

@@ -192,9 +192,9 @@ function  [] = TrackCore3()
 
         
         % assign objects
-        [posx,posy,orientation,area,flymissing,collision,MajorAxis,MinorAxis] = AssignObjects4(frame,StartTracking,rp,posx,posy,orientation,area,flymissing,DividingLine,collision,MajorAxis,MinorAxis);
+        [posx,posy,orientation,area,flymissing,collision,MajorAxis,MinorAxis] = AssignObjects5(frame,StartTracking,rp,posx,posy,orientation,area,flymissing,DividingLine,collision,MajorAxis,MinorAxis);
 
-        
+
         
         if length(rp) == n
             % learn fly sizes
@@ -209,7 +209,7 @@ function  [] = TrackCore3()
 
         
 
-        % if frame - StartFromHere > 6
+        if frame - StartTracking > 6
             for i = 1:narenas
                 thisfly = 2*i;
                 otherfly = 2*i-1;
@@ -240,11 +240,8 @@ function  [] = TrackCore3()
 
             end
 
-        if any(flymissing(:,frame))
-            keyboard
+      
         end
-        %end
-
 
         % some fixes
         [orientation,heading,theseflies,flylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,flylimits,MajorAxis,MinorAxis,LookingAtOtherFly,WingExtention);
