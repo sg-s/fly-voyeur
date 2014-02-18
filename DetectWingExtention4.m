@@ -116,8 +116,13 @@ for i = 1:n
         
 
         % look for consensus
-        WingExtention(i,frame) = (rightex1-leftex1) + (rightex2-leftex2) + (leftwing-rightwing);
+        if ~any(isnan([rightwing leftwing]))
+            WingExtention(i,frame) = (rightex1-leftex1) + (rightex2-leftex2) + (leftwing-rightwing);
+        else
+            WingExtention(i,frame) = (rightex1-leftex1) + (rightex2-leftex2);
+        end
 
-    end           
+    end   
+           
 end 
 

@@ -65,6 +65,7 @@ for fi = 1:length(thesefiles)
     MinorAxis = [];
     LookingAtOtherFly = [];
     WingExtention = [];
+    SeparationBetweenFlies = [];
    
     % housekeeping
     displayfigure= [];
@@ -140,18 +141,19 @@ for fi = 1:length(thesefiles)
         MinorAxis = zeros(n,nframes);
         LookingAtOtherFly = zeros(n,nframes);
         WingExtention = zeros(n,nframes);
+        SeparationBetweenFlies = NaN(n,nframes);
         heading = NaN(n,nframes);
         allflies= 1:n;
         StartFromHere =StartTracking;
-        %try
+        try
             TrackCore3;
-        % catch
-        %    disp('Something wrong with tracking. I will try the next file.')
-        %    msubject= ('Track 4 failed somewhere');
-        %    mbody = moviefile;
-        %    sendmail('track4crash@srinivas.gs',msubject,mbody);
-        %     % something wrong somewhere in the tracking. move on to the next file
-        % end
+        catch
+           disp('Something wrong with tracking. I will try the next file.')
+           msubject= ('Track 4 crashed fatally somewhere');
+           mbody = moviefile;
+           sendmail('track4crash@srinivas.gs',msubject,mbody);
+            % something wrong somewhere in the tracking. move on to the next file
+        end
     end
 end
 
@@ -245,8 +247,13 @@ function  [] = TrackCore3()
       
         end
 
+        % figure out the fly seperations
+        SeparationBetweenFlies(1,frame) = FlySeperation(1,2,posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame));
+        SeparationBetweenFlies(2,frame) = FlySeperation(3,4,posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame));
+
+
         % some fixes
-        [orientation,heading,theseflies,flylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,flylimits,MajorAxis,MinorAxis,LookingAtOtherFly,WingExtention);
+        [orientation,heading,theseflies,flylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,flylimits,MajorAxis,MinorAxis,LookingAtOtherFly,WingExtention,SeparationBetweenFlies);
 
 
         
@@ -301,6 +308,7 @@ function [] = InitialiseTracking()
         LookingAtOtherFly(:,StartFromHere:end) = 0;
         WingExtention(:,StartFromHere:end) = 0;
         heading(:,StartFromHere:end) = NaN;
+        SeparationBetweenFlies(:,StartFromHere:end) = NaN;
         allflies= 1:n;
         
         

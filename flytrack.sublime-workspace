@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"this",
+				"thisarena"
+			],
+			[
 				"other",
 				"otherfly"
 			],
@@ -26,10 +30,6 @@
 			[
 				"Fly",
 				"FlyLookingAtOtherFly"
-			],
-			[
-				"this",
-				"thisfly"
 			],
 			[
 				"displ",
@@ -207,33 +207,53 @@
 			"file": "Track4.m",
 			"settings":
 			{
-				"buffer_size": 10215,
+				"buffer_size": 10331,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "IsFlyLookingAtOtherFly.m",
+			"file": "temp.m",
 			"settings":
 			{
-				"buffer_size": 2970,
+				"buffer_size": 1160,
+				"line_ending": "Unix",
+				"name": "temp file"
+			}
+		},
+		{
+			"file": "FindPutativeCollidingFlies.m",
+			"settings":
+			{
+				"buffer_size": 1314,
 				"line_ending": "Unix"
 			}
 		},
 		{
+			"contents": "Open bugs in track\n\n1. [fix deployed---testing] when flies are copulating, and when they both jump, one fly is lost permanently. \n\n\n2. copulating flies appear to have wing extending---remember to censor WE after copulation start\n\n3. suggestion: to check copulation, see when oreintations are exactly the same--should be same as adjacency...\n\n\n4. when a fly jumps, and re-appears, sometimes it is not immediately identified.",
 			"file": "Open bugs in track.m",
+			"file_size": 229,
+			"file_write_time": 1392413491000000,
 			"settings":
 			{
-				"buffer_size": 818,
+				"buffer_size": 423,
 				"line_ending": "Unix",
 				"name": "Open bugs in track"
 			}
 		},
 		{
-			"file": "FindHeadingsAndFixOrientations.m",
+			"file": "AssignObjects5.m",
 			"settings":
 			{
-				"buffer_size": 5862,
+				"buffer_size": 8514,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "AngularDifference.m",
+			"settings":
+			{
+				"buffer_size": 294,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -341,21 +361,21 @@
 	},
 	"file_history":
 	[
+		"/Users/sigbhu/Dropbox/code/tracking/AssignObjects4.m",
+		"/Users/sigbhu/Dropbox/code/tracking/FindHeadingsAndFixOrientations.m",
+		"/Users/sigbhu/Dropbox/code/tracking/IsFlyLookingAtOtherFly.m",
 		"/Users/sigbhu/Dropbox/code/tracking/FlipOrientation.m",
 		"/private/etc/hosts",
 		"/Users/sigbhu/Dropbox/code/tracking/WipeAllTrackingInfo.m",
 		"/Users/sigbhu/Dropbox/code/tracking/FlySeperation.m",
-		"/Users/sigbhu/Dropbox/code/tracking/FindHeadingsAndFixOrientations.m",
 		"/Users/sigbhu/Dropbox/code/tracking/DetectWingExtention4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/UpdateDisplay4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/ShowTracking.m",
 		"/Users/sigbhu/.gitconfig",
 		"/usr/local/git/etc/gitconfig",
 		"/Users/sigbhu/Dropbox/code/core/visualisation-tools/triangle.m",
-		"/Users/sigbhu/Dropbox/code/tracking/IsFlyLookingAtOtherFly.m",
 		"/Users/sigbhu/Dropbox/code/tracking/FindClosestObject2Fly.m",
 		"/Users/sigbhu/Dropbox/code/tracking/RemoveAllOtherFlies.m",
-		"/Users/sigbhu/Dropbox/code/tracking/AssignObjects4.m",
 		"/Users/sigbhu/Dropbox/code/core/math-tools/sum2.m",
 		"/Users/sigbhu/Dropbox/code/tracking/UpdateDisplay.m",
 		"/Users/sigbhu/Dropbox/code/tracking/DetectWingExtention3.m",
@@ -479,6 +499,7 @@
 		"height": 95.0,
 		"where_history":
 		[
+			"<open folders>",
 			"",
 			"SplitCollidingFlies2.m",
 			"Track4.m",
@@ -491,6 +512,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			";",
+			"^(.*)$",
+			"*",
+			"^(.*)$",
+			"keyboard",
+			"allfiles",
+			"allflies",
+			"rp",
 			"Looking",
 			"IsFly",
 			"Partially analysed file; will continue where I left off...",
@@ -610,22 +639,15 @@
 			"listbox",
 			"<p class=\"p2\"><br></p>",
 			"<p class=\"p6\"><br></p>",
-			"<p class=\"p4\"><br></p>",
-			"<p class=\"p2\"><br></p>",
-			"wiki",
-			"sneddon",
-			"mousecallback",
-			"mouse",
-			"mous",
-			"button",
-			"font"
+			"<p class=\"p4\"><br></p>"
 		],
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
+			"rp_thisarena",
 			"",
 			"otherfly",
 			"i+1",
@@ -649,7 +671,6 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
 				{
@@ -657,15 +678,15 @@
 					"file": "Track4.m",
 					"settings":
 					{
-						"buffer_size": 10215,
+						"buffer_size": 10331,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7695,
-								7695
+								5004,
+								5004
 							]
 						],
 						"settings":
@@ -719,25 +740,96 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4041.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "IsFlyLookingAtOtherFly.m",
+					"file": "temp.m",
 					"settings":
 					{
-						"buffer_size": 2970,
+						"buffer_size": 1160,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2519,
-								2519
+								493,
+								493
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_name": "temp file",
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "FindPutativeCollidingFlies.m",
+					"settings":
+					{
+						"buffer_size": 1314,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1314,
+								1314
 							]
 						],
 						"settings":
@@ -791,25 +883,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 648.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "Open bugs in track.m",
 					"settings":
 					{
-						"buffer_size": 818,
+						"buffer_size": 423,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								818,
-								818
+								423,
+								423
 							]
 						],
 						"settings":
@@ -868,19 +960,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "FindHeadingsAndFixOrientations.m",
+					"buffer": 4,
+					"file": "AssignObjects5.m",
 					"settings":
 					{
-						"buffer_size": 5862,
+						"buffer_size": 8514,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								340,
-								340
+								8257,
+								8257
 							]
 						],
 						"settings":
@@ -938,6 +1030,76 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "AngularDifference.m",
+					"settings":
+					{
+						"buffer_size": 294,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								174,
+								174
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
 			]
 		}
@@ -983,6 +1145,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"assignobjects4",
+				"tracking/AssignObjects4.m"
+			],
+			[
+				"findputativecollidingflies",
+				"tracking/FindPutativeCollidingFlies.m"
+			],
 			[
 				"flip",
 				"tracking/FlipOrientation.m"
@@ -1036,10 +1206,6 @@
 				"tracking/FindHeadingsAndFixOrientations.m"
 			],
 			[
-				"assignobjects4",
-				"tracking/AssignObjects4.m"
-			],
-			[
 				"update",
 				"tracking/UpdateDisplay4.m"
 			],
@@ -1078,10 +1244,6 @@
 			[
 				"splitcollidingflies",
 				"SplitCollidingFlies.m"
-			],
-			[
-				"findputativecollidingflies",
-				"FindPutativeCollidingFlies.m"
 			],
 			[
 				"computewemetrics",

@@ -1,4 +1,4 @@
-function [orientation,heading,theseflies,allflylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,allflylimits,MajorAxis,MinorAxis,LookingAtOtherFly,WingExtention)
+function [orientation,heading,theseflies,allflylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,allflylimits,MajorAxis,MinorAxis,LookingAtOtherFly,WingExtention,SeparationBetweenFlies)
 
 n  =size(posx,1);
 %% some final computations
@@ -10,12 +10,16 @@ for i = 1:n
     switch i 
         case 1
             otherfly= 2;
+            arena=1;
         case 2
             otherfly= 1;
+            arena=1;
         case 3
             otherfly= 4;
+            arena=2;
         case 4
             otherfly= 3;
+            arena=2;
     end
 
     if debugstatus
@@ -164,6 +168,24 @@ for i = 1:n
 
         end
     end
+
+    
+    % % special check for colliding flies/copulating flies
+    % if mean(SeparationBetweenFlies(arena,frame-5:frame)) < 10 
+    %     % colliding flies, for some time
+    %     if ~LookingAtOtherFly(i,frame-1) && ~LookingAtOtherFly(otherfly,frame-1)
+    %         % neither fly is looking at each other. fishy. so one of them is probably turned around
+
+            
+    %         if any(sum(LookingAtOtherFly([i otherfly],frame-20:frame-1)))
+    %             % one fly was looking at the other sometime...
+    %             [~,probflip]=max(sum(LookingAtOtherFly([i otherfly],frame-20:frame-1)'));
+    %             keyboard
+    %         end
+    %     end
+        
+
+    % end
     
   
 end
