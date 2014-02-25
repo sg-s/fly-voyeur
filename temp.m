@@ -14,21 +14,23 @@ return
 thisarena = 1;
 
 we = WingExtention(thisarena*2,:) + WingExtention(2*thisarena-1,:);
+% smooth over 5 frames
+we = filtfilt(ones(1,10)/10,1,we);
 we = abs(we);
 we(isnan(we)) = 0;
-lwe = log(we);
-lwe(lwe<log(10)) = 0;
+
+m = mean(nonzeros(we));
+s = std(nonzeros(we));
+
+
+we = we/m;
+lwe = log(we) + log(m);
+
+lwe = lwe/max(lwe);
 
 
 % throw away small signals
-lwe(lwe<4) = 0 ;
-
-% smooth over 5 frames
-lwe = filtfilt(ones(1,10)/10,1,lwe);
-
-
-% throw away small signals
-lwe(lwe<4) = 0 ;
+lwe(lwe<0) = 0;
 
 
 % bout by bout analysis and validation

@@ -273,7 +273,7 @@ function  [] = TrackCore3()
         % save every 1000 frames of data
         if  ~(ceil(frame/1000)-(frame/1000))
             disp('Saving...')
-            save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','MajorAxis','MinorAxis','LookingAtOtherFly','-append')
+            save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','MajorAxis','MinorAxis','LookingAtOtherFly','SeparationBetweenFlies','-append')
             movie
         end
         
@@ -281,7 +281,7 @@ function  [] = TrackCore3()
         
         
     end
-    save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','MajorAxis','MinorAxis','LookingAtOtherFly','-append') 
+    save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','MajorAxis','MinorAxis','LookingAtOtherFly','SeparationBetweenFlies','-append') 
             
     
 end

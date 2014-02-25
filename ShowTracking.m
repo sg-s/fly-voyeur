@@ -60,6 +60,7 @@ WingExtention = [];
 MajorAxis = [];
 MinorAxis = [];
 LookingAtOtherFly = [];
+SeparationBetweenFlies = [];
 wh = zeros(1,4); % handles for wing extension signal
 
 frame = StartTracking; % current frame
