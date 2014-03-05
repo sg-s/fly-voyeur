@@ -76,12 +76,12 @@ for i = 1:n
         side4 = round(b*2.6);
 
         % debug
-        % thisfly2 = thisfly;
-        % thisfly2(50-round(a/3):55,50-side2:50-side1) = 255;
-        % thisfly2(50-round(a/3):55,50+side1:50+side2) = 255;
-        % thisfly2(50-round(3*a/4):45,50-side4:50-side3)=100;
-        % thisfly2(50-round(3*a/4):45,50+side3:50+side4) = 100;
-        % imagesc(thisfly2)
+        thisfly2 = thisfly;
+        thisfly2(50-round(a/3):55,50-side2:50-side1) = 255;
+        thisfly2(50-round(a/3):55,50+side1:50+side2) = 255;
+        thisfly2(50-round(3*a/4):45,50-side4:50-side3)=100;
+        thisfly2(50-round(3*a/4):45,50+side3:50+side4) = 100;
+        imagesc(thisfly2)
 
         % measure wing asymmetry on back
         leftwing=mean(nonzeros(thisfly(flylimits(1):flylimits(1)+10,45:50)));
@@ -121,6 +121,7 @@ for i = 1:n
         else
             WingExtention(i,frame) = (rightex1-leftex1) + (rightex2-leftex2);
         end
+        
 
     end   
            

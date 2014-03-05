@@ -64,6 +64,7 @@ for i = 1:narenas
             end
         else
             disp('hmm.copulation! but some flies were missing...')
+            CopulationSuccess(i) = 1;
             keyboard
         end
     end
@@ -89,7 +90,7 @@ for i = 1:narenas
 
         disp('Arena:')
         disp(i)
-        CopulationStartFrame(i) = find(cop==0,1,'last')
+        CopulationStartFrame(i) = find(cop(1:StopTracking-1)==0,1,'last')+1
         switch i
         case 1
             CopulationStart(1) = (CopulationStartFrame(1) - LeftStart)/30;

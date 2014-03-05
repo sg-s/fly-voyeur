@@ -35,7 +35,7 @@
 % 
 %
 % and stores it in a local database in the folder it was run in. It no longer uses the central copulation database. 
-function [] = ComputeCopulationStatistics4(DryRun,OnlyDoTillXMinutes)
+function [CopulationDatabase] = ComputeCopulationStatistics4(DryRun,OnlyDoTillXMinutes)
 
 %% some housekeeping and critical options
 HashOptions.Method = 'MD2';
@@ -133,10 +133,14 @@ for i = 1:length(allfiles)
                 [CopulationSuccess,CopulationLatency,CopulationStartFrame,nCollisions,CollisionTime] = ComputeCopulationMetrics4(allfiles(i).name);
 
                 % 2. Wing Extension
+                cop= [];
+                cop.CopulationSuccess = CopulationSuccess;
+                cop.CopulationStartFrame = CopulationStartFrame;
                 if OnlyDoTillXMinutes
-                    [FirstWE, TotalWE] = ComputeWEMetrics4(allfiles(i).name,CopulationStartFrame,OnlyDoTillXMinutes);
+             
+                    [FirstWE, TotalWE] = ComputeWEMetrics4(allfiles(i).name,cop,OnlyDoTillXMinutes);
                 else
-                    [FirstWE, TotalWE] = ComputeWEMetrics4(allfiles(i).name,CopulationStartFrame);
+                    [FirstWE, TotalWE] = ComputeWEMetrics4(allfiles(i).name,cop);
                 end
                 
 
@@ -262,9 +266,9 @@ for i = 1:length(allfiles)
 end
 
 if OnlyDoTillXMinutes
-    savename = strcat('Results_',mat2str(OnlyDoTillXMinutes),'_minutes.xls');
+    savename = strcat('Results_',mat2str(OnlyDoTillXMinutes),'_minutes_',foldername);
 else
-    savename = ('Results_xls');
+    savename = strcat('Results_',foldername);
 end
 
 xlwrite(savename,CopulationDatabase)
