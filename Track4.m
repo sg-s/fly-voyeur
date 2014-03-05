@@ -1,13 +1,11 @@
-% return trajectories
-% Track3.m
+% Track4.m
 % this is the actual engine of the tracking code
 % this uses some metadata manually entereed about each movie file to
 % process movies. this is meant to be run in the background, or when user
 % attention is not required. 
 % created by Srinivas Gorur-Shandilya at 19:56 , 29 August 2013. Contact me
 % at http://srinivas.gs/contact/
-% Track3 is a large re-write of Track2 where all the subfunctions have been
-% split up into smaller files for better sanity of debugging.
+
 function [] = Track4(v,ForceStartFromHere)
 %% choose files to track
 source = cd;

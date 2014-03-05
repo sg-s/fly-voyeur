@@ -1,0 +1,31 @@
+README
+
+=== What this is ===
+
+This is a set of MATLAB functions that allows you to quantify behaviour of flies in small arenas. This was originally developed to quantify courting and copulation behaviour of two flies in copulation assays, but can be extended to track any number of flies. 
+
+Out of the box, this quantifies:
+
+1. positions of all flies
+2. orientations of all flies
+3. times at which flies look at other flies
+4. collision statisitcs between flies
+5. times of copulation, if any, between flies
+6. times of wing extension between flies. 
+
+=== Credits ===
+
+All code here was written by Srinivas Gorur-Shandilya. 
+Contact me at http://srinivas.gs/contact/
+This code came from a public repository at:
+https://bitbucket.org/srinivasgs/fly-tracking
+
+If you use this code or modify it, please write to me at 
+code@srinivas.gs and I will tell you how to appropriately cite this.
+
+=== Usage ===
+
+Step 1. Annotate your video using FlyTrack.m 
+Step 2. Track video using Track4.m 
+
+That's it! 
