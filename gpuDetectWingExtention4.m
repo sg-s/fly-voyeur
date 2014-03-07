@@ -1,4 +1,4 @@
-function [WingExtention,allflylimits] = DetectWingExtention4(theseflies,frame,ROIs,posx,posy,area,WingExtention,flymissing,allflylimits,MajorAxis,MinorAxis,LookingAtOtherFly)
+function [WingExtention,allflylimits] = gpuDetectWingExtention4(theseflies,frame,ROIs,posx,posy,area,WingExtention,flymissing,allflylimits,MajorAxis,MinorAxis,LookingAtOtherFly)
 % created by Srinivas Gorur-Shandilya at 9:20 , 18 January 2014. Contact me at http://srinivas.gs/contact/
 % DetectWingExtention4 is a rewrite of the wing detection algorithm. it is now heavily reliant on the orientation and the size of the fly reported by AssignObjects4. 
 
@@ -100,7 +100,7 @@ for i = 1:n
                 temp=b;
                 b = a;
                 a = temp; clear temp;
-                thisfly=(imrotate((thisfly),90));
+                thisfly=gather(imrotate(gpuArray(thisfly),90));
 
                 leftex1  = sum(nonzeros(thisfly(50-round(a/3):55,50-side2:50-side1)));
                 rightex1 = sum(nonzeros(thisfly(50-round(a/3):55,50+side1:50+side2)));

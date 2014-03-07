@@ -1,4 +1,4 @@
-function [orientation,heading,theseflies,allflylimits] = FindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,allflylimits,MajorAxis,MinorAxis,LookingAtOtherFly,WingExtention,SeparationBetweenFlies)
+function [orientation,heading,theseflies,allflylimits] = gpuFindHeadingsAndFixOrientations(frame,StartTracking,rp,posx,posy,orientation,heading,flymissing,ff,allflylimits,MajorAxis,MinorAxis,LookingAtOtherFly,WingExtention,SeparationBetweenFlies)
 
 n  =size(posx,1);
 %% some final computations
@@ -68,14 +68,14 @@ for i = 1:n
         thisfly = (CutImage(thisfly,[cy cx],50));
 
         % adjust contrast
-        thisfly = (imadjust(thisfly));
+        thisfly = gpuArray(imadjust(thisfly));
 
         % rotate fly so that is oriented vertically
         thisfly=(imrotate(thisfly,270+(orientation(i,frame)),'crop'));
 
 
         % remove junk
-        thisfly = (imerode(thisfly,strel('disk',2)));
+        thisfly = gather(imerode(thisfly,strel('disk',2)));
 
         % delete background
         thisfly(thisfly<50)=0; % hard-coded parameters are fine because we are using imadjust, which forces the image from 0 to 255
