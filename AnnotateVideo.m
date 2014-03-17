@@ -1,10 +1,10 @@
-% FlyTrack.m
+% AnnotateVideo.m
 % created by Srinivas Gorur-Shandilya at 13:46 , 28 August 2013. Contact me
 % at http://srinivas.gs/contact/
-% FlyTrack.m is a master GUI that is meant to annotate fly movies with
+% AnnotateVideo.m is a master GUI that is meant to annotate fly movies with
 % information that a tracking algo can use to automatically track fly
 % trajectories. 
-function []  = FlyTrack()
+function []  = AnnotateVideo()
 %% global parameters
 global n
 n = 4; % number of flies

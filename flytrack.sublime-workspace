@@ -271,7 +271,7 @@
 			"file": "ptrack.m",
 			"settings":
 			{
-				"buffer_size": 10622,
+				"buffer_size": 10725,
 				"line_ending": "Unix"
 			}
 		},
@@ -425,6 +425,13 @@
 	},
 	"file_history":
 	[
+		"/Users/sigbhu/Dropbox/code/tracking/PrepImage.m",
+		"/code/tracking/ConvertVideo.sh",
+		"/Users/sigbhu/Dropbox/code/tracking/ConvertVideo.sh",
+		"/private/etc/hosts",
+		"/Users/sigbhu/Dropbox/code/core/Convertv2tov3.m",
+		"/Users/sigbhu/Dropbox/code/tracking/ComputeCopulationMetrics4.m",
+		"/Users/sigbhu/Dropbox/code/tracking/CutImage.m",
 		"/Users/sigbhu/Dropbox/code/tracking/DetectWingExtention4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/gpuDetectWingExtention4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/FindHeadingsAndFixOrientations.m",
@@ -433,15 +440,12 @@
 		"/Users/sigbhu/Dropbox/code/tracking/gpuPrepImage.m",
 		"/Users/sigbhu/Dropbox/code/tracking/gpuDetectObjects.m",
 		"/Users/sigbhu/Dropbox/code/tracking/DetectObjects.m",
-		"/Users/sigbhu/Dropbox/code/tracking/PrepImage.m",
 		"/Users/sigbhu/Dropbox/code/tracking/Track4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/ComputeCopulationStatistics4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/Open bugs in track.m",
 		"/Users/sigbhu/Dropbox/code/tracking/temp.m",
 		"/Users/sigbhu/Dropbox/code/tracking/ComputeWEMetrics4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/SortData.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ComputeCopulationMetrics4.m",
-		"/Users/sigbhu/Dropbox/code/tracking/CutImage.m",
 		"/Users/sigbhu/Dropbox/code/tracking/README",
 		"/Users/sigbhu/Dropbox/code/tracking/CleanUpWingExtention.m",
 		"/Users/sigbhu/Dropbox/code/tracking/DetectWingExtention3.m",
@@ -471,7 +475,6 @@
 		"/Users/sigbhu/Dropbox/code/tracking/AngularDifference.m",
 		"/Users/sigbhu/Dropbox/code/tracking/AssignObjects4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/FlipOrientation.m",
-		"/private/etc/hosts",
 		"/Users/sigbhu/Dropbox/code/tracking/WipeAllTrackingInfo.m",
 		"/Users/sigbhu/Dropbox/code/tracking/FlySeperation.m",
 		"/Users/sigbhu/Dropbox/code/tracking/UpdateDisplay4.m",
@@ -549,10 +552,7 @@
 		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/biology.yale.edu/index.html",
 		"/Users/sigbhu/.ssh/id_rsa.pub",
 		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/seldon/2/index.html",
-		"/web/seldon/3/index.html",
-		"/web/seldon/3/css/base.css",
-		"/Users/sigbhu/Desktop/Untitled.html",
-		"/Users/sigbhu/Desktop/Untitled.webarchive"
+		"/web/seldon/3/index.html"
 	],
 	"find":
 	{
@@ -736,7 +736,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -745,15 +745,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10622,
+						"buffer_size": 10725,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5271,
-								5283
+								4598,
+								4598
 							]
 						],
 						"settings":
@@ -763,10 +763,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2981.0,
+						"translation.y": 2689.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -794,7 +794,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -810,8 +810,8 @@
 						"selection":
 						[
 							[
-								648,
-								648
+								411,
+								411
 							]
 						],
 						"settings":
@@ -821,10 +821,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1054.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -861,6 +861,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 126.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -877,6 +881,10 @@
 		"selected_items":
 		[
 			[
+				"prepimage",
+				"tracking/PrepImage.m"
+			],
+			[
 				"gpuprepimage",
 				"tracking/gpuPrepImage.m"
 			],
@@ -887,10 +895,6 @@
 			[
 				"detectobjects",
 				"tracking/DetectObjects.m"
-			],
-			[
-				"prepimage",
-				"tracking/PrepImage.m"
 			],
 			[
 				"cut",

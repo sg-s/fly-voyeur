@@ -153,7 +153,16 @@ function  [] = TrackCore3()
             
     frame = StartFromHere;
 
-    ff=PrepImage(movie,frame,mask,Channel);
+
+    % no need to background stubract?
+    ff = read(movie,frame);
+
+    ff = (255-ff(:,:,Channel));
+    ff = (ff).*mask; % mask it
+
+    keyboard
+
+
     thresh = graythresh(ff);
     
     if StartFromHere < 6
