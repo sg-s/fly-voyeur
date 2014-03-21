@@ -2,17 +2,23 @@
 function [] = ptrack(v,ForceStartFromHere)
 %% choose files to track
 source = cd;
-allfiles = uigetfile('*.mat','MultiSelect','on'); % makes sure only annotated files are chosen
-if ~ischar(allfiles)
-% convert this into a useful format
-thesefiles = [];
-for fi = 1:length(allfiles)
-    thesefiles = [thesefiles dir(strcat(source,oss,cell2mat(allfiles(fi))))];
-end
+if v == -1 
+    thesefiles = dir('*.mat');
+    v=0;
 else
-    thesefiles(1).name = allfiles;
-end
 
+    allfiles = uigetfile('*.mat','MultiSelect','on'); % makes sure only annotated files are chosen
+    if ~ischar(allfiles)
+    % convert this into a useful format
+    thesefiles = [];
+    for fi = 1:length(allfiles)
+        thesefiles = [thesefiles dir(strcat(source,oss,cell2mat(allfiles(fi))))];
+    end
+    else
+        thesefiles(1).name = allfiles;
+    end
+
+end
 for fi = 1:length(thesefiles)
     % create all variables
     % movie parameters

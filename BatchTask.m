@@ -3,6 +3,7 @@
 % splits up a task into as many folders as there are cores on the machine, or as you want.
 
 function [] = BatchTask(n)
+
 if nargin < 1
 	n = feature('numCores');
 	disp('Splitting task into as many cores as there are on this machine...')
@@ -20,7 +21,7 @@ allfiles(badfiles) = [];
 batch_size = ceil(length(allfiles)/n);
 
 for i = 1:n
-	thisfolder=(strcat('batch',mat2str(i)));
+	thisfolder=(strcat('fv_batch',mat2str(i)));
 	mkdir(thisfolder)
 	allfiles = dir('*.mat'); % run on all *.mat files
 	% move .mat files in there.
@@ -33,7 +34,7 @@ for i = 1:n
 		end
 	end
 	allfiles(badfiles) = [];
-	
+
 	for j = 1:min([batch_size length(allfiles)])
 		
 		movefile(allfiles(j).name,strcat(thisfolder,oss,allfiles(j).name))
@@ -46,4 +47,14 @@ for i = 1:n
 end
 
 disp('All done.')
+
+% save where this is 
+temp=mfilename('fullpath');
+s=strfind(temp,'/');
+temp = temp(1:s(end));
+filename = strcat(temp,'batch_task.mat');
+data_here = cd;
+save(filename,'data_here')
+
+
 
