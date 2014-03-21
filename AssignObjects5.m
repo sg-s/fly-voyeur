@@ -2,7 +2,7 @@
 % me at http://srinivas.gs/contact/
 % part of the Track4 codebase
 % AssignObjects5.m is a re-write of the previous version, where assignation is done on a per-arena basis. 
-function [posx,posy,orientation,area,flymissing,collision,MajorAxis,MinorAxis] = AssignObjects5(frame,StartTracking,rp,posx,posy,orientation,area,flymissing,DividingLine,collision,MajorAxis,MinorAxis)
+function [posx,posy,orientation,area,flymissing,collision,MajorAxis,MinorAxis] = AssignObjects5(frame,StartTracking,rp,posx,posy,orientation,area,flymissing,DividingLine,collision,MajorAxis,MinorAxis,narenas)
 
 % core parameters:
 jump = 100;
@@ -33,17 +33,21 @@ end
 % fly
 % now, we do it in a per-arena manner.
 
-for arena = 1:2
+for arena = 1:narenas
     % figure out which objects are in this arena
     regionx  = [rp.Centroid];
     regionx = regionx(1:2:end);
     allflies = [2*arena 2*arena-1];
 
-    if arena==1
-        rp_thisarena = rp(regionx<DividingLine);
+    if ~isempty(DividingLine)
+        if arena==1
+            rp_thisarena = rp(regionx<DividingLine);
+        else
+            rp_thisarena = rp(regionx>DividingLine);
+            
+        end
     else
-        rp_thisarena = rp(regionx>DividingLine);
-        
+        rp_thisarena = rp;
     end
 
     if length(rp_thisarena) < n/2
@@ -224,13 +228,15 @@ end
 
 
 % safety check
-leftflies = find(posx(:,frame) < DividingLine);
-rightflies = find(posx(:,frame) > DividingLine);
-if length(leftflies) ~= n/2
+if ~isempty(DividingLine)
+    leftflies = find(posx(:,frame) < DividingLine);
+    rightflies = find(posx(:,frame) > DividingLine);
+    if length(leftflies) ~= n/2
 
-    error('265') 
-end
-if length(rightflies) ~= n/2
-    
-  error('2625') 
+        error('265') 
+    end
+    if length(rightflies) ~= n/2
+        
+      error('2625') 
+    end
 end

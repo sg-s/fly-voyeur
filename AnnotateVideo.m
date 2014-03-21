@@ -7,9 +7,9 @@
 function []  = AnnotateVideo()
 %% global parameters
 global n
-n = 4; % number of flies
+n = 2; % number of flies
 startframe = 1;
-narenas = 2;
+narenas = 1;
 frame = 1; % current frame
 StartTracking = [];
 StopTracking  = [];
@@ -17,7 +17,7 @@ LeftStart = [];
 RightStart = [];
 DividingLine = [];
 ROIs=  []; % each row has 3 elements. the first is x cood of circle, the second is y, and the third is the radius
-Channel = 1;
+Channel = 3;
 
 moviefigure= [];
 f1=  [];
@@ -80,7 +80,7 @@ skip=0;
         framecontrol2 = uicontrol(f1,'Position',[383 5 60 20],'Style','edit','String',mat2str(frame),'Callback',@frame2callback);
         uicontrol(f1,'Position',[320 5 60 20],'Style','text','String','frame #');
 
-        channelcontrol = uicontrol(f1,'Position',[503 5 60 20],'Style','edit','String','1');
+        channelcontrol = uicontrol(f1,'Position',[503 5 60 20],'Style','edit','String','3');
         uicontrol(f1,'Position',[450 5 60 20],'Style','text','String','channel #');
 
         nfliescontrol = uicontrol(f1,'Position',[603 5 60 20],'Style','edit','String',mat2str(n),'Callback',@nfliescallback);
@@ -224,9 +224,11 @@ skip=0;
             
             set(markroibutton,'String','ROIs marked','BackgroundColor',[0.7 0 0])
 
-            % now automatically draw a line b/w the two arenas
-            DividingLine = mean(ROIs(1,:));
-            drawline;
+            if narenas == 3
+                % now automatically draw a line b/w the two arenas
+                DividingLine = mean(ROIs(1,:));
+                drawline;
+            end
 
 
         else

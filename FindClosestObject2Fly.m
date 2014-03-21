@@ -6,14 +6,15 @@ for j = 1:length(rp)
 end
 temp = [posx(thisfly,frame-1) posy(thisfly,frame-1); o_centroids];
 
-% figure out if fly is on left or right arena
-if posx(thisfly,frame-1) < DividingLine
-    % on left
-    temp(temp(:,1) > DividingLine,:) = Inf;
-else
-    temp(temp(:,1) < DividingLine,:) = Inf;
+% figure out if fly is on left or right arena if there are two arenas
+if ~isempty(DividingLine)
+	if posx(thisfly,frame-1) < DividingLine
+	    % on left
+	    temp(temp(:,1) > DividingLine,:) = Inf;
+	else
+	    temp(temp(:,1) < DividingLine,:) = Inf;
+	end
 end
-
 % find closest object to ith fly
 d = squareform(pdist(temp));
 d = d(1,2:end);

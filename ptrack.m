@@ -132,7 +132,7 @@ for fi = 1:length(thesefiles)
         MinorAxis = zeros(n,nframes);
         LookingAtOtherFly = zeros(n,nframes);
         WingExtention = zeros(n,nframes);
-        SeparationBetweenFlies = NaN(n,nframes);
+        SeparationBetweenFlies = NaN(narenas,nframes);
         heading = NaN(n,nframes);
         allflies= 1:n;
         StartFromHere =StartTracking;
@@ -159,8 +159,6 @@ function  [] = TrackCore3()
 
     ff = (255-ff(:,:,Channel));
     ff = (ff).*mask; % mask it
-
-    keyboard
 
 
     thresh = graythresh(ff);
@@ -197,7 +195,7 @@ function  [] = TrackCore3()
 
         
         % assign objects
-        [posx,posy,orientation,area,flymissing,collision,MajorAxis,MinorAxis] = AssignObjects5(frame,StartTracking,rp,posx,posy,orientation,area,flymissing,DividingLine,collision,MajorAxis,MinorAxis);
+        [posx,posy,orientation,area,flymissing,collision,MajorAxis,MinorAxis] = AssignObjects5(frame,StartTracking,rp,posx,posy,orientation,area,flymissing,DividingLine,collision,MajorAxis,MinorAxis,narenas);
 
 
         
@@ -249,8 +247,11 @@ function  [] = TrackCore3()
         end
 
         % figure out the fly seperations
-        SeparationBetweenFlies(1,frame) = FlySeperation(1,2,posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame));
-        SeparationBetweenFlies(2,frame) = FlySeperation(3,4,posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame));
+        for ai = 1:length(narenas)
+            thisfly = ai*2;
+            otherfly = thisfly - 1;
+            SeparationBetweenFlies(ai,frame) = FlySeperation(otherfly,thisfly,posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame));
+        end
 
 
         % some fixes
