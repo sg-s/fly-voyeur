@@ -8,6 +8,14 @@ if nargin < 1
 	disp('Splitting task into as many cores as there are on this machine...')
 end
 allfiles = dir('*.mat'); % run on all *.mat files
+% make sure they are real files
+badfiles= [];
+for i = 1:length(allfiles)
+	if strcmp(allfiles(i).name(1),'.')
+		badfiles = [badfiles i];
+	end
+end
+allfiles(badfiles) = [];
 
 batch_size = ceil(length(allfiles)/n);
 
@@ -16,6 +24,16 @@ for i = 1:n
 	mkdir(thisfolder)
 	allfiles = dir('*.mat'); % run on all *.mat files
 	% move .mat files in there.
+
+	% make sure they are real files
+	badfiles= [];
+	for i = 1:length(allfiles)
+		if strcmp(allfiles(i).name(1),'.')
+			badfiles = [badfiles i];
+		end
+	end
+	allfiles(badfiles) = [];
+	
 	for j = 1:min([batch_size length(allfiles)])
 		
 		movefile(allfiles(j).name,strcat(thisfolder,oss,allfiles(j).name))
@@ -28,3 +46,4 @@ for i = 1:n
 end
 
 disp('All done.')
+
