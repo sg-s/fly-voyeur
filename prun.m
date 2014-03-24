@@ -3,6 +3,6 @@
 n = feature('numCores');
 parfor i = 1:n
 	cd(strcat('fv_batch',mat2str(i)))
-	gpuTrack(-1);
+	gpuTrack;
 end
 delete(gcp)

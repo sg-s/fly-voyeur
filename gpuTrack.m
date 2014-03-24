@@ -100,7 +100,7 @@ for fi = 1:length(thesefiles)
             % fully analysed
             if nargin == 1
                 disp('This file looks fully analysed. I will skip this...')
-            else
+            elseif nargin > 1
                 if StartFromHere == 0
                     disp('File fully analysed, BUT Trashing all old data and re-starting...')
                     StartFromHere = StartTracking;
