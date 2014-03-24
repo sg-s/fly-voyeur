@@ -4,7 +4,7 @@ function [] = gpuTrack(v,ForceStartFromHere)
 source = cd;
 if v == -1 
     thesefiles = dir('*.mat');
-    v=0;
+    v=-1;
 else
 
     allfiles = uigetfile('*.mat','MultiSelect','on'); % makes sure only annotated files are chosen
@@ -272,9 +272,10 @@ function  [] = TrackCore3()
         
         
         % update display
-        UpdateDisplay4(v,frame,ff,flymissing,posx,posy,WingExtention,orientation,heading,t,StartFromHere,collision,MajorAxis,MinorAxis,LookingAtOtherFly,displayfigure);
+        if v > 0
+            UpdateDisplay4(v,frame,ff,flymissing,posx,posy,WingExtention,orientation,heading,t,StartFromHere,collision,MajorAxis,MinorAxis,LookingAtOtherFly,displayfigure);
 
-
+        end
         
 
         
@@ -283,7 +284,22 @@ function  [] = TrackCore3()
         if  ~(ceil(frame/1000)-(frame/1000))
             disp('Saving...')
             save(thesefiles(fi).name,'posx','posy','orientation','adjacency','heading','flymissing','collision','area','WingExtention','MajorAxis','MinorAxis','LookingAtOtherFly','SeparationBetweenFlies','-append')
-            movie
+            if v > -1
+                movie
+            end
+        end
+
+        if rand > 0.99
+            if v == -1
+                [upperPath, deepestFolder, ~] = fileparts(pwd);
+                fprintf('\n')
+                fprintf(deepestFolder)
+                tt=toc(t);
+                fps = oval((frame-StartFromHere)/tt,3);
+                fprintf(strkat('\t Frame # ', mat2str(frame), '   @ ', fps, 'fps'));
+                
+            end
+
         end
         
         
@@ -325,12 +341,13 @@ function [] = InitialiseTracking()
         ff = read(movie,StartTracking);
         mask = ROI2mask(ff,ROIs);
         
-        if v
+        if v > 0
             % create a display
             scrsz = get(0,'ScreenSize');
             displayfigure=figure('Position',[100 scrsz(4)/2 2*scrsz(3)/3 2*scrsz(4)/3]); hold on
             imagesc(ff), hold on
         end
+
 end
 
 

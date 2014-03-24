@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"movie",
+				"movieformats"
+			],
+			[
+				"cpu",
+				"cpuTrack"
+			],
+			[
+				"cpuTrack",
+				"cpuTrackCore"
+			],
+			[
 				"Divi",
 				"DividingLine"
 			],
@@ -284,14 +296,6 @@
 	"buffers":
 	[
 		{
-			"file": "ptrack.m",
-			"settings":
-			{
-				"buffer_size": 10705,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "FlySeperation.m",
 			"settings":
 			{
@@ -300,18 +304,44 @@
 			}
 		},
 		{
-			"file": "AssignObjects5.m",
+			"file": "cpuTrack.m",
 			"settings":
 			{
-				"buffer_size": 8693,
+				"buffer_size": 11409,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/sigbhu/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"file": "BatchTask.m",
 			"settings":
 			{
-				"buffer_size": 250,
+				"buffer_size": 1417,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "things to do\n\n1. rewrite EstimateTrackingtime to include estimates\n\n-- first, build estimates of fps using cpuTrack\n-- and then build estimates of fps using gpuTrack\n\n-- when only using the cpu, with one instances\n-- using all cores on one node\n-- using n processes ",
+			"settings":
+			{
+				"buffer_size": 266,
+				"line_ending": "Unix",
+				"name": "things to do"
+			}
+		},
+		{
+			"file": "prun.m",
+			"settings":
+			{
+				"buffer_size": 135,
+				"line_ending": "Unix",
+				"name": "% prun"
+			}
+		},
+		{
+			"file": "gpuTrack.m",
+			"settings":
+			{
+				"buffer_size": 11283,
 				"line_ending": "Unix"
 			}
 		},
@@ -327,17 +357,9 @@
 			"file": "FlyVoyeur.m",
 			"settings":
 			{
-				"buffer_size": 2978,
+				"buffer_size": 4345,
 				"line_ending": "Unix",
 				"name": "% FlyVoyeur"
-			}
-		},
-		{
-			"file": "AnnotateVideo.m",
-			"settings":
-			{
-				"buffer_size": 13164,
-				"line_ending": "Unix"
 			}
 		},
 		{
@@ -482,14 +504,28 @@
 	},
 	"file_history":
 	[
-		"/Users/sigbhu/Dropbox/code/b/TFAViewer2.m",
+		"/Users/sigbhu/Dropbox/code/tracking/FlipOrientation.m",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/sigbhu/Dropbox/code/tracking/SpawnBatchWorkers.m",
+		"/Users/sigbhu/Dropbox/code/tracking/UpdateDisplay4.m",
+		"/Users/sigbhu/Dropbox/code/tracking/temp.m",
+		"/Users/sigbhu/Dropbox/code/tracking/ptrack.m",
+		"/Users/sigbhu/Dropbox/code/tracking/AssignObjects5.m",
+		"/Users/sigbhu/Dropbox/code/core/barweb.m",
+		"/Users/sigbhu/Dropbox/code/tracking/AssignObjects4.m",
+		"/Users/sigbhu/Dropbox/code/tracking/AnnotateVideo.m",
+		"/Users/sigbhu/Dropbox/code/core/plotTDMS.m",
 		"/Users/sigbhu/Dropbox/code/tracking/PrepImage.m",
+		"/Users/sigbhu/Dropbox/code/tracking/Track4.m",
+		"/Users/sigbhu/.bash-profile",
+		"//.bashrc",
+		"//.bash-profile",
+		"/Users/sigbhu/Desktop/matlab",
+		"/Users/sigbhu/Dropbox/code/b/TFAViewer2.m",
 		"/Users/sigbhu/Dropbox/code/tracking/html/CompareManualScoring2Track4.aux",
 		"/Users/sigbhu/Dropbox/code/core/PlotAll.m",
 		"/Users/sigbhu/Dropbox/code/tracking/FindHeadingsAndFixOrientations.m",
-		"/Users/sigbhu/Dropbox/code/tracking/FlipOrientation.m",
 		"/Users/sigbhu/Dropbox/code/tracking/gpuPrepImage.m",
-		"/Users/sigbhu/Dropbox/code/tracking/AssignObjects4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/ConvertVideo",
 		"/Users/sigbhu/Dropbox/code/tracking/ConvertVideo.sh",
 		"/Users/sigbhu/Dropbox/code/core/Convertv2tov3.m",
@@ -504,10 +540,8 @@
 		"/Users/sigbhu/Dropbox/code/tracking/DetectNObjects.m",
 		"/Users/sigbhu/Dropbox/code/tracking/gpuDetectObjects.m",
 		"/Users/sigbhu/Dropbox/code/tracking/DetectObjects.m",
-		"/Users/sigbhu/Dropbox/code/tracking/Track4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/ComputeCopulationStatistics4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/Open bugs in track.m",
-		"/Users/sigbhu/Dropbox/code/tracking/temp.m",
 		"/Users/sigbhu/Dropbox/code/tracking/ComputeWEMetrics4.m",
 		"/Users/sigbhu/Dropbox/code/tracking/SortData.m",
 		"/Users/sigbhu/Dropbox/code/tracking/README",
@@ -518,10 +552,8 @@
 		"/Users/sigbhu/Dropbox/code/core/index.html",
 		"/Users/sigbhu/Dropbox/code/core/WingBeatSignal2f.m",
 		"/Users/sigbhu/Dropbox/code/tracking/Track.m",
-		"/Users/sigbhu/Dropbox/code/tracking/AssignObjects5.m",
 		"/Users/sigbhu/Dropbox/code/tracking/Track2Restored.m",
 		"/Users/sigbhu/Dropbox/code/tracking/CompareManualScoring2Track4.m",
-		"/Users/sigbhu/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/sigbhu/.bash_profile",
 		"/Users/sigbhu/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
 		"/Users/sigbhu/Dropbox/code/tracking/speedcheck.m",
@@ -537,7 +569,6 @@
 		"/Users/sigbhu/Dropbox/code/tracking/BatchTask.m",
 		"/Users/sigbhu/Dropbox/code/tracking/WipeAllTrackingInfo.m",
 		"/Users/sigbhu/Dropbox/code/tracking/FlySeperation.m",
-		"/Users/sigbhu/Dropbox/code/tracking/UpdateDisplay4.m",
 		"/Users/sigbhu/.gitconfig",
 		"/usr/local/git/etc/gitconfig",
 		"/Users/sigbhu/Dropbox/code/core/visualisation-tools/triangle.m",
@@ -600,16 +631,7 @@
 		"/Users/sigbhu/Dropbox/code/b/AnalysePIDMultiPuffs2.m",
 		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/sigbhu/Dropbox/code/b/AnalyseTrialTrends.m",
-		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/Snippets/matlab_snippets/plot(ts,linespec).sublime-snippet",
-		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/index.html",
-		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
-		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/Matlab.sublime-settings",
-		"/Users/sigbhu/Downloads/soda-theme-master/Soda Dark.sublime-theme",
-		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/JSON.sublime-settings",
-		"/Users/sigbhu/Dropbox/code/b/PlotTFAResponses.m",
-		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/pages/resources.html",
-		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/biology.yale.edu/index.html",
-		"/Users/sigbhu/.ssh/id_rsa.pub"
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/Snippets/matlab_snippets/plot(ts,linespec).sublime-snippet"
 	],
 	"find":
 	{
@@ -633,6 +655,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"v",
+			"SeparationBetweenFlies",
+			"nextcallback",
+			"nextfile",
 			"SeparationBetweenFlies",
 			"DividingLine",
 			"markroi",
@@ -756,11 +782,7 @@
 			"YLim",
 			"data.raw",
 			"keyboard",
-			"tue",
-			"mon",
-			"GenotypeID",
-			"FoundFilesList",
-			"GenotypeID"
+			"tue"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -787,47 +809,17 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": false,
+		"whole_word": true,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 7,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "ptrack.m",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10705,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5366,
-								5378
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3268.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "FlySeperation.m",
 					"semi_transient": false,
 					"settings":
@@ -855,20 +847,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "AssignObjects5.m",
+					"buffer": 1,
+					"file": "cpuTrack.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8693,
+						"buffer_size": 11409,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1059,
-								1059
+								10080,
+								10080
 							]
 						],
 						"settings":
@@ -878,43 +870,130 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 5869.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "/Users/sigbhu/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"buffer": 2,
+					"file": "BatchTask.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 250,
+						"buffer_size": 1417,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								221,
-								221
+								282,
+								258
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
+						"translation.y": 15.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 266,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								266,
+								266
+							]
+						],
+						"settings":
+						{
+							"auto_name": "things to do",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "prun.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 135,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								135,
+								135
+							]
+						],
+						"settings":
+						{
+							"auto_name": "% prun",
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "gpuTrack.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11283,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9249,
+								9249
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5092.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "FindClosestObject2Fly.m",
 					"semi_transient": false,
 					"settings":
@@ -938,70 +1017,41 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "FlyVoyeur.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2978,
+						"buffer_size": 4345,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								303,
-								303
+								4303,
+								4228
 							]
 						],
 						"settings":
 						{
 							"auto_name": "% FlyVoyeur",
-							"syntax": "Packages/Matlab/Matlab.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "AnnotateVideo.m",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13164,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7486,
-								7486
-							]
-						],
-						"settings":
-						{
 							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3597.0,
+						"translation.y": 1382.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "gpuFindHeadingsAndFixOrientations.m",
 					"semi_transient": false,
 					"settings":
@@ -1027,7 +1077,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 8,
 					"type": "text"
 				}
 			]
@@ -1084,6 +1134,42 @@
 		"selected_items":
 		[
 			[
+				"flyv",
+				"tracking/FlyVoyeur.m"
+			],
+			[
+				"flyvo",
+				"tracking/FlyVoyeur.m"
+			],
+			[
+				"updat",
+				"tracking/UpdateDisplay4.m"
+			],
+			[
+				"ptrack",
+				"tracking/ptrack.m"
+			],
+			[
+				"batch",
+				"tracking/BatchTask.m"
+			],
+			[
+				"assi",
+				"tracking/AssignObjects5.m"
+			],
+			[
+				"ptr",
+				"tracking/ptrack.m"
+			],
+			[
+				"tr",
+				"tracking/Track4.m"
+			],
+			[
+				"ann",
+				"tracking/AnnotateVideo.m"
+			],
+			[
 				"findclo",
 				"tracking/FindClosestObject2Fly.m"
 			],
@@ -1098,10 +1184,6 @@
 			[
 				"assignobjects5",
 				"tracking/AssignObjects5.m"
-			],
-			[
-				"ann",
-				"tracking/AnnotateVideo.m"
 			],
 			[
 				"convert",
@@ -1322,10 +1404,6 @@
 			[
 				"compute",
 				"ComputeCopulationMetrics.m"
-			],
-			[
-				"assi",
-				"AssignObjects3.m"
 			],
 			[
 				"dt",
