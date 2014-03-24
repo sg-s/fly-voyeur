@@ -131,9 +131,6 @@ function [] = DetermineVideoStatus(folder_name)
 		set(FileBox,'Visible','on');
 		set(FileTypeControl,'Value',1,'Visible','on');
 		set(FileBox,'String',{moviefiles(convert_these).name});
-	else
-		disp('write case where there are no videos to be converted.')
-		keyboard
 	end
 
 	% figure out other types of files
@@ -147,6 +144,10 @@ function [] = DetermineVideoStatus(folder_name)
 		else
 			% obviously there is no associated mat file
 			annotate_these = [annotate_these j];
+			set(AnnotateVideoButton,'Visible','on');
+			set(FileBox,'Visible','on');
+			set(FileTypeControl,'Value',2,'Visible','on');
+			set(FileBox,'String',{moviefiles(annotate_these).name});
 		end
 	end
 	clear j
@@ -159,16 +160,25 @@ function [] = FileTypeCallback(eo,ed)
 		% show videos that need to be converted
 		if ~isempty(convert_these)
 			set(FileBox,'String',{moviefiles(convert_these).name});
+			set(ConvertVideoButton,'Visible','on');
 		else
 			set(FileBox,'String','No videos need to be converted.');
+			set(ConvertVideoButton,'Visible','off');
 		end
 	case 2
 		% show videos unannotated but converted videos
 		if ~isempty(annotate_these)
 			set(FileBox,'String',{moviefiles(annotate_these).name});
+			set(AnnotateVideoButton,'Visible','on');
+			set(ConvertVideoButton,'Visible','off');
 		else
 			set(FileBox,'String','No videos need to be annotated.');
+			set(ConvertVideoButton,'Visible','off');
+			set(AnnotateVideoButton,'Visible','off');
 		end
+		% hide convert video button
+
+
 	case 3
 		% show annotated, untracked videos
 	case 4
@@ -185,27 +195,28 @@ function [] = ConvertVideoCallback(eo,ed)
 		h = waitbar(0.1,'Converting videos...');
 		cd(folder_name)
 
-		DisableAllControls();
+		SwitchAllControls('off');
 
-		if options.gpuAccelerate
+		if options.parallel
 			% batch the tasks
 			bn = min(length(convert_these),ncores);
 			mext = moviefiles(convert_these(1)).name(end-3:end);
 			BatchVideotask(bn,mext);
 			% now convert them in parallel
-			parfor i = 1:bn
+			matlabpool open
+			parfor pari = 1:bn
 				% go to the folder
-				cd(strcat('fv_batch',mat2str(i)))
+				cd(strcat('fv_batch',mat2str(pari)))
 				% convert the videos there
-				system(strkat(codepath,oss,'ConvertVideo.sh ',mext, ' MJPG avi avi'))
+				system(strkat(codepath,oss,'ConvertVideo.sh ',mext, ' MJPG avi avi'));
 			end
 			% unbatch
 			UnBatch();
+			matlabpool close
 			
 		else
 			% move to the folder to be copied
 
-			
 			mext = moviefiles(convert_these(1)).name(end-3:end);
 			system(strkat(codepath,oss,'ConvertVideo.sh ',mext, ' MJPG avi avi'))
 
@@ -215,11 +226,13 @@ function [] = ConvertVideoCallback(eo,ed)
 		close(h)
 
 		% update file discriptions
-		keyboard
+		annotate_these = [annotate_these convert_these];
+		convert_these = [];
+
 		% move back to the codepath
 		cd(codepath)
 
-		EnableAllControls;
+		SwitchAllControls('on');
 	else
 		errordlg('Video conversion only supported on Mac OS X.')
 	end
@@ -229,22 +242,30 @@ function [] = ConvertVideoCallback(eo,ed)
 	
 end
 
-function [] = DisableAllControls()
-	set(ChooseFolderButton,'Enable','off')
-	ThisFolder
-	VerbosityControl
-	BatchTask
-	detectWE
-	enableGPU
-	nbatches
-	ScoreTrackingButton
-	TrackButton
-	EstimateTimeButton
-	ShowTrackingButton
+function [] = SwitchAllControls(state)
+	set(ChooseFolderButton,'Enable',state)
+	set(ThisFolder,'Enable',state)
+	set(VerbosityControl,'Enable',state)
+	set(BatchTask,'Enable',state)
+	set(detectWE,'Enable',state)
+	set(enableGPU,'Enable',state)
+	set(nbatches,'Enable',state)
+	set(ScoreTrackingButton,'Enable',state)
+	set(TrackButton,'Enable',state)
+	set(EstimateTimeButton,'Enable',state)
+	set(ShowTrackingButton,'Enable',state)
+	set(ThisFolder,'Enable',state)
+	set(ChooseFolderButton,'Enable',state)
+	set(AnnotateVideoButton,'Enable',state)
+	set(ConvertVideoButton,'Enable',state)
+	set(FileTypeControl,'Enable',state)
+end
+
+function [] = AnnotateVideoCallback(eo,ed)
+	folder_name = get(ThisFolder,'String');
+	AnnotateVideo(folder_name,moviefiles(annotate_these));
 end
 
 
-function [] = EnableAllControls()
-end
 
 end

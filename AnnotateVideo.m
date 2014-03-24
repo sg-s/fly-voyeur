@@ -4,7 +4,7 @@
 % AnnotateVideo.m is a master GUI that is meant to annotate fly movies with
 % information that a tracking algo can use to automatically track fly
 % trajectories. 
-function []  = AnnotateVideo()
+function []  = AnnotateVideo(source,thesefiles)
 %% global parameters
 global n
 n = 2; % number of flies
@@ -44,17 +44,23 @@ moviefile= [];
 
 
 %% choose files
-source = cd;
-allfiles = uigetfile('*.avi','MultiSelect','on'); % makes sure only avi files are chosen
-if ~ischar(allfiles)
-% convert this into a useful format
-thesefiles = [];
-for fi = 1:length(allfiles)
-    thesefiles = [thesefiles dir(strcat(source,oss,cell2mat(allfiles(fi))))];
-end
+if nargin == 0
+    source = cd;
+    allfiles = uigetfile('*.avi','MultiSelect','on'); % makes sure only avi files are chosen
+    if ~ischar(allfiles)
+    % convert this into a useful format
+    thesefiles = [];
+    for fi = 1:length(allfiles)
+        thesefiles = [thesefiles dir(strcat(source,oss,cell2mat(allfiles(fi))))];
+    end
+    else
+        thesefiles(1).name = allfiles;
+    end
 else
-    thesefiles(1).name = allfiles;
+    cd(source)
 end
+
+
 mi=1;
 InitialiseAnnotate(mi);
 skip=0;
