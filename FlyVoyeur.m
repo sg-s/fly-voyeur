@@ -27,26 +27,41 @@ FileBox = [];
 ConvertVideoButton = [];
 
 % OPTIONS
+global options
 options.WingExtention = 1;
-options.gpuAccelerate = 1;
+options.gpuAccelerate = 0;
 options.ShowDisplay = 0;
 options.Batches = 1;
+options.parallel = 0;
 
 % initialise
+global ncores
 ncores = feature('numCores');
 for i = 1:(ncores)
 	nBatchesString = [nBatchesString mat2str(i)];
 end
 clear i
 
+% figure out where this script is
+codepath = StripPath(mfilename('fullpath'));
+
 % figure out if gpu Acceleration possible
-gpuOK = 0;
 try gpuArray(ones(1,10));
-	gpuOK = 1;
+	options.gpuAccelerate = 1;
 catch err
 	if ~isempty(strfind(err.message,'No supported GPU'))
-		disp('gpu Acceleration is not supported on this device.')
+		disp('FlyVoyeur:gpu Acceleration is not supported on this device.')
 	end
+end
+
+% figure out if parallel processing possible
+try matlabpool open
+	options.parallel = 1;
+	matlabpool close
+catch err
+
+	disp('FlyVoyeur:parallel workers are not supported on this device.')
+
 end
 
 
@@ -54,9 +69,9 @@ fig = figure('position',[50 50 450 740], 'Toolbar','none','Menubar','none','Name
 
 ChooseFolderButton = uicontrol(fig, 'Position',[10 700  150 30],'Style','pushbutton','String','Choose Folder...','Enable','on','FontSize',16,'Callback',@ChooseFolderCallback);
 ThisFolder = uicontrol(fig, 'Position',[170 705  250 20],'Style','text','String','No folder chosen.','Enable','on','FontSize',16);
-FileTypes = {'Needs Conversion','Raw Video','Annotated Video','Partially Tracked','Fully Tracked'};
+FileTypes = {'Needs Conversion','Needs Annotation','Annotated Video','Partially Tracked','Fully Tracked'};
 FileTypeControl = uicontrol(fig,'Position',[10 665 420 30],'Style', 'popupmenu', 'String', FileTypes,'FontSize',16, 'value', 1,'Callback',@FileTypeCallback,'Visible','off');
-FileBox = uicontrol(fig,'Position',[10 365 420 290],'Style','listbox','Min',0,'Max',2,'String',FoundFilesList,'FontSize',16,'Visible','off','Callback',@FoundFilesCallback);
+FileBox = uicontrol(fig,'Position',[10 365 420 290],'Style','listbox','Min',0,'Max',2,'String',FoundFilesList,'FontSize',16,'Visible','off');
 
 % buttons
 ConvertVideoButton = uicontrol(fig, 'Position',[20 295 200 50],'Style','pushbutton','String','Convert Video','Enable','on','FontSize',20,'Callback',@ConvertVideoCallback,'Visible','off');
@@ -80,7 +95,11 @@ function [folder_name] = ChooseFolderCallback(eo,ed)
 	folder_name = uigetdir(cd,'Choose the folder where the videos are...');
 	set(ThisFolder,'String',folder_name);
 
-	% look for MAT files in the folder. 
+	DetermineVideoStatus(folder_name);
+end
+
+function [] = DetermineVideoStatus(folder_name)
+		% look for MAT files in the folder. 
 	matfiles = dir(strcat(folder_name,oss,'*.mat'));
 	
 
@@ -117,11 +136,115 @@ function [folder_name] = ChooseFolderCallback(eo,ed)
 		keyboard
 	end
 
+	% figure out other types of files
+	converted_movies = setdiff(1:length(moviefiles),convert_these);
+	for j = converted_movies
+		% is there an associated .mat file?
+		thismatfile = strcat(moviefiles(1).name(1:end-3),'mat');
+		if ~isempty(matfiles)
+			disp('write case 130')
+			keyboard
+		else
+			% obviously there is no associated mat file
+			annotate_these = [annotate_these j];
+		end
+	end
+	clear j
+	
+end
 
-
-
+function [] = FileTypeCallback(eo,ed)
+	switch get(FileTypeControl,'Value')
+	case 1
+		% show videos that need to be converted
+		if ~isempty(convert_these)
+			set(FileBox,'String',{moviefiles(convert_these).name});
+		else
+			set(FileBox,'String','No videos need to be converted.');
+		end
+	case 2
+		% show videos unannotated but converted videos
+		if ~isempty(annotate_these)
+			set(FileBox,'String',{moviefiles(annotate_these).name});
+		else
+			set(FileBox,'String','No videos need to be annotated.');
+		end
+	case 3
+		% show annotated, untracked videos
+	case 4
+		% show partially tracked videos
+	case 5
+		% show fully tracked videos
+	end
 
 end
 
+function [] = ConvertVideoCallback(eo,ed)
+	if ismac
+		folder_name = get(ThisFolder,'String');
+		h = waitbar(0.1,'Converting videos...');
+		cd(folder_name)
+
+		DisableAllControls();
+
+		if options.gpuAccelerate
+			% batch the tasks
+			bn = min(length(convert_these),ncores);
+			mext = moviefiles(convert_these(1)).name(end-3:end);
+			BatchVideotask(bn,mext);
+			% now convert them in parallel
+			parfor i = 1:bn
+				% go to the folder
+				cd(strcat('fv_batch',mat2str(i)))
+				% convert the videos there
+				system(strkat(codepath,oss,'ConvertVideo.sh ',mext, ' MJPG avi avi'))
+			end
+			% unbatch
+			UnBatch();
+			
+		else
+			% move to the folder to be copied
+
+			
+			mext = moviefiles(convert_these(1)).name(end-3:end);
+			system(strkat(codepath,oss,'ConvertVideo.sh ',mext, ' MJPG avi avi'))
+
+
+		end
+		waitbar(1,h);
+		close(h)
+
+		% update file discriptions
+		keyboard
+		% move back to the codepath
+		cd(codepath)
+
+		EnableAllControls;
+	else
+		errordlg('Video conversion only supported on Mac OS X.')
+	end
+
+
+	
+	
+end
+
+function [] = DisableAllControls()
+	set(ChooseFolderButton,'Enable','off')
+	ThisFolder
+	VerbosityControl
+	BatchTask
+	detectWE
+	enableGPU
+	nbatches
+	ScoreTrackingButton
+	TrackButton
+	EstimateTimeButton
+	ShowTrackingButton
+end
+
+
+function [] = EnableAllControls()
+end
 
 end

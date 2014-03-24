@@ -48,5 +48,5 @@ vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 
 for a in *$1; do 
 	$vlc -I dummy -vvv "$a" --sout "#transcode{hq,deinterlace,vcodec=$2,width=$w,height=$h,vb=$bitrate,channels=6}:standard{mux_video=$3,dst=\"$a.$4\",access=file}" vlc://quit 
-	# rm "$a"
+	rm "$a"
 done

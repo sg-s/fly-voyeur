@@ -2,23 +2,38 @@
 function [] = gpuTrack(v,ForceStartFromHere)
 %% choose files to track
 source = cd;
-if v == -1 
-    thesefiles = dir('*.mat');
-    v=-1;
-else
-
-    allfiles = uigetfile('*.mat','MultiSelect','on'); % makes sure only annotated files are chosen
-    if ~ischar(allfiles)
-    % convert this into a useful format
-    thesefiles = [];
-    for fi = 1:length(allfiles)
-        thesefiles = [thesefiles dir(strcat(source,oss,cell2mat(allfiles(fi))))];
-    end
-    else
-        thesefiles(1).name = allfiles;
-    end
-
+if nargin == 0 
+    v = -1;
 end
+if nargin == 0
+    allfiles = dir('*.mat');
+else
+    allfiles = uigetfile('*.mat','MultiSelect','on'); % makes sure only annotated files are chosen
+end
+
+if exist('allfiles')
+    if ischar(allfiles)
+        temp = allfiles;
+        clear allfiles
+        allfiles(1).name = temp;
+    elseif iscell(allfiles)
+        allfiles=cell2struct(allfiles,'name');
+    end
+end
+
+% make sure they are real files
+badfiles= [];
+for i = 1:length(allfiles)
+    if strcmp(allfiles(i).name(1),'.')
+        badfiles = [badfiles i];
+    end
+end
+clear i
+allfiles(badfiles) = [];
+thesefiles = allfiles;
+clear allfiles
+
+
 for fi = 1:length(thesefiles)
     % create all variables
     % movie parameters
@@ -161,10 +176,7 @@ function  [] = TrackCore3()
 
 
     % no need to background stubract?
-    ff = read(movie,frame);
-
-    ff = (255-ff(:,:,Channel));
-    ff = (ff).*mask; % mask it
+    [ff] = gather(gpuPrepImage(movie,frame,mask,Channel));
 
 
     thresh = graythresh(ff);
@@ -289,7 +301,7 @@ function  [] = TrackCore3()
             end
         end
 
-        if rand > 0.99
+        if rand > 0.9
             if v == -1
                 [upperPath, deepestFolder, ~] = fileparts(pwd);
                 fprintf('\n')
@@ -301,6 +313,7 @@ function  [] = TrackCore3()
             end
 
         end
+
         
         
         

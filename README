@@ -2,7 +2,12 @@ README
 
 === What this is ===
 
-This is a set of MATLAB functions that allows you to quantify behaviour of flies in small arenas. This was originally developed to quantify courting and copulation behaviour of two flies in copulation assays, but can be extended to track any number of flies. 
+FlyVoyeur is a set of functions that allows you to track and quantify fly behavior. 
+Originially developed for courtship assays, it can track the positions of flies, measure
+their orientation, detect wing extension, and can handle extreme cases of fly collisions, 
+and is resistant to flies going missing due to skipped frames or sudden movement. 
+
+FlyVoyeur is fully parallelised, and can take advantage of CUDA-enabled GPUs to speed up tracking. 
 
 Out of the box, this quantifies:
 
@@ -28,4 +33,11 @@ code@srinivas.gs and I will tell you how to appropriately cite this.
 Step 1. Annotate your video using FlyTrack.m 
 Step 2. Track video using Track4.m 
 
-That's it! 
+=== A note on parallel processing and GPU acceleration ===
+
+MATLAB's parallel toolbox is a disaster in some releases, based on the OS you run and the version of Java you have. 
+If FlyVoyeur tells you parallel computation is not supported, you may have to resort to a number of tricks to get it
+working. 
+
+The same goes for GPU acceleration. On Mac OS X, MATLAB fails to tell the OS to switch to the discrete card, and hence 
+initialisation of GPU resources fails. 
