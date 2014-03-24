@@ -50,7 +50,7 @@ disp('All done.')
 
 % save where this is 
 temp=mfilename('fullpath');
-s=strfind(temp,'/');
+s=strfind(temp,oss);
 temp = temp(1:s(end));
 filename = strcat(temp,'batch_task.mat');
 data_here = cd;
