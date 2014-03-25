@@ -9,25 +9,37 @@
 function [] = cpuTrack(v,ForceStartFromHere)
 
 if nargin == 0 
-    v = 0;
+    v = -1;
 end    
 %% choose files to track
-if v == -1 
-    % automatically get all files...no talking!
-    thesefiles = dir('*.mat');
+if nargin == 0
+    allfiles = dir('*.mat');
 else
-    source = cd;
     allfiles = uigetfile('*.mat','MultiSelect','on'); % makes sure only annotated files are chosen
-    if ~ischar(allfiles)
-    % convert this into a useful format
-    thesefiles = [];
-    for fi = 1:length(allfiles)
-        thesefiles = [thesefiles dir(strcat(source,oss,cell2mat(allfiles(fi))))];
-    end
-    else
-        thesefiles(1).name = allfiles;
+end
+
+if exist('allfiles')
+    if ischar(allfiles)
+        temp = allfiles;
+        clear allfiles
+        allfiles(1).name = temp;
+    elseif iscell(allfiles)
+        allfiles=cell2struct(allfiles,'name');
     end
 end
+
+% make sure they are real files
+badfiles= [];
+for i = 1:length(allfiles)
+    if strcmp(allfiles(i).name(1),'.')
+        badfiles = [badfiles i];
+    end
+end
+clear i
+allfiles(badfiles) = [];
+thesefiles = allfiles;
+clear allfiles
+
 
 for fi = 1:length(thesefiles)
     % create all variables
@@ -95,7 +107,7 @@ for fi = 1:length(thesefiles)
             % fully analysed
             if nargin == 1
                 disp('This file looks fully analysed. I will skip this...')
-            else
+            elseif nargin == 2
                 if StartFromHere == 0
                     disp('File fully analysed, BUT Trashing all old data and re-starting...')
                     StartFromHere = StartTracking;

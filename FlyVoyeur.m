@@ -55,12 +55,18 @@ catch err
 end
 
 % figure out if parallel processing possible
-try matlabpool open
+try parpool('local')
 	options.parallel = 1;
-	matlabpool close
+	delete(gcp)
 catch err
-
-	disp('FlyVoyeur:parallel workers are not supported on this device.')
+	if strmatch(err.identifier,'MATLAB:UndefinedFunction')
+		disp('FlyVoyeur:parallel workers are not supported on this device.')
+	elseif strmatch(err.identifier,'parallel:convenience:ConnectionOpen')
+		options.parallel = 1;
+		delete(gcp)
+	else
+		disp('FlyVoyeur:parallel workers are not supported on this device.')
+	end
 
 end
 
@@ -139,8 +145,9 @@ function [] = DetermineVideoStatus(folder_name)
 		% is there an associated .mat file?
 		thismatfile = strcat(moviefiles(1).name(1:end-3),'mat');
 		if ~isempty(matfiles)
-			disp('write case 130')
+			disp('148')
 			keyboard
+			DetermineNatureOfMATFiles(convert_these);
 		else
 			% obviously there is no associated mat file
 			annotate_these = [annotate_these j];
@@ -152,6 +159,10 @@ function [] = DetermineVideoStatus(folder_name)
 	end
 	clear j
 	
+end
+
+function  [] = DetermineNatureOfMATFiles()
+	keyboard
 end
 
 function [] = FileTypeCallback(eo,ed)
