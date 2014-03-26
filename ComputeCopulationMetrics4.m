@@ -100,19 +100,16 @@ for i = 1:narenas
 
     end
 
- end
-
-
-if CopulationStartFrame(1) == 0 
-    CopulationStartFrame(1) =  StopTracking;
-    CopulationStart(1) = (CopulationStartFrame(1) - LeftStart)/30;
 end
+clear i
 
-
-if CopulationStartFrame(2) == 0 
-    CopulationStartFrame(2) =  StopTracking;
-    CopulationStart(2) = (CopulationStartFrame(2) - RightStart)/30;
+for i = 1:narenas
+    if CopulationStartFrame(i) == 0 
+        CopulationStartFrame(i) =  StopTracking;
+        CopulationStart(i) = (CopulationStartFrame(i) - LeftStart)/30;
+    end
 end
+clear i
 
 for i = 1:narenas
     thisfly = i*2-1;
@@ -135,3 +132,4 @@ for i = 1:narenas
     nCollisions(i) = length(ons);
     CollisionTime(i) = (sum(cop(StartTracking:CopulationStartFrame(i))))/(CopulationStartFrame(i)-  StartTracking);
 end
+clear i

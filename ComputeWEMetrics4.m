@@ -15,10 +15,6 @@ load(filename)
 
 WE = WingExtention;
 
-narenas = 2;
-
-
-
 for thisarena = 1:narenas
     thisfly= 2*thisarena;
     otherfly=thisfly-1;
@@ -217,14 +213,6 @@ for thisarena = 1:narenas
     end
 
     WE(thisarena,:) = lwe;
-
-
-
-    % if strmatch(filename,'2013-12-13 52cTRPA1 Cam1-23.MPG.mat')
-    %     keyboard
-    % end
-
-
 
 
 end

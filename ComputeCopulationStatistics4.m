@@ -48,7 +48,7 @@ end
 
 % make sure we are not running in a subfolder
 thisfolder = pwd;
-ls = regexp(thisfolder,'/');
+ls = regexp(thisfolder,oss);
 thisfolder = thisfolder(ls(end)+1:end);
 if strcmp(thisfolder,'analysed') || strcmp(thisfolder,'analyse-this') || strcmp(thisfolder,'annotate-this')
     error('Are you sure you want to run here?')
@@ -79,6 +79,16 @@ end
 % get all files
 allfiles = dir('*MPG.mat');
 
+% remove junk files
+badfiles= [];
+for i = 1:length(allfiles)
+    if strcmp(allfiles(i).name(1),'.')
+        badfiles = [badfiles i];
+    end
+end
+allfiles(badfiles) = [];
+
+
 %% core loop
 for i = 1:length(allfiles)
     % load this file
@@ -92,6 +102,7 @@ for i = 1:length(allfiles)
     if any(isnan((posx(1,StartTracking:StopTracking)))) 
         % not analysed. move to analyse-this
         disp('No tracking info. Needs to be tracked. Moving...')
+        keyboard
         if ~DryRun
             movefile(allfiles(i).name,strcat('analyse-this/',allfiles(i).name))
             movefile(moviefile,strcat('analyse-this/',moviefile))
@@ -116,9 +127,10 @@ for i = 1:length(allfiles)
         else
             % new file. not in database
             % check that tracking is OK
-            if any(max(posx') -  min(posx') > 300)
+            if any(max(posx') -  min(posx') > 400)
                 % something wrong
                 cprintf('*Red','\nTracking looks wrong. Need to re-annotate and re-track this file. Moving...\n')
+                keyboard
                 % move to re-analyse
                 if ~DryRun
                     movefile(allfiles(i).name,strcat('annotate-this/',allfiles(i).name))
@@ -185,12 +197,6 @@ for i = 1:length(allfiles)
                 
 
 
-
-                
-
-
-                
-
                 % add to database
                 sz = size(CopulationDatabase);
                 addhere = sz(1)+1;
@@ -198,46 +204,68 @@ for i = 1:length(allfiles)
                 CopulationDatabase{addhere,1} = allfiles(i).name;
                 CopulationDatabase{addhere,2} = thishash;
 
-                CopulationDatabase{addhere,3} = CopulationSuccess(1);
-                CopulationDatabase{addhere,4} = CopulationSuccess(2);
+                try
+                    CopulationDatabase{addhere,3} = CopulationSuccess(1);
+                    CopulationDatabase{addhere,4} = CopulationSuccess(2);
+                end
                 CopulationDatabase{addhere,5} = CopulationLatency(1);
-                CopulationDatabase{addhere,6} = CopulationLatency(2);
+                try
+                    CopulationDatabase{addhere,6} = CopulationLatency(2);
+                end
                 CopulationDatabase{addhere,7} = CopulationStartFrame(1);
-                CopulationDatabase{addhere,8} = CopulationStartFrame(2);
+                try
+                    CopulationDatabase{addhere,8} = CopulationStartFrame(2);
+                end
 
                 CopulationDatabase{addhere,9} =  TotalWE(1);
-                CopulationDatabase{addhere,10} = TotalWE(2);
                 CopulationDatabase{addhere,11} = FirstWE(1);
-                CopulationDatabase{addhere,12} = FirstWE(2);
+
+                try
+                    CopulationDatabase{addhere,10} = TotalWE(2);
+                    CopulationDatabase{addhere,12} = FirstWE(2);
+                end
 
                 l=(LookingAtOtherFly(1,:) + LookingAtOtherFly(2,:));
                 l(l>1)=1;
                 l =sum(l(StartTracking:CopulationStartFrame(1)))/(CopulationStartFrame(1)-StartTracking);
                 CopulationDatabase{addhere,13} = l;
 
-                l=(LookingAtOtherFly(3,:) + LookingAtOtherFly(4,:));
-                l(l>1)=1;
-                l =sum(l(StartTracking:CopulationStartFrame(2)))/(CopulationStartFrame(2)-StartTracking);
-                CopulationDatabase{addhere,14} = l;
+
+                try
+                    l=(LookingAtOtherFly(3,:) + LookingAtOtherFly(4,:));
+                    l(l>1)=1;
+                    l =sum(l(StartTracking:CopulationStartFrame(2)))/(CopulationStartFrame(2)-StartTracking);
+                    CopulationDatabase{addhere,14} = l;
+                end
 
                 CopulationDatabase{addhere,15} = LeftStart;
-                CopulationDatabase{addhere,16} = RightStart;
+                try
+                    CopulationDatabase{addhere,16} = RightStart;
+                end
                 CopulationDatabase{addhere,17} = StartTracking;
                 CopulationDatabase{addhere,18} = StopTracking;
 
                 CopulationDatabase{addhere,19} = sum2(SeparationBetweenFlies(1,StartTracking:CopulationStartFrame(1)))/(CopulationStartFrame(1)-StartTracking);
-                CopulationDatabase{addhere,20} = sum2(SeparationBetweenFlies(2,StartTracking:CopulationStartFrame(2)))/(CopulationStartFrame(2)-StartTracking);
+                try
+                    CopulationDatabase{addhere,20} = sum2(SeparationBetweenFlies(2,StartTracking:CopulationStartFrame(2)))/(CopulationStartFrame(2)-StartTracking);
+                end
 
                 CopulationDatabase{addhere,21} = nCollisions(1);
-                CopulationDatabase{addhere,22} = nCollisions(2);
                 CopulationDatabase{addhere,23} = CollisionTime(1);
-                CopulationDatabase{addhere,24} = CollisionTime(2);
+
+                try
+                    CopulationDatabase{addhere,22} = nCollisions(2);
+                    CopulationDatabase{addhere,24} = CollisionTime(2);
+                end
 
                 
                 t=(LookingAtOtherFly(1,:)+LookingAtOtherFly(2,:)); t(t>1)=1;
                 CopulationDatabase{addhere,25} = (find(t,1,'first') - StartTracking)/30;
-                t=(LookingAtOtherFly(3,:)+LookingAtOtherFly(4,:)); t(t>1)=1;
-                CopulationDatabase{addhere,26} = (find(t,1,'first') - StartTracking)/30;
+
+                try
+                    t=(LookingAtOtherFly(3,:)+LookingAtOtherFly(4,:)); t(t>1)=1;
+                    CopulationDatabase{addhere,26} = (find(t,1,'first') - StartTracking)/30;
+                end
 
 
                 % save it
