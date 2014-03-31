@@ -15,11 +15,10 @@ for i = 1:length(dependencies)
 end
 clear i
 
-% check for new version of Kontroller
+% check for new version of this code
 try
-    CheckForNewestVersionOnBitBucket(mfilename,VersionName)
+    CheckForNewestVersionOnBitBucket('fly-tracking',VersionName,'FlyVoyeur.m');
 end
-
 
 
 % global variables
@@ -228,7 +227,7 @@ function [] = ConvertVideoCallback(eo,ed)
 			mext = moviefiles(convert_these(1)).name(end-3:end);
 			BatchVideotask(bn,mext);
 			% now convert them in parallel
-			matlabpool open
+			parpool('local',ncores);
 			parfor pari = 1:bn
 				% go to the folder
 				cd(strcat('fv_batch',mat2str(pari)))
@@ -237,7 +236,7 @@ function [] = ConvertVideoCallback(eo,ed)
 			end
 			% unbatch
 			UnBatch();
-			matlabpool close
+			delete(gcp)
 			
 		else
 			% move to the folder to be copied
