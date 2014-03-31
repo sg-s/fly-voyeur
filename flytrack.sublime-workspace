@@ -4,278 +4,6 @@
 		"selected_items":
 		[
 			[
-				"Anno",
-				"AnnotateVideo"
-			],
-			[
-				"these",
-				"thesefiles"
-			],
-			[
-				"Enable",
-				"EnableAllControls"
-			],
-			[
-				"batch",
-				"batch_folders"
-			],
-			[
-				"movie",
-				"moviefiles"
-			],
-			[
-				"gpu",
-				"gpuAccelerate"
-			],
-			[
-				"fodle",
-				"folder_name"
-			],
-			[
-				"converted",
-				"converted_movies"
-			],
-			[
-				"anno",
-				"annotate_these"
-			],
-			[
-				"FileTy",
-				"FileTypeControl"
-			],
-			[
-				"File",
-				"FileBox"
-			],
-			[
-				"Convert",
-				"ConvertVideoButton"
-			],
-			[
-				"convert",
-				"convert_these"
-			],
-			[
-				"movi",
-				"moviefiles"
-			],
-			[
-				"cpu",
-				"cpuTrack"
-			],
-			[
-				"cpuTrack",
-				"cpuTrackCore"
-			],
-			[
-				"Divi",
-				"DividingLine"
-			],
-			[
-				"Div",
-				"DividingLine"
-			],
-			[
-				"Found",
-				"FoundFilesList"
-			],
-			[
-				"First",
-				"FirstWE"
-			],
-			[
-				"Cop",
-				"CopulationStartFrame"
-			],
-			[
-				"Copula",
-				"CopulationStartFrame"
-			],
-			[
-				"Copulation",
-				"CopulationStartFrame"
-			],
-			[
-				"Copul",
-				"CopulationSuccess"
-			],
-			[
-				"O",
-				"OnlyDoTillXMinutes"
-			],
-			[
-				"Copulat",
-				"CopulationLatency"
-			],
-			[
-				"COp",
-				"CopulationDatabase"
-			],
-			[
-				"Com",
-				"ComputeCopulationStatisitcs4"
-			],
-			[
-				"Collisio",
-				"CollisionTime"
-			],
-			[
-				"Fir",
-				"FirstWE"
-			],
-			[
-				"St",
-				"StartTracking"
-			],
-			[
-				"WE",
-				"WEpeak"
-			],
-			[
-				"Right",
-				"RightStart"
-			],
-			[
-				"CopulationS",
-				"CopulationStartFrame"
-			],
-			[
-				"Copu",
-				"CopulationLatency"
-			],
-			[
-				"Sep",
-				"SeparationBetweenFlies"
-			],
-			[
-				"adj",
-				"adjacency"
-			],
-			[
-				"this",
-				"thisarena"
-			],
-			[
-				"other",
-				"otherfly"
-			],
-			[
-				"debug",
-				"debugstatus"
-			],
-			[
-				"rejec",
-				"rejectreason"
-			],
-			[
-				"ori",
-				"orientation"
-			],
-			[
-				"L",
-				"LookingAtOtherFly"
-			],
-			[
-				"Fly",
-				"FlyLookingAtOtherFly"
-			],
-			[
-				"displ",
-				"displayfigure"
-			],
-			[
-				"Major",
-				"MajorAxisLength"
-			],
-			[
-				"Maj",
-				"MajorAxis"
-			],
-			[
-				"Minor",
-				"MinorAxis"
-			],
-			[
-				"Majo",
-				"MajorAxisLength"
-			],
-			[
-				"Left",
-				"LeftStart"
-			],
-			[
-				"Wing",
-				"WingExtention"
-			],
-			[
-				"var",
-				"varargin	varargin"
-			],
-			[
-				"Orien",
-				"OrientationTowardsFemale"
-			],
-			[
-				"orient",
-				"orientation"
-			],
-			[
-				"Start",
-				"StartTracking"
-			],
-			[
-				"spotty",
-				"spottyflies"
-			],
-			[
-				"Split",
-				"SplitThisObject"
-			],
-			[
-				"assigned",
-				"assigned_objects"
-			],
-			[
-				"assig",
-				"assigned_objects"
-			],
-			[
-				"Detect",
-				"DetectNObjects"
-			],
-			[
-				"Stop",
-				"StopTracking"
-			],
-			[
-				"object",
-				"objectIDs"
-			],
-			[
-				"ROIs",
-				"ROI2mask"
-			],
-			[
-				"ROI",
-				"ROI2mask"
-			],
-			[
-				"nfl",
-				"nfliescontrol"
-			],
-			[
-				"nflies",
-				"nfliescallback"
-			],
-			[
-				"channel",
-				"channelcontrol"
-			],
-			[
-				"right",
-				"RightStart"
-			],
-			[
 				"Shelf",
 				"ShelfFilesList"
 			],
@@ -286,6 +14,10 @@
 			[
 				"Odour",
 				"OdourDuration"
+			],
+			[
+				"File",
+				"FileName2GenoDate"
 			],
 			[
 				"V",
@@ -336,51 +68,50 @@
 	"buffers":
 	[
 		{
-			"file": "FlySeperation.m",
+			"file": "/usr/local/bin/ConvertVideo",
 			"settings":
 			{
-				"buffer_size": 1529,
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Track3.m",
+			"settings":
+			{
+				"buffer_size": 8928,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "cpuTrack.m",
+			"file": "DetectObjects.m",
 			"settings":
 			{
-				"buffer_size": 11409,
+				"buffer_size": 394,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "BatchVideotask.m",
+			"file": "/C/code/Dropbox/code/core/oval.m",
 			"settings":
 			{
-				"buffer_size": 1200,
+				"buffer_size": 929,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "FlyVoyeur.m",
+			"file": "PrepImage.m",
 			"settings":
 			{
-				"buffer_size": 8738,
-				"line_ending": "Unix",
-				"name": "% FlyVoyeur"
-			}
-		},
-		{
-			"file": "AnnotateVideo.m",
-			"settings":
-			{
-				"buffer_size": 13190,
+				"buffer_size": 539,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "gpuTrack.m",
+			"file": "SplitCollidingFlies.m",
 			"settings":
 			{
-				"buffer_size": 11465,
+				"buffer_size": 5191,
 				"line_ending": "Unix"
 			}
 		}
@@ -388,64 +119,12 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 203.0,
+		"height": 287.0,
 		"selected_items":
 		[
 			[
-				"Package",
-				"Package Control: Install Package"
-			],
-			[
 				"Package Control: ",
 				"Package Control: List Packages"
-			],
-			[
-				"linter",
-				"SublimeLinter: Show All Errors"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
-				"lint",
-				"SublimeLinter: Show All Errors"
-			],
-			[
-				"linter di",
-				"SublimeLinter: Disable Linting"
-			],
-			[
-				"Linter",
-				"Preferences: SublimeLinter Settings – Default"
-			],
-			[
-				"ack",
-				"Package Control: Install Package"
-			],
-			[
-				"Pack",
-				"Package Control: Discover Packages"
-			],
-			[
-				"syntax: mat",
-				"Set Syntax: MATLAB"
-			],
-			[
-				"Packag",
-				"Package Control: Disable Package"
-			],
-			[
-				"Package Control: Install Package",
-				"Package Control: Install Package"
-			],
-			[
-				"packag",
-				"Package Control: Install Package"
-			],
-			[
-				"pac",
-				"Package Control: Install Package"
 			],
 			[
 				"disab",
@@ -458,6 +137,10 @@
 			[
 				"packa",
 				"Package Control: Disable Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
 			],
 			[
 				"save",
@@ -496,16 +179,11 @@
 				"Snippet: error"
 			]
 		],
-		"width": 453.0
+		"width": 449.0
 	},
 	"console":
 	{
-		"height": 125.0,
-		"history":
-		[
-			"lointer",
-			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
-		]
+		"height": 125.0
 	},
 	"distraction_free":
 	{
@@ -518,123 +196,15 @@
 	},
 	"file_history":
 	[
-		"/Users/sigbhu/Dropbox/code/tracking/prun.m",
-		"/Users/sigbhu/Dropbox/code/tracking/PrepImage.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ptrack.m",
-		"/Users/sigbhu/Dropbox/code/tracking/gpuPrepImage.m",
-		"/Users/sigbhu/Dropbox/code/tracking/gpuDetectObjects.m",
-		"/Users/sigbhu/Dropbox/code/tracking/gpuFindHeadingsAndFixOrientations.m",
-		"/Users/sigbhu/Dropbox/code/tracking/README",
-		"/Users/sigbhu/Dropbox/code/tracking/RemoveAllOtherFlies.m",
-		"/Users/sigbhu/Dropbox/code/tracking/FlipOrientation.m",
-		"/Users/sigbhu/Dropbox/code/core/figure-tools/errorfill.m",
-		"/Users/sigbhu/Downloads/On Books — Medium.html",
-		"/Users/sigbhu/Desktop/laund-user.conf",
-		"/etc/launchd-user.conf",
-		"/Users/sigbhu/Desktop/matlab.props.plist",
-		"/Applications/matlab.props.plist",
-		"/Users/sigbhu/Dropbox/code/tracking/UnBatch.m",
-		"/Users/sigbhu/Dropbox/code/tracking/UpdateDisplay4.m",
-		"/Users/sigbhu/Dropbox/code/tracking/FindClosestObject2Fly.m",
-		"/Users/sigbhu/Dropbox/code/tracking/gpuTrack.m",
-		"/Users/sigbhu/Dropbox/code/tracking/BatchTask.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ConvertVideo",
-		"/Users/sigbhu/Dropbox/code/tracking/CutImage.m",
-		"/Users/sigbhu/Dropbox/code/tracking/log",
-		"/Users/sigbhu/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/sigbhu/Dropbox/code/tracking/SpawnBatchWorkers.m",
-		"/Users/sigbhu/Dropbox/code/tracking/temp.m",
-		"/Users/sigbhu/Dropbox/code/tracking/AssignObjects5.m",
-		"/Users/sigbhu/Dropbox/code/core/barweb.m",
-		"/Users/sigbhu/Dropbox/code/tracking/AssignObjects4.m",
-		"/Users/sigbhu/Dropbox/code/tracking/AnnotateVideo.m",
-		"/Users/sigbhu/Dropbox/code/core/plotTDMS.m",
-		"/Users/sigbhu/Dropbox/code/tracking/Track4.m",
-		"/Users/sigbhu/.bash-profile",
-		"//.bashrc",
-		"//.bash-profile",
-		"/Users/sigbhu/Desktop/matlab",
-		"/Users/sigbhu/Dropbox/code/b/TFAViewer2.m",
-		"/Users/sigbhu/Dropbox/code/tracking/html/CompareManualScoring2Track4.aux",
-		"/Users/sigbhu/Dropbox/code/core/PlotAll.m",
-		"/Users/sigbhu/Dropbox/code/tracking/FindHeadingsAndFixOrientations.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ConvertVideo.sh",
-		"/Users/sigbhu/Dropbox/code/core/Convertv2tov3.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ComputeCopulationMetrics4.m",
-		"/Users/sigbhu/Dropbox/code/tracking/AngularDifference.m",
-		"/code/tracking/ConvertVideo.sh",
-		"/private/etc/hosts",
-		"/Users/sigbhu/Dropbox/code/tracking/DetectWingExtention4.m",
-		"/Users/sigbhu/Dropbox/code/tracking/gpuDetectWingExtention4.m",
-		"/Users/sigbhu/Dropbox/code/tracking/DetectWingExtention.m",
-		"/Users/sigbhu/Dropbox/code/tracking/DetectNObjects.m",
-		"/Users/sigbhu/Dropbox/code/tracking/DetectObjects.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ComputeCopulationStatistics4.m",
-		"/Users/sigbhu/Dropbox/code/tracking/Open bugs in track.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ComputeWEMetrics4.m",
-		"/Users/sigbhu/Dropbox/code/tracking/SortData.m",
-		"/Users/sigbhu/Dropbox/code/tracking/CleanUpWingExtention.m",
-		"/Users/sigbhu/Dropbox/code/tracking/DetectWingExtention3.m",
-		"/Users/sigbhu/Dropbox/code/tracking/DetectWingExtention2.m",
-		"/Users/sigbhu/Dropbox/code/tracking/IsFlyLookingAtOtherFly.m",
-		"/Users/sigbhu/Dropbox/code/core/index.html",
-		"/Users/sigbhu/Dropbox/code/core/WingBeatSignal2f.m",
-		"/Users/sigbhu/Dropbox/code/tracking/Track.m",
-		"/Users/sigbhu/Dropbox/code/tracking/Track2Restored.m",
-		"/Users/sigbhu/Dropbox/code/tracking/CompareManualScoring2Track4.m",
-		"/Users/sigbhu/.bash_profile",
-		"/Users/sigbhu/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
-		"/Users/sigbhu/Dropbox/code/tracking/speedcheck.m",
-		"/Users/sigbhu/Dropbox/code/tracking/PullCopInfo.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ComputeWEMetrics.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ShowTracking.m",
-		"/Users/sigbhu/Dropbox/code/core/foldername.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ComputeCopulationMetrics.m",
-		"/Users/sigbhu/Dropbox/code/tracking/FindPutativeCollidingFlies.m",
-		"/Users/sigbhu/Dropbox/code/tracking/MakeWEValidationReport.m",
-		"/Users/sigbhu/Dropbox/code/core/xlwrite.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ComputeCopulationStatistics.m",
-		"/Users/sigbhu/Dropbox/code/tracking/WipeAllTrackingInfo.m",
-		"/Users/sigbhu/Dropbox/code/tracking/FlySeperation.m",
-		"/Users/sigbhu/.gitconfig",
-		"/usr/local/git/etc/gitconfig",
-		"/Users/sigbhu/Dropbox/code/core/visualisation-tools/triangle.m",
-		"/Users/sigbhu/Dropbox/code/core/math-tools/sum2.m",
-		"/Users/sigbhu/Dropbox/code/tracking/UpdateDisplay.m",
-		"/Users/sigbhu/Dropbox/code/tracking/SplitCollidingFlies.m",
-		"/Users/sigbhu/Dropbox/code/core/image-tools/ellipse.m",
-		"/Users/sigbhu/Dropbox/code/tracking/SplitCollidingFlies2.m",
-		"/Users/sigbhu/Dropbox/code/core/triangle.m",
-		"/Users/sigbhu/Dropbox/code/core/TrialPlot.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ComputeStatisticsInFirstXMinutes.m",
-		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/Users/sigbhu/Dropbox/code/tracking/Track3.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ClearTrackingData.m",
-		"/Users/sigbhu/Dropbox/code/tracking/BuildFly2ObjectMap.m",
-		"/Users/sigbhu/Dropbox/code/tracking/FlyTrack.m",
-		"/Users/sigbhu/Dropbox/code/tracking/MatchSpots2Objects.m",
-		"/Users/sigbhu/Dropbox/code/tracking/CalculateOrientationTowardsFemale.m",
-		"/Users/sigbhu/Dropbox/code/tracking/AssignObjects3.m",
-		"/Library/WebServer/Documents/wiki/LocalSettings.php",
-		"/Users/sigbhu/Dropbox/code/tracking/FindPutativeCollidingFlies3.m",
-		"/Users/sigbhu/Dropbox/code/tracking/FindClosestObject2Point.m",
-		"/Users/sigbhu/Dropbox/code/tracking/imclose2.m",
-		"/Users/sigbhu/Dropbox/code/tracking/DetectObjects2.m",
-		"/Users/sigbhu/Dropbox/code/tracking/MatchSpots2Flies.m",
-		"/Users/sigbhu/Dropbox/code/tracking/ROI2mask.m",
-		"/Users/sigbhu/Dropbox/code/tracking/CheckFirstFrameOK.m",
-		"/Users/sigbhu/Dropbox/code/project_oneshot/reconstruct.m",
-		"/Users/sigbhu/Dropbox/code/project_oneshot/gandalf.m",
-		"/Users/sigbhu/Dropbox/code/project_oneshot/reconstruct_network.m",
-		"/Users/sigbhu/Dropbox/code/tracking/DiscardSmallObjects.m",
-		"/Users/sigbhu/Dropbox/code/tracking/EstimateTrackingTime.m",
-		"/usr/local/bin/ConvertVideo",
 		"/Users/sigbhu/Dropbox/code/bash/wfmount.sh",
 		"/Users/sigbhu/Dropbox/code/bash/.newton",
 		"/.newton",
 		"/RSSBlackList.txt",
 		"/Users/sigbhu/Dropbox/code/b/FileName2GenoDate.m",
+		"/Users/sigbhu/Dropbox/code/b/TFAViewer2.m",
+		"/Library/WebServer/Documents/wiki/LocalSettings.php",
 		"/Users/sigbhu/Dropbox/code/b/PlotTFAResponses3.m",
+		"/Users/sigbhu/Dropbox/code/core/TrialPlot.m",
 		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/pages/people.html",
 		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/nfsim/download/index.php",
 		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/nfsim/download/processRegistration.php",
@@ -645,23 +215,98 @@
 		"/Users/sigbhu/Dropbox/code/b/PlotTrialVariability.m",
 		"/Users/sigbhu/Dropbox/code/b/AnalyseAirspeedsMultiPuffs.m",
 		"/Users/sigbhu/Dropbox/code/b/PlotDoseResponses.m",
-		"/Users/sigbhu/Dropbox/code/b/PlotTFATurns.m"
+		"/Users/sigbhu/Dropbox/code/b/PlotTFATurns.m",
+		"/Users/sigbhu/Dropbox/code/b/PlotTFAPIDAirspeeds.m",
+		"/Users/sigbhu/Dropbox/code/b/Convert2v2.m",
+		"/Users/sigbhu/Dropbox/code/b/PlotPIDResponse.m",
+		"/Users/sigbhu/Dropbox/code/core/FrameGrabM/FrameGrabM_0_8/Readme.txt",
+		"/Users/sigbhu/Dropbox/code/b/AnalysePIDMultiPuffs3.m",
+		"/Users/sigbhu/Dropbox/code/core/oval.m",
+		"/Users/sigbhu/Dropbox/code/b/AnalysePIDMultiPuffs.m",
+		"/Users/sigbhu/Dropbox/code/b/AnalysePIDMultiPuffs2.m",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/sigbhu/Dropbox/code/b/AnalyseTrialTrends.m",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/Snippets/matlab_snippets/plot(ts,linespec).sublime-snippet",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/index.html",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/Matlab.sublime-settings",
+		"/Users/sigbhu/Downloads/soda-theme-master/Soda Dark.sublime-theme",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/JSON.sublime-settings",
+		"/Users/sigbhu/Dropbox/code/b/PlotTFAResponses.m",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/pages/resources.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/biology.yale.edu/index.html",
+		"/Users/sigbhu/.ssh/id_rsa.pub",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/seldon/2/index.html",
+		"/web/seldon/3/index.html",
+		"/web/seldon/3/css/base.css",
+		"/Users/sigbhu/Desktop/Untitled.html",
+		"/Users/sigbhu/Desktop/Untitled.webarchive",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/index.html",
+		"/web/seldon/1/index.html",
+		"/web/seldon/1/css/skeleton.css",
+		"/web/seldon/1/css/layout.css",
+		"/web/seldon/1/css/docs.css",
+		"/web/seldon/1/css/base.css",
+		"/web/seldon/2/index.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/seldon/1/index.html",
+		"/web/seldon/index.html",
+		"/web/seldon/2/css/base.css",
+		"/Users/sigbhu/Desktop/My Notes/1: Introduction.html",
+		"/Users/sigbhu/Dropbox/lobster_draft/data/STGDataExplorer.m",
+		"/Users/sigbhu/Dropbox/code/orn-analysis/spikesort_7_19_a.m",
+		"/Users/sigbhu/Dropbox/code/zoidberg/STG.m",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/nfsim/pages/feedback.php",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/nfsim/index.html",
+		"/labweb/pages/people.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonet.biology.yale.edu/pages/contact.html",
+		"/private/etc/hosts",
+		"/Users/sigbhu/Desktop/feedback.php",
+		"/Users/sigbhu/Desktop/processRegistration.php",
+		"/Users/sigbhu/Desktop/index.php",
+		"/Users/sigbhu/Desktop/index.html",
+		"/labweb/pages/contact.html",
+		"/Users/sigbhu/Desktop/Daring Fireball: Email.html",
+		"/Users/sigbhu/Dropbox/lobster_draft/data/ZoidbergExplorer.m",
+		"/Users/sigbhu/Dropbox/code/zoidberg/RecomputePyloricityCodes.m",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/essays/books/index.html",
+		"/Users/sigbhu/Desktop/My Notes/5: Brace for the coming Food Riots.html",
+		"/web/seldon/books/index.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/98bf81be-fb5d-403c-ae0a-9b72c407caf0/emonetnew.biology.yale.edu/nfsim/index.html",
+		"/labweb/pages/software.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/b/css.css",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/articles/children-of-men/index.html",
+		"/private/var/folders/gq/0hzwy57n79d1813pnfy51mmr0000gn/T/85b5b59a-4356-47dc-8aa5-5b910dd73d40/articles/books/index.html",
+		"/web/articles/children-of-men/css/base.css",
+		"/web/articles/children-of-men/index.html",
+		"/web/articles/books/index.html",
+		"/web/articles/books/css/base.css",
+		"/web/articles/books/css/skeleton.css",
+		"/web/articles/books/css/docs.css",
+		"/web/articles/books/css/layout.css",
+		"/labweb/pages/publications.html",
+		"/web/in-development/article-template/001-books.html",
+		"/web/essays/books/index.html",
+		"/web/in-development/article-template/css/docs.css",
+		"/web/in-development/css/template.css",
+		"/web/in-development/css/article-css.css",
+		"/Users/sigbhu/Dropbox/code/b/AnalyseOdourResponse.m",
+		"/Users/sigbhu/Dropbox/code/core/AnalyseWingBeatSignal.m",
+		"/Users/sigbhu/Dropbox/code/zoidberg/MakeValidationFigures.m",
+		"/Users/sigbhu/Desktop/er/index.html",
+		"/Users/sigbhu/Dropbox/code/orn-analysis/spikesort.m",
+		"/web/index.html",
+		"/Users/sigbhu/Library/Application Support/Sublime Text 2/Packages/User/HTML.sublime-settings"
 	],
 	"find":
 	{
-		"height": 37.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
-		"height": 95.0,
+		"height": 0.0,
 		"where_history":
 		[
-			"<open folders>",
-			"",
-			"SplitCollidingFlies2.m",
-			"Track4.m",
-			"",
-			"TrackCore4"
 		]
 	},
 	"find_state":
@@ -669,77 +314,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"ConvertVideo",
-			"dir",
-			".')",
-			"v",
-			"SeparationBetweenFlies",
-			"nextcallback",
-			"nextfile",
-			"SeparationBetweenFlies",
-			"DividingLine",
-			"markroi",
-			"Channel",
-			"theseflies",
-			"imrotate",
-			"imerode",
-			"imdilate",
-			"DetectNObjects",
-			"imclose",
-			"missing",
-			"OnlyDoTillXMinutes",
-			"FirstWE",
-			"CopulationStartFrame",
-			"CopulationDatabase",
-			"funny distribution2",
-			"FlySeperation",
-			";",
-			"^(.*)$",
-			"*",
-			"^(.*)$",
-			"keyboard",
-			"allfiles",
-			"allflies",
-			"rp",
-			"Looking",
-			"IsFly",
-			"Partially analysed file; will continue where I left off...",
-			",frame",
-			"MinorAxis",
-			",frame",
-			"i",
-			"text",
-			"wh",
-			"thresh",
-			"figure",
-			"MajorAxis",
-			"rp(thisobj)",
-			"adjacency",
-			"allflylimits",
-			"addhere",
-			"rp",
-			"theseflies",
-			"channel",
-			"CentralCopulationDatabase",
-			"SplitThisFly",
-			"keyboard",
-			"nextcall",
-			"thisobj",
-			"min_area",
-			"Prep",
-			"spot",
-			"TrackCore3",
-			"ROIs",
-			"save",
-			"nfliescontrol",
-			"keyboard",
-			"/",
-			"markstart",
-			"(:,:,1)",
-			"channelcontrol",
-			"ff",
-			"thresh",
-			"moviefile",
 			"collision",
 			"stats",
 			"nfig",
@@ -796,7 +370,78 @@
 			"function",
 			"sx",
 			"disp",
-			"YLim"
+			"YLim",
+			"data.raw",
+			"keyboard",
+			"tue",
+			"mon",
+			"GenotypeID",
+			"FoundFilesList",
+			"GenotypeID",
+			"sebas",
+			"TrialPlot",
+			"\"thu\",",
+			"thu",
+			"mon\ntue\nwed\nthu",
+			"];\n",
+			"tue, man, tue\ntur\ntue, man",
+			"tur",
+			"mon",
+			"tur",
+			"omcWBFpeak",
+			"$wgFileExtensions ",
+			"png",
+			"listbox",
+			"<p class=\"p2\"><br></p>",
+			"<p class=\"p6\"><br></p>",
+			"<p class=\"p4\"><br></p>",
+			"<p class=\"p2\"><br></p>",
+			"wiki",
+			"sneddon",
+			"mousecallback",
+			"mouse",
+			"mous",
+			"button",
+			"font",
+			"nfsimwebregister",
+			"please contact",
+			"sneddon",
+			"michael",
+			"sneddon",
+			"microbe",
+			"michael",
+			"wiener",
+			"sneddon",
+			"michael",
+			"mich",
+			"blog",
+			"description",
+			"none",
+			"description",
+			"s",
+			"description",
+			"style",
+			"body",
+			"head",
+			"transform",
+			"description",
+			"h3",
+			"por",
+			"porc",
+			"doc-section",
+			"fig1",
+			"p",
+			"doc-section",
+			"h1",
+			"hr",
+			"h1",
+			"header",
+			"h1",
+			"doc-section",
+			"twelve ",
+			"twelve columns",
+			"twelve columns offset-by-one content",
+			"title"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -804,14 +449,6 @@
 		"regex": false,
 		"replace_history":
 		[
-			"SeparationBetweenFlies",
-			"rp_thisarena",
-			"",
-			"otherfly",
-			"i+1",
-			"CopulationDatabase",
-			"SplitThisObject",
-			"TrackCore4",
 			"PID",
 			"",
 			"s2",
@@ -823,22 +460,75 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "FlySeperation.m",
-					"semi_transient": false,
+					"file": "/usr/local/bin/ConvertVideo",
 					"settings":
 					{
-						"buffer_size": 1529,
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Track3.m",
+					"settings":
+					{
+						"buffer_size": 8928,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1986.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "DetectObjects.m",
+					"settings":
+					{
+						"buffer_size": 394,
 						"regions":
 						{
 						},
@@ -857,143 +547,75 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "cpuTrack.m",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11409,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10080,
-								10080
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "BatchVideotask.m",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1200,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								867,
-								691
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "FlyVoyeur.m",
-					"semi_transient": false,
+					"file": "/C/code/Dropbox/code/core/oval.m",
 					"settings":
 					{
-						"buffer_size": 8738,
+						"buffer_size": 929,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8727,
-								8727
+								645,
+								645
 							]
 						],
 						"settings":
 						{
-							"auto_name": "% FlyVoyeur",
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"syntax": "Packages/Objective-C/Objective-C.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4647.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "AnnotateVideo.m",
-					"semi_transient": false,
+					"file": "PrepImage.m",
 					"settings":
 					{
-						"buffer_size": 13190,
+						"buffer_size": 539,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								654,
-								654
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 9.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "gpuTrack.m",
-					"semi_transient": false,
+					"file": "SplitCollidingFlies.m",
 					"settings":
 					{
-						"buffer_size": 11465,
+						"buffer_size": 5191,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5057,
-								5057
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1003,10 +625,9 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3007.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1018,7 +639,7 @@
 	},
 	"input":
 	{
-		"height": 37.0
+		"height": 0.0
 	},
 	"layout":
 	{
@@ -1043,15 +664,6 @@
 		]
 	},
 	"menu_visible": true,
-	"output.exec":
-	{
-		"height": 126.0
-	},
-	"output.find_results":
-	{
-		"height": 0.0
-	},
-	"project": "flytrack.sublime-project",
 	"replace":
 	{
 		"height": 64.0
@@ -1062,322 +674,6 @@
 		"height": 0.0,
 		"selected_items":
 		[
-			[
-				"an",
-				"tracking/AnnotateVideo.m"
-			],
-			[
-				"gpu",
-				"tracking/gpuTrack.m"
-			],
-			[
-				"read",
-				"tracking/README"
-			],
-			[
-				"un",
-				"tracking/UnBatch.m"
-			],
-			[
-				"conv",
-				"tracking/ConvertVideo"
-			],
-			[
-				"flyv",
-				"tracking/FlyVoyeur.m"
-			],
-			[
-				"flyvo",
-				"tracking/FlyVoyeur.m"
-			],
-			[
-				"updat",
-				"tracking/UpdateDisplay4.m"
-			],
-			[
-				"ptrack",
-				"tracking/ptrack.m"
-			],
-			[
-				"batch",
-				"tracking/BatchTask.m"
-			],
-			[
-				"assi",
-				"tracking/AssignObjects5.m"
-			],
-			[
-				"ptr",
-				"tracking/ptrack.m"
-			],
-			[
-				"tr",
-				"tracking/Track4.m"
-			],
-			[
-				"ann",
-				"tracking/AnnotateVideo.m"
-			],
-			[
-				"findclo",
-				"tracking/FindClosestObject2Fly.m"
-			],
-			[
-				"gpuprepimage",
-				"tracking/gpuPrepImage.m"
-			],
-			[
-				"flyseperation",
-				"tracking/FlySeperation.m"
-			],
-			[
-				"assignobjects5",
-				"tracking/AssignObjects5.m"
-			],
-			[
-				"convert",
-				"tracking/ConvertVideo.sh"
-			],
-			[
-				"conve",
-				"tracking/ConvertVideo"
-			],
-			[
-				"anno",
-				"tracking/AnnotateVideo.m"
-			],
-			[
-				"prepimage",
-				"tracking/PrepImage.m"
-			],
-			[
-				"detectnobjects",
-				"tracking/DetectNObjects.m"
-			],
-			[
-				"detectobjects",
-				"tracking/DetectObjects.m"
-			],
-			[
-				"cut",
-				"tracking/CutImage.m"
-			],
-			[
-				"detwin",
-				"tracking/DetectWingExtention4.m"
-			],
-			[
-				"track4",
-				"tracking/Track4.m"
-			],
-			[
-				"temp",
-				"tracking/temp.m"
-			],
-			[
-				"computecopulationmetrics4",
-				"tracking/ComputeCopulationMetrics4.m"
-			],
-			[
-				"show",
-				"tracking/ShowTracking.m"
-			],
-			[
-				"wing",
-				"tracking/DetectWingExtention4.m"
-			],
-			[
-				"assignobjects4",
-				"tracking/AssignObjects4.m"
-			],
-			[
-				"findputativecollidingflies",
-				"tracking/FindPutativeCollidingFlies.m"
-			],
-			[
-				"flip",
-				"tracking/FlipOrientation.m"
-			],
-			[
-				"fl",
-				"tracking/FlipOrientation.m"
-			],
-			[
-				"upda",
-				"tracking/UpdateDisplay4.m"
-			],
-			[
-				"fly",
-				"tracking/FlySeperation.m"
-			],
-			[
-				"isf",
-				"tracking/IsFlyLookingAtOtherFly.m"
-			],
-			[
-				"triangle",
-				"core/visualisation-tools/triangle.m"
-			],
-			[
-				"upd",
-				"tracking/UpdateDisplay4.m"
-			],
-			[
-				"find",
-				"tracking/FindHeadingsAndFixOrientations.m"
-			],
-			[
-				"remove",
-				"tracking/RemoveAllOtherFlies.m"
-			],
-			[
-				"findheadingsandfixorientations",
-				"tracking/FindHeadingsAndFixOrientations.m"
-			],
-			[
-				"update",
-				"tracking/UpdateDisplay4.m"
-			],
-			[
-				"split",
-				"tracking/SplitCollidingFlies.m"
-			],
-			[
-				"trin",
-				"core/triangle.m"
-			],
-			[
-				"tri",
-				"core/TrialPlot.m"
-			],
-			[
-				"ass",
-				"tracking/AssignObjects4.m"
-			],
-			[
-				"ellipse",
-				"core/image-tools/ellipse.m"
-			],
-			[
-				"updatedisplay",
-				"UpdateDisplay.m"
-			],
-			[
-				"track",
-				"Track4.m"
-			],
-			[
-				"splitcollidingflies",
-				"SplitCollidingFlies.m"
-			],
-			[
-				"computewemetrics",
-				"ComputeWEMetrics.m"
-			],
-			[
-				"computecopulationmetrics",
-				"ComputeCopulationMetrics.m"
-			],
-			[
-				"co",
-				"ComputeCopulationMetrics.m"
-			],
-			[
-				"comp",
-				"ComputeCopulationStatistics.m"
-			],
-			[
-				"det",
-				"DetectWingExtention2.m"
-			],
-			[
-				"findputativecollidingflies3",
-				"FindPutativeCollidingFlies3.m"
-			],
-			[
-				"track3",
-				"Track3.m"
-			],
-			[
-				"detectw",
-				"DetectWingExtention.m"
-			],
-			[
-				"assignobjects3",
-				"AssignObjects3.m"
-			],
-			[
-				"fin",
-				"FindPutativeCollidingFlies3.m"
-			],
-			[
-				"tra",
-				"Track3.m"
-			],
-			[
-				"splt",
-				"SplitCollidingFlies.m"
-			],
-			[
-				"dete",
-				"DetectObjects.m"
-			],
-			[
-				"prep",
-				"PrepImage.m"
-			],
-			[
-				"mat",
-				"MatchSpots2Flies.m"
-			],
-			[
-				"match",
-				"MatchSpots2Flies.m"
-			],
-			[
-				"deec",
-				"DetectWingExtention.m"
-			],
-			[
-				"de",
-				"DetectObjects.m"
-			],
-			[
-				"detec",
-				"DetectWingExtention.m"
-			],
-			[
-				"compu",
-				"ComputeWEMetrics.m"
-			],
-			[
-				"compute",
-				"ComputeCopulationMetrics.m"
-			],
-			[
-				"dt",
-				"DetectObjects.m"
-			],
-			[
-				"disc",
-				"DiscardSmallObjects.m"
-			],
-			[
-				"findp",
-				"FindPutativeCollidingFlies.m"
-			],
-			[
-				"check",
-				"CheckFirstFrameOK.m"
-			],
-			[
-				"esti",
-				"EstimateTrackingTime.m"
-			],
-			[
-				"",
-				"ComputeCopulationStatistics.m"
-			],
 			[
 				"trial",
 				"core/TrialPlot.m"
@@ -1459,6 +755,10 @@
 				"PlotTrialVariability.m"
 			],
 			[
+				"",
+				"TFAViewer2.m"
+			],
+			[
 				"error",
 				"/Users/sigbhu/Dropbox/code/b/PlotDoseResponses.m"
 			]
@@ -1467,34 +767,16 @@
 	},
 	"select_project":
 	{
-		"height": 500.0,
-		"selected_items":
-		[
-			[
-				"",
-				"~/Dropbox/code/b/b.sublime-project"
-			]
-		],
-		"width": 380.0
-	},
-	"select_symbol":
-	{
 		"height": 0.0,
 		"selected_items":
 		[
 		],
 		"width": 0.0
 	},
-	"settings":
-	{
-	},
 	"show_minimap": true,
-	"show_open_files": true,
+	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 215.0,
-	"status_bar_visible": true,
-	"template_settings":
-	{
-	}
+	"status_bar_visible": true
 }

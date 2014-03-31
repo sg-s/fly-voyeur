@@ -2,11 +2,25 @@
 % wrapper function that calls all other functions and handles the tracking. 
 % 
 function [] = FlyVoyeur()
-versionname = 'FlyVoyeur v1.1';
+VersionName = 'FlyVoyeur v_11_';
 
 
-% dependeancies
-% oss.m
+
+% check for internal dependencies
+dependencies = {'oval','strkat','PrettyFig','CheckForNewestVersionOnBitBucket','triangle','oss'};
+for i = 1:length(dependencies)
+    if exist(dependencies{i}) ~= 2
+        error('Kontroller is missing an external function that it needs to run. You can download it <a href="https://bitbucket.org/srinivasgs/srinivas.gs_mtools">here.</a>')
+    end
+end
+clear i
+
+% check for new version of Kontroller
+try
+    CheckForNewestVersionOnBitBucket(mfilename,VersionName)
+end
+
+
 
 % global variables
 folder_name = '';
@@ -55,7 +69,7 @@ catch err
 end
 
 % figure out if parallel processing possible
-try parpool('local')
+try parpool('local');
 	options.parallel = 1;
 	delete(gcp)
 catch err
@@ -71,7 +85,7 @@ catch err
 end
 
 
-fig = figure('position',[50 50 450 740], 'Toolbar','none','Menubar','none','Name',versionname,'NumberTitle','off','IntegerHandle','off');
+fig = figure('position',[50 50 450 740], 'Toolbar','none','Menubar','none','Name',VersionName,'NumberTitle','off','IntegerHandle','off');
 
 ChooseFolderButton = uicontrol(fig, 'Position',[10 700  150 30],'Style','pushbutton','String','Choose Folder...','Enable','on','FontSize',16,'Callback',@ChooseFolderCallback);
 ThisFolder = uicontrol(fig, 'Position',[170 705  250 20],'Style','text','String','No folder chosen.','Enable','on','FontSize',16);
