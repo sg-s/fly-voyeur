@@ -219,6 +219,7 @@ skip=0;
         if isempty(ROIs)
             ROIs = NaN(3,narenas);
             figure(moviefigure), axis image
+
             for i = 1:narenas
                 [he]=imellipse('PositionConstraintFcn',@(pos) [pos(1) pos(2) max(pos(3:4)) max(pos(3:4))]);
                 position = wait(he);
@@ -303,6 +304,8 @@ end
 
             % throw away small objects
             [rp] = DiscardSmallObjects(rp,400);
+
+
 
             if length(rp) == n
                 % OK
