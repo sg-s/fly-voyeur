@@ -22,22 +22,12 @@ allfiles(badfiles) = [];
 s = DetermineStateOfMATFiles(allfiles);
 allfiles(s==3) = [];
 
+
 batch_size = ceil(length(allfiles)/n);
 
 for i = 1:n
 	thisfolder=(strcat('fv_batch',mat2str(i)));
 	mkdir(thisfolder)
-	allfiles = dir('*.mat'); % run on all *.mat files
-	% move .mat files in there.
-
-	% make sure they are real files
-	badfiles= [];
-	for i = 1:length(allfiles)
-		if strcmp(allfiles(i).name(1),'.')
-			badfiles = [badfiles i];
-		end
-	end
-	allfiles(badfiles) = [];
 
 	for j = 1:min([batch_size length(allfiles)])
 		
@@ -47,6 +37,8 @@ for i = 1:n
 		vfile = strcat(allfiles(j).name(1:end-4),'.avi');
 		movefile(vfile,strcat(thisfolder,oss,vfile));
 	end
+	% mark it as moved
+	allfiles(1:batch_size) = [];
 
 end
 
