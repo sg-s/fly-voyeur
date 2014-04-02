@@ -8,9 +8,9 @@ function []  = AnnotateVideo(source,thesefiles)
 %% global parameters
 global n
 n = 2; % number of flies
-startframe = 1;
+startframe = 10;
 narenas = 1;
-frame = 1; % current frame
+frame = 10; % current frame
 StartTracking = [];
 StopTracking  = [];
 LeftStart = [];
@@ -80,7 +80,7 @@ skip=0;
         %narenascontrol = uicontrol(f1,'Position',[223 5 50 20],'Style','edit','String',mat2str(narenas),'Callback',@narenascallback);
         %uicontrol(f1,'Position',[160 5 60 20],'Style','text','String','# arenas');
 
-        framecontrol = uicontrol(f1,'Position',[53 45 600 20],'Style','slider','Value',startframe,'Min',1,'Max',nframes,'SliderStep',[100/nframes 1000/nframes],'Callback',@framecallback);
+        framecontrol = uicontrol(f1,'Position',[53 45 600 20],'Style','slider','Value',startframe,'Min',7,'Max',nframes,'SliderStep',[100/nframes 1000/nframes],'Callback',@framecallback);
         uicontrol(f1,'Position',[1 45 50 20],'Style','text','String','frame #');
 
         framecontrol2 = uicontrol(f1,'Position',[383 5 60 20],'Style','edit','String',mat2str(frame),'Callback',@frame2callback);
@@ -166,8 +166,8 @@ skip=0;
                 markright;
             end
             
-            startframe = 1;
-            frame = 1; % current frame
+            startframe = 10;
+            frame = 10; % current frame
             StartTracking = [];
             StopTracking  = [];
             LeftStart = [];
@@ -176,7 +176,7 @@ skip=0;
             ROIs=  []; % each row has 3 elements. the first is x cood of circle, the second is y, and the third is the radius
             
             delete(framecontrol)
-            framecontrol = uicontrol(f1,'Position',[53 45 600 20],'Style','slider','Value',startframe,'Min',1,'Max',nframes,'SliderStep',[100/nframes 1000/nframes],'Callback',@framecallback);
+            framecontrol = uicontrol(f1,'Position',[53 45 600 20],'Style','slider','Value',startframe,'Min',7,'Max',nframes,'SliderStep',[100/nframes 1000/nframes],'Callback',@framecallback);
         
             
             % update GUI
