@@ -157,15 +157,11 @@ for fi = 1:length(thesefiles)
         heading = NaN(n,nframes);
         allflies= 1:n;
         StartFromHere =StartTracking;
-        % try
+         try
             TrackCore3;
-        % catch
-        %    disp('Something wrong with tracking. I will try the next file.')
-        %    msubject= ('Track 4 crashed fatally somewhere');
-        %    mbody = moviefile;
-        %    sendmail('track4crash@srinivas.gs',msubject,mbody);
-        %     % something wrong somewhere in the tracking. move on to the next file
-        % end
+         catch
+           disp('Something wrong with tracking. I will try the next file.')
+        end
     end
 end
 
