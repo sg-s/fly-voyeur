@@ -18,6 +18,10 @@ for i = 1:length(allfiles)
 end
 allfiles(badfiles) = [];
 
+% ignore completely analysed files
+s = DetermineStateOfMATFiles(allfiles);
+allfiles(s==3) = [];
+
 batch_size = ceil(length(allfiles)/n);
 
 for i = 1:n
