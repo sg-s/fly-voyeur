@@ -176,14 +176,15 @@ skip=0;
             ROIs=  []; % each row has 3 elements. the first is x cood of circle, the second is y, and the third is the radius
             
             delete(framecontrol)
+
             framecontrol = uicontrol(f1,'Position',[53 45 600 20],'Style','slider','Value',startframe,'Min',7,'Max',nframes,'SliderStep',[100/nframes 1000/nframes],'Callback',@framecallback);
         
             
             % update GUI
-             titletext = thesefiles(mi).name;
-             set(moviefigure,'Name',titletext);
-             set(framecontrol,'Value',1);
-             set(framecontrol2,'String','1')
+            titletext = thesefiles(mi).name;
+            set(moviefigure,'Name',titletext);
+            set(framecontrol,'Value',10);
+            set(framecontrol2,'String','10')
             
             showimage;
             

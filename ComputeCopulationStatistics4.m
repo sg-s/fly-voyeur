@@ -99,7 +99,7 @@ for i = 1:length(allfiles)
     load(allfiles(i).name)
     
     % is this file analysed?
-    if any(isnan((posx(1,StartTracking:StopTracking)))) 
+    if any(isnan((posx(1,StartTracking+7:StopTracking)))) 
         % not analysed. move to analyse-this
         disp('No tracking info. Needs to be tracked. Moving...')
         keyboard
