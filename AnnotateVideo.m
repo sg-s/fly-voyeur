@@ -18,29 +18,32 @@ RightStart = [];
 DividingLine = [];
 ROIs=  []; % each row has 3 elements. the first is x cood of circle, the second is y, and the third is the radius
 Channel = 3;
-
-moviefigure= [];
-f1=  [];
-framecontrol = [];
-framecontrol2= [];
-threshcontrol = [];
-showthreshcontrol=[];
-markstartbutton = [];
-markstopbutton = [];
-markleftbutton =[];
-markrightbutton  =[];
-marklinebutton = [];
-markroibutton = [];
-nextfilebutton = [];
-cannotanalysebutton = [];
-channelcontrol = [];
-nfliescontrol = [];
-
 nframes=  [];
 h = [];
 movie = [];
 mi= [];
 moviefile= [];
+
+% figure and object handles
+moviefigure= [];
+f1=  [];
+framecontrol = [];
+framecontrol2= [];
+markstartbutton = [];
+markstopbutton = [];
+markleftbutton =[];
+markrightbutton  =[];
+markroibutton = [];
+nextfilebutton = [];
+cannotanalysebutton = [];
+channelcontrol = [];
+nfliescontrol = [];
+th = []; % text handles, allowing rapid deletion
+
+
+
+
+
 
 
 %% choose files
@@ -72,25 +75,25 @@ skip=0;
 
     function [] = CreateGUI(eo,ed)
         titletext = thesefiles(mi).name;
-        moviefigure = figure('Position',[150 150 900 600],'Name',titletext,'Toolbar','none','Menubar','none','NumberTitle','off','Resize','off','HandleVisibility','on');
+        moviefigure = figure('Position',[150 250 900 600],'Name',titletext,'Toolbar','none','Menubar','none','NumberTitle','off','Resize','off','HandleVisibility','on');
 
-        f1 = figure('Position',[50 50 1100 100],'Toolbar','none','Menubar','none','NumberTitle','off','Resize','on','HandleVisibility','on');
+        f1 = figure('Position',[70 70 1100 100],'Toolbar','none','Menubar','none','NumberTitle','off','Resize','on','HandleVisibility','on');
 
 
         %narenascontrol = uicontrol(f1,'Position',[223 5 50 20],'Style','edit','String',mat2str(narenas),'Callback',@narenascallback);
         %uicontrol(f1,'Position',[160 5 60 20],'Style','text','String','# arenas');
 
         framecontrol = uicontrol(f1,'Position',[53 45 600 20],'Style','slider','Value',startframe,'Min',7,'Max',nframes,'SliderStep',[100/nframes 1000/nframes],'Callback',@framecallback);
-        uicontrol(f1,'Position',[1 45 50 20],'Style','text','String','frame #');
+        th(1)=uicontrol(f1,'Position',[1 45 50 20],'Style','text','String','frame #');
 
         framecontrol2 = uicontrol(f1,'Position',[383 5 60 20],'Style','edit','String',mat2str(frame),'Callback',@frame2callback);
-        uicontrol(f1,'Position',[320 5 60 20],'Style','text','String','frame #');
+        th(2)=uicontrol(f1,'Position',[320 5 60 20],'Style','text','String','frame #');
 
         channelcontrol = uicontrol(f1,'Position',[503 5 60 20],'Style','edit','String','3');
-        uicontrol(f1,'Position',[450 5 60 20],'Style','text','String','channel #');
+        th(3)=uicontrol(f1,'Position',[450 5 60 20],'Style','text','String','channel #');
 
         nfliescontrol = uicontrol(f1,'Position',[603 5 60 20],'Style','edit','String',mat2str(n),'Callback',@nfliescallback);
-        uicontrol(f1,'Position',[550 5 60 20],'Style','text','String','#flies');
+        th(4)=uicontrol(f1,'Position',[550 5 60 20],'Style','text','String','#flies');
 
 
         markstartbutton = uicontrol(f1,'Position',[700 10 80 20],'Style','pushbutton','String','Mark Start','Callback',@markstart);
@@ -143,6 +146,23 @@ skip=0;
             % clear all old variables
             disp('OK. Next file.')
             
+
+            % delete all GUI elements
+            delete(framecontrol)
+            delete(framecontrol2)
+            delete(channelcontrol)
+            delete(nfliescontrol)
+            delete(markroibutton)
+            delete(markstartbutton)
+            delete(markstopbutton)
+            delete(markleftbutton)
+            delete(markrightbutton)
+            delete(nextfilebutton)
+            delete(th(1),th(2),th(3),th(4));
+            delete(moviefigure,f1)
+
+            % redraw entire GUI
+            CreateGUI;
 
             nframes=  [];
             h = [];
