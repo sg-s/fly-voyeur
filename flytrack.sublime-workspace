@@ -116,6 +116,14 @@
 			}
 		},
 		{
+			"file": "AnnotateVideo.m",
+			"settings":
+			{
+				"buffer_size": 13769,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "DetermineStateOfMATFiles.m",
 			"settings":
 			{
@@ -209,6 +217,9 @@
 	},
 	"file_history":
 	[
+		"/Users/sigbhu/code/tracking/SaturationPlane.m",
+		"/Users/sigbhu/code/core/sliding_average.m",
+		"/Users/sigbhu/code/tracking/speedcheck.m",
 		"/Users/sigbhu/code/tracking/ComputeCopulationMetrics.m",
 		"/Users/sigbhu/code/tracking/ComputeWEMetrics.m",
 		"/Users/sigbhu/code/tracking/ComputeWEMetrics4.m",
@@ -231,7 +242,6 @@
 		"/Users/sigbhu/code/tracking/README",
 		"/Users/sigbhu/code/tracking/ConvertVideo_win",
 		"/Users/sigbhu/code/tracking/ComputeOnsOffs.m",
-		"/Users/sigbhu/code/tracking/SaturationPlane.m",
 		"/Users/sigbhu/code/tracking/AngularDifference.m",
 		"/Users/sigbhu/code/core/autocorr2d.m",
 		"/Users/sigbhu/code/tracking/FlySeperation.m",
@@ -246,12 +256,7 @@
 		"/Users/sigbhu/code/b/FileName2GenoDate.m",
 		"/Users/sigbhu/code/b/TFAViewer2.m",
 		"/Library/WebServer/Documents/wiki/LocalSettings.php",
-
-		"/Users/sigbhu/code/core/TrialPlot.m",
-
-
-
-
+		"/Users/sigbhu/code/core/TrialPlot.m"
 	],
 	"find":
 	{
@@ -270,6 +275,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"show",
 			"weird",
 			"InitialiseAnnotate",
 			"showimage",
@@ -281,7 +287,6 @@
 			"I",
 			"My",
 			"I",
-
 			"markroi",
 			"collision",
 			"stats",
@@ -422,7 +427,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -451,7 +456,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -481,7 +486,7 @@
 						"translation.y": 959.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -510,7 +515,7 @@
 						"translation.y": 267.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -540,7 +545,7 @@
 						"translation.y": 2646.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -556,8 +561,8 @@
 						"selection":
 						[
 							[
-								1854,
-								1854
+								1711,
+								1711
 							]
 						],
 						"settings":
@@ -570,11 +575,41 @@
 						"translation.y": 432.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 5,
+					"file": "AnnotateVideo.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13769,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8743,
+								8743
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5325.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"file": "DetermineStateOfMATFiles.m",
 					"semi_transient": false,
 					"settings":
@@ -601,7 +636,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -654,6 +689,14 @@
 		"selected_items":
 		[
 			[
+				"sa",
+				"tracking/SaturationPlane.m"
+			],
+			[
+				"ann",
+				"tracking/AnnotateVideo.m"
+			],
+			[
 				"computeco",
 				"tracking/ComputeCopulationMetrics4.m"
 			],
@@ -688,10 +731,6 @@
 			[
 				"conver",
 				"tracking/ConvertVideo"
-			],
-			[
-				"ann",
-				"tracking/AnnotateVideo.m"
 			],
 			[
 				"getlinks",
@@ -799,7 +838,7 @@
 		[
 			[
 				"",
-				"~/Dropbox/code/DA/DA.sublime-project"
+				"~/code/DA/DA.sublime-project"
 			]
 		],
 		"width": 380.0

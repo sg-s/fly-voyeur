@@ -283,6 +283,7 @@ end
     function [] = showimage(eo,ed)
         ff = read(movie,frame);
         Channel = str2num(get(channelcontrol,'String'));
+        
         ff = 255-ff(:,:,Channel);
         figure(moviefigure), axis image
         imagesc(ff); colormap(gray)
