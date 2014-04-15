@@ -125,18 +125,30 @@ for fi = 1:length(thesefiles)
                 StartFromHere = StartTracking;
                 disp('Partially analysed file; Trashing all old data and re-starting...')
                 LookingAtOtherFly = zeros(n,nframes);
-                cpuTrackCore;
+                try
+                    cpuTrackCore;
+                catch
+                    disp('Something wrong with tracking. I will try the next file.')
+                end
             else
                 if nargin == 2
                     disp('Partially analysed file; but will start from :')
                     disp(StartFromHere)
-                    cpuTrackCore;
+                    try
+                        cpuTrackCore;
+                    catch
+                        disp('Something wrong with tracking. I will try the next file.')
+                    end
                 else
                     disp('Partially analysed file; will continue where I left off...')
                     StartFromHere= find(isnan(posx(1,:))==0,1,'last');
                     disp('...and that is:')
                     disp(StartFromHere)
-                    cpuTrackCore;
+                    try
+                        cpuTrackCore;
+                    catch
+                        disp('Something wrong with tracking. I will try the next file.')
+                    end
                 end
             end
         end
@@ -164,14 +176,11 @@ for fi = 1:length(thesefiles)
         heading = NaN(n,nframes);
         allflies= 1:n;
         StartFromHere =StartTracking;
-         try
+        try
             cpuTrackCore;
         catch
            disp('Something wrong with tracking. I will try the next file.')
-%            msubject= ('Track 4 crashed fatally somewhere');
-%            mbody = moviefile;
-%            sendmail('track4crash@srinivas.gs',msubject,mbody);
-            % something wrong somewhere in the tracking. move on to the next file
+           
         end
     end
 end
@@ -249,7 +258,9 @@ function  [] = cpuTrackCore()
 
                 if ~isempty(CollidingFly)
                      % separate the putative colliding flies
+                     
                      [SeperationDifficulty, rp,posx,posy,area,orientation,MajorAxis,MinorAxis]=SplitCollidingFlies(CollidingFly,rp,posx,posy,area,orientation,ff,DividingLine,frame,thresh,adjacency,MajorAxis,MinorAxis);
+
                      if isinf(SeperationDifficulty)
                          adjacency(CollidingFly,frame)=1;
                          flymissing(CollidingFly,frame)=0;
