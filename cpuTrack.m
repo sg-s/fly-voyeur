@@ -168,9 +168,9 @@ for fi = 1:length(thesefiles)
             cpuTrackCore;
         catch
            disp('Something wrong with tracking. I will try the next file.')
-           msubject= ('Track 4 crashed fatally somewhere');
-           mbody = moviefile;
-           sendmail('track4crash@srinivas.gs',msubject,mbody);
+%            msubject= ('Track 4 crashed fatally somewhere');
+%            mbody = moviefile;
+%            sendmail('track4crash@srinivas.gs',msubject,mbody);
             % something wrong somewhere in the tracking. move on to the next file
         end
     end
