@@ -102,7 +102,7 @@ for i = 1:length(allfiles)
     if any(isnan((posx(1,StartTracking+7:StopTracking)))) 
         % not analysed. move to analyse-this
         disp('No tracking info. Needs to be tracked. Moving...')
-        keyboard
+        
         if ~DryRun
             movefile(allfiles(i).name,strcat('analyse-this/',allfiles(i).name))
             movefile(moviefile,strcat('analyse-this/',moviefile))
@@ -268,10 +268,7 @@ for i = 1:length(allfiles)
                 end
 
 
-                % save it
-                if ~DryRun
-                    save('/data/copulation/CopulationDatabase.mat','CopulationDatabase')
-                end
+                
                 
                 % move it
                 cprintf('*Green','All OK.\n')

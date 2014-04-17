@@ -80,8 +80,8 @@ skip=0;
         f1 = figure('Position',[70 70 1100 100],'Toolbar','none','Menubar','none','NumberTitle','off','Resize','on','HandleVisibility','on');
 
 
-        %narenascontrol = uicontrol(f1,'Position',[223 5 50 20],'Style','edit','String',mat2str(narenas),'Callback',@narenascallback);
-        %uicontrol(f1,'Position',[160 5 60 20],'Style','text','String','# arenas');
+        narenascontrol = uicontrol(f1,'Position',[60 5 50 20],'Style','edit','String',mat2str(narenas),'Callback',@narenascallback);
+        uicontrol(f1,'Position',[5 5 60 20],'Style','text','String','# arenas');
 
         framecontrol = uicontrol(f1,'Position',[53 45 600 20],'Style','slider','Value',startframe,'Min',7,'Max',nframes,'SliderStep',[100/nframes 1000/nframes],'Callback',@framecallback);
         th(1)=uicontrol(f1,'Position',[1 45 50 20],'Style','text','String','frame #');
@@ -137,6 +137,13 @@ skip=0;
         n = str2num(get(nfliescontrol,'String'));
 
     end
+
+    function [] = narenascallback(eo,ed)
+        
+        narenas = str2num(get(narenascontrol,'String'));
+
+    end
+
 
     function [] = nextcallback(eo,ed)
         if mi == length(thesefiles)
