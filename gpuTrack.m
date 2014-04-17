@@ -104,10 +104,18 @@ for fi = 1:length(thesefiles)
                 if StartFromHere == 0
                     disp('File fully analysed, BUT Trashing all old data and re-starting...')
                     StartFromHere = StartTracking;
-                    TrackCore3;
+                    try
+                        TrackCore3;
+                    catch
+                        disp('Something wrong with tracking. I will try the next file.')
+                    end
                 else
                     disp('File fully analysed, but Starting from specified location...')
-                    TrackCore3;
+                    try
+                        TrackCore3;
+                    catch
+                        disp('Something wrong with tracking. I will try the next file.')
+                    end
                 end
                 
             end  
@@ -123,13 +131,21 @@ for fi = 1:length(thesefiles)
                 if nargin == 2
                     disp('Partially analysed file; but will start from :')
                     disp(StartFromHere)
-                    TrackCore3;
+                    try
+                        TrackCore3;
+                    catch
+                        disp('Something wrong with tracking. I will try the next file.')
+                    end
                 else
                     disp('Partially analysed file; will continue where I left off...')
                     StartFromHere= find(isnan(posx(1,:))==0,1,'last');
                     disp('...and that is:')
                     disp(StartFromHere)
-                    TrackCore3;
+                    try
+                        TrackCore3;
+                    catch
+                        disp('Something wrong with tracking. I will try the next file.')
+                    end
                 end
             end
         end

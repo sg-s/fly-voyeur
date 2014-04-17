@@ -37,6 +37,7 @@ markroibutton = [];
 nextfilebutton = [];
 cannotanalysebutton = [];
 channelcontrol = [];
+narenascontrol =[];
 nfliescontrol = [];
 th = []; % text handles, allowing rapid deletion
 
@@ -102,7 +103,7 @@ skip=0;
         markleftbutton = uicontrol(f1,'Position',[800 10 100 20],'Style','pushbutton','String','Mark Left start','Callback',@markleft);
         markrightbutton = uicontrol(f1,'Position',[800 50 100 20],'Style','pushbutton','String','Mark Right start','Callback',@markright);
 
-        % marklinebutton = uicontrol(f1,'Position',[910 10 100 20],'Style','pushbutton','String','Mark Dividing Line','Callback',@markline);
+
         markroibutton = uicontrol(f1,'Position',[910 50 100 20],'Style','pushbutton','String','Mark Circles','Callback',@markroi);
 
         nextfilebutton = uicontrol(f1,'Position',[223 5 50 20],'Style','pushbutton','String','NextFile','Enable','on','Callback',@nextcallback);
@@ -257,7 +258,7 @@ skip=0;
             
             set(markroibutton,'String','ROIs marked','BackgroundColor',[0.7 0 0])
 
-            if narenas == 3
+            if narenas == 2
                 % now automatically draw a line b/w the two arenas
                 DividingLine = mean(ROIs(1,:));
                 drawline;
