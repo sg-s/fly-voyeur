@@ -278,11 +278,12 @@ function  [] = cpuTrackCore()
         end
 
         % figure out the fly seperations
-        for ai = 1:length(narenas)
+        for ai = 1:narenas
             thisfly = ai*2;
             otherfly = thisfly - 1;
             SeparationBetweenFlies(ai,frame) = FlySeperation(otherfly,thisfly,posx(:,frame),posy(:,frame),MajorAxis(:,frame),MinorAxis(:,frame),orientation(:,frame));
         end
+        clear ai
 
 
         % some fixes
@@ -326,6 +327,7 @@ function  [] = cpuTrackCore()
             end
 
         end
+    
         
         
         

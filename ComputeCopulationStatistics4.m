@@ -250,6 +250,8 @@ for i = 1:length(allfiles)
                     CopulationDatabase{addhere,20} = sum2(SeparationBetweenFlies(2,StartTracking:CopulationStartFrame(2)))/(CopulationStartFrame(2)-StartTracking);
                 end
 
+                
+
                 CopulationDatabase{addhere,21} = nCollisions(1);
                 CopulationDatabase{addhere,23} = CollisionTime(1);
 

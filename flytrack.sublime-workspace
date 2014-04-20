@@ -95,7 +95,7 @@
 			"file": "gpuTrack.m",
 			"settings":
 			{
-				"buffer_size": 11216,
+				"buffer_size": 11884,
 				"line_ending": "Unix"
 			}
 		},
@@ -103,7 +103,7 @@
 			"file": "ComputeCopulationStatistics4.m",
 			"settings":
 			{
-				"buffer_size": 11904,
+				"buffer_size": 11922,
 				"line_ending": "Unix"
 			}
 		},
@@ -225,6 +225,7 @@
 	},
 	"file_history":
 	[
+		"/Users/sigbhu/code/tracking/FlySeperation.m",
 		"/Users/sigbhu/code/tracking/ComputeCopulationStatistics4.m",
 		"/Users/sigbhu/code/tracking/FlyVoyeur.m",
 		"/Users/sigbhu/code/tracking/gpuTrack.m",
@@ -255,7 +256,6 @@
 		"/Users/sigbhu/code/tracking/ComputeOnsOffs.m",
 		"/Users/sigbhu/code/tracking/AngularDifference.m",
 		"/Users/sigbhu/code/core/autocorr2d.m",
-		"/Users/sigbhu/code/tracking/FlySeperation.m",
 		"/Users/sigbhu/code/tracking/IsFlyLookingAtOtherFly.m",
 		"/Users/sigbhu/code/core/foldername.m",
 		"/usr/local/bin/ConvertVideo",
@@ -286,6 +286,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"narenas",
+			"Separation",
 			"showimage",
 			"Channel",
 			"markroi",
@@ -411,9 +413,7 @@
 			"description",
 			"s",
 			"description",
-			"style",
-			"body",
-			"head"
+			"style"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -432,13 +432,13 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -468,7 +468,7 @@
 						"translation.y": 11.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -477,15 +477,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11216,
+						"buffer_size": 11884,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4303,
-								4303
+								5079,
+								5086
 							]
 						],
 						"settings":
@@ -495,10 +495,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2670.0,
+						"translation.y": 2874.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -507,15 +507,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11904,
+						"buffer_size": 11922,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2613,
-								2617
+								9693,
+								9693
 							]
 						],
 						"settings":
@@ -525,10 +525,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 613.0,
+						"translation.y": 4511.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -544,8 +544,8 @@
 						"selection":
 						[
 							[
-								647,
-								647
+								8440,
+								8440
 							]
 						],
 						"settings":
@@ -555,10 +555,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4978.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -604,8 +604,8 @@
 						"selection":
 						[
 							[
-								8474,
-								8474
+								8602,
+								8602
 							]
 						],
 						"settings":
@@ -615,10 +615,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5458.0,
+						"translation.y": 5477.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -702,6 +702,14 @@
 		"selected_items":
 		[
 			[
+				"cputrack",
+				"tracking/cpuTrack.m"
+			],
+			[
+				"gpu",
+				"tracking/gpuTrack.m"
+			],
+			[
 				"ann",
 				"tracking/AnnotateVideo.m"
 			],
@@ -728,10 +736,6 @@
 			[
 				"computeco",
 				"tracking/ComputeCopulationMetrics4.m"
-			],
-			[
-				"gpu",
-				"tracking/gpuTrack.m"
 			],
 			[
 				"batch",
