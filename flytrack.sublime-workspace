@@ -95,7 +95,7 @@
 			"file": "gpuTrack.m",
 			"settings":
 			{
-				"buffer_size": 11884,
+				"buffer_size": 11893,
 				"line_ending": "Unix"
 			}
 		},
@@ -111,15 +111,7 @@
 			"file": "cpuTrack.m",
 			"settings":
 			{
-				"buffer_size": 11809,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "ComputeCopulationMetrics4.m",
-			"settings":
-			{
-				"buffer_size": 4142,
+				"buffer_size": 11831,
 				"line_ending": "Unix"
 			}
 		},
@@ -225,7 +217,9 @@
 	},
 	"file_history":
 	[
+		"/etc/hosts",
 		"/Users/sigbhu/code/tracking/FlySeperation.m",
+		"/Users/sigbhu/code/tracking/ComputeCopulationMetrics4.m",
 		"/Users/sigbhu/code/tracking/ComputeCopulationStatistics4.m",
 		"/Users/sigbhu/code/tracking/FlyVoyeur.m",
 		"/Users/sigbhu/code/tracking/gpuTrack.m",
@@ -238,7 +232,6 @@
 		"/Users/sigbhu/code/tracking/ComputeWEMetrics.m",
 		"/Users/sigbhu/code/tracking/ComputeWEMetrics4.m",
 		"/Users/sigbhu/code/tracking/ComputeCopulationStatistics.m",
-		"/Users/sigbhu/code/tracking/ComputeCopulationMetrics4.m",
 		"/Users/sigbhu/code/tracking/ConvertVideo",
 		"/Users/sigbhu/code/tracking/DetectObjects.m",
 		"/Users/sigbhu/code/tracking/Track3.m",
@@ -286,6 +279,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ai",
 			"narenas",
 			"Separation",
 			"showimage",
@@ -412,8 +406,7 @@
 			"none",
 			"description",
 			"s",
-			"description",
-			"style"
+			"description"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -432,7 +425,7 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": false,
+		"whole_word": true,
 		"wrap": true
 	},
 	"groups":
@@ -477,15 +470,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11884,
+						"buffer_size": 11893,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5079,
-								5086
+								8257,
+								8257
 							]
 						],
 						"settings":
@@ -495,7 +488,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2874.0,
+						"translation.y": 5006.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -537,15 +530,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11809,
+						"buffer_size": 11831,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8440,
-								8440
+								10175,
+								10175
 							]
 						],
 						"settings":
@@ -555,7 +548,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4978.0,
+						"translation.y": 6110.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -563,36 +556,6 @@
 				},
 				{
 					"buffer": 4,
-					"file": "ComputeCopulationMetrics4.m",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4142,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2195,
-								2203
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1873.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "AnnotateVideo.m",
 					"semi_transient": false,
 					"settings":
@@ -622,7 +585,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "DetermineStateOfMATFiles.m",
 					"semi_transient": false,
 					"settings":
@@ -649,7 +612,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -701,6 +664,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"flyseperation",
+				"tracking/FlySeperation.m"
+			],
 			[
 				"cputrack",
 				"tracking/cpuTrack.m"

@@ -325,7 +325,7 @@ function  [] = cpuTrackCore()
                 fprintf(strkat('\t Frame # ', mat2str(frame), '   @ ', fps, 'fps'));
                 
             end
-
+        
         end
     
         
