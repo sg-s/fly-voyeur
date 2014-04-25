@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Fly-voyeur by sg-s</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Fly-voyeur</h1>
+        <p class="header">Automated fly tracking and courtship behavior scoring code</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/sg-s/fly-voyeur/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/sg-s/fly-voyeur/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/sg-s/fly-voyeur">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/sg-s">sg-s</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="readme" class="anchor" href="#readme"><span class="octicon octicon-link"></span></a>README</h1>
+
+<h2>
+<a name="what-this-is" class="anchor" href="#what-this-is"><span class="octicon octicon-link"></span></a>What this is</h2>
+
+<p>FlyVoyeur is a set of functions that allows you to track and quantify fly (Drosophila) behavior. It allows you to track drosophila movement and behavior. </p>
+
+<p>Originially developed for courtship assays, it can track the positions of flies, measure
+their orientation, detect wing extension, and can handle extreme cases of fly collisions, 
+and is resistant to flies going missing due to skipped frames or sudden movement, and needs no special lighting conditions, and should work well in non-uniform, variable lighting.</p>
+
+<p>FlyVoyeur is fully parallelised, and can take advantage of CUDA-enabled GPUs to speed up tracking. </p>
+
+<h2>
+<a name="what-this-does" class="anchor" href="#what-this-does"><span class="octicon octicon-link"></span></a>What this does</h2>
+
+<p>Out of the box, this quantifies:</p>
+
+<ol>
+<li>positions of all flies</li>
+<li>orientations of all flies</li>
+<li>times at which flies look at other flies</li>
+<li>collision statisitcs between flies</li>
+<li>times of copulation, if any, between flies</li>
+<li>times of wing extension between flies. </li>
+</ol><h2>
+<a name="what-you-need-to-give-it" class="anchor" href="#what-you-need-to-give-it"><span class="octicon octicon-link"></span></a>What you need to give it</h2>
+
+<ol>
+<li>Videos of flies in circular arenas (see format support for details)</li>
+</ol><h2>
+<a name="system-requirements" class="anchor" href="#system-requirements"><span class="octicon octicon-link"></span></a>System Requirements</h2>
+
+<ul>
+<li>MATLAB R2014a or later with the image processing toolbox</li>
+<li>The parallel processing toolbox is needed for batch processing and GPU acceleration</li>
+<li>A CUDA-enabled graphics card is needed for GPU acceleration</li>
+<li>runs on Windows or Mac OS X. Should work fine on Linux too, but not has been tested.</li>
+<li>Java (you can run the actual tracking headless, but GUI elements need Java and a display system)</li>
+<li>
+<a href="https://bitbucket.org/srinivasgs/srinivas.gs_mtools/wiki/Home">srinivas.gs_mtools</a>, a library of MATLAB tools I have written, which you will have to download separately. </li>
+</ul><h2>
+<a name="video-format-support" class="anchor" href="#video-format-support"><span class="octicon octicon-link"></span></a>Video Format Support</h2>
+
+<ul>
+<li>FlyVoyeur supports any video format MATLAB can support. </li>
+<li>In addition, FlyVoyeur can also convert almost any video to a usable MJPG format using VLC in parallel. Video conversion is currently only supported on Mac OS X. </li>
+<li>If you aren't converting your video, you should make sure your video have <strong>square pixels</strong>. Most video cameras don't output videos with square pixels. To check that you have square pixels, open the video in MATLAB using VideoReader.m and look at it. </li>
+<li>To use video conversion, you need to a) figure out what the dimensions of each frame are with square pixels and b) alter the ConvertVideo script </li>
+</ul><h2>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<p>All code here was written by Srinivas Gorur-Shandilya. 
+Contact me at <a href="http://srinivas.gs/contact/">http://srinivas.gs/contact/</a>
+This code came from a public repository at:
+<a href="https://bitbucket.org/srinivasgs/fly-tracking">https://bitbucket.org/srinivasgs/fly-tracking</a></p>
+
+<p>If you use this code or modify it, please write to me at 
+<a href="mailto:code@srinivas.gs">code@srinivas.gs</a> and I will tell you how to appropriately cite this.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<h3>
+<a name="git" class="anchor" href="#git"><span class="octicon octicon-link"></span></a>git</h3>
+
+<h3>
+<a name="downloads" class="anchor" href="#downloads"><span class="octicon octicon-link"></span></a>Downloads</h3>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<ol>
+<li>Type FlyVoyeur.m and hit enter</li>
+</ol><h2>
+<a name="release-notes" class="anchor" href="#release-notes"><span class="octicon octicon-link"></span></a>Release Notes</h2>
+
+<h3>
+<a name="support-for-parallel-computation" class="anchor" href="#support-for-parallel-computation"><span class="octicon octicon-link"></span></a>Support for parallel computation</h3>
+
+<p>MATLAB's parallel toolbox (matlabpool and parpool) is a disaster in some releases, based on the OS you run and the version of Java you have. If FlyVoyeur tells you parallel computation is not supported, you may have to resort to a number of tricks to get it working. </p>
+
+<p>If you are using R2013a, see <a href="http://www.mathworks.com/matlabcentral/answers/62496#answer_74096">this page</a> for a trick to get matlabpool to work correctly. </p>
+
+<h3>
+<a name="support-for-gpu-acceleration" class="anchor" href="#support-for-gpu-acceleration"><span class="octicon octicon-link"></span></a>Support for GPU acceleration</h3>
+
+<p>The same goes for GPU acceleration. On Mac OS X, MATLAB fails to tell the OS to switch to the discrete card, and hence 
+initialisation of GPU resources fails.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
