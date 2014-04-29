@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -16,46 +15,45 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header">Fly-voyeur</h1>
-        <p class="header">Automated fly tracking and courtship behavior scoring code</p>
+        <h1>Fly-voyeur</h1>
+        <p>Automated fly tracking and courtship behavior scoring code</p>
+
+        <p class="view"><a href="https://github.com/sg-s/fly-voyeur">View the Project on GitHub <small>sg-s/fly-voyeur</small></a></p>
+
 
         <ul>
-          <li class="download"><a class="buttons" href="https://github.com/sg-s/fly-voyeur/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/sg-s/fly-voyeur/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/sg-s/fly-voyeur">View On GitHub</a></li>
+          <li><a href="https://github.com/sg-s/fly-voyeur/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/sg-s/fly-voyeur/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/sg-s/fly-voyeur">View On <strong>GitHub</strong></a></li>
         </ul>
-
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/sg-s">sg-s</a></p>
-
-
       </header>
       <section>
         <h1>
-<a name="fly-voyeur-readme" class="anchor" href="#fly-voyeur-readme"><span class="octicon octicon-link"></span></a>Fly Voyeur Readme</h1>
+<a name="fly-voyeur" class="anchor" href="#fly-voyeur"><span class="octicon octicon-link"></span></a>Fly Voyeur</h1>
 
 <p><img src="http://i.imgur.com/Nk9uSAM.png" alt="Fly Voyeur"></p>
 
 <h2>
 <a name="what-this-is" class="anchor" href="#what-this-is"><span class="octicon octicon-link"></span></a>What this is</h2>
 
-<p>FlyVoyeur is a set of functions that allows you to track and quantify fly (Drosophila) behavior. It allows you to track drosophila movement and behavior. </p>
+<p>FlyVoyeur is a set of functions that allows you to track and quantify fly (<em>Drosophila</em>) behavior. It allows you to track <em>Drosophila</em> movement and behavior. </p>
 
 <p>Originially developed for courtship assays, it can track the positions of flies, measure
 their orientation, detect wing extension, and can handle extreme cases of fly collisions, 
-and is resistant to flies going missing due to skipped frames or sudden movement, and needs no special lighting conditions, and should work well in non-uniform, variable lighting.</p>
+and is resistant to flies going missing due to skipped frames or sudden movement, and needs no special lighting conditions, and should work well even in non-uniform, variable lighting.</p>
 
 <p>FlyVoyeur is fully parallelised, and can take advantage of CUDA-enabled GPUs to speed up tracking. </p>
 
 <h2>
 <a name="what-this-does" class="anchor" href="#what-this-does"><span class="octicon octicon-link"></span></a>What this does</h2>
 
-<p>Out of the box, this quantifies:</p>
+<p>Out of the box, Fly-Voyeur quantifies:</p>
 
 <ol>
 <li>positions of all flies</li>
 <li>orientations of all flies</li>
 <li>times at which flies look at other flies</li>
-<li>collision statisitcs between flies</li>
+<li>collision statistics between flies</li>
 <li>times of copulation, if any, between flies</li>
 <li>times of wing extension between flies. </li>
 </ol><h2>
@@ -81,7 +79,9 @@ and is resistant to flies going missing due to skipped frames or sudden movement
 <li>FlyVoyeur supports any video format MATLAB can support. </li>
 <li>In addition, FlyVoyeur can also convert almost any video to a usable MJPG format using VLC in parallel. Video conversion is currently only supported on Mac OS X. </li>
 <li>If you aren't converting your video, you should make sure your video have <strong>square pixels</strong>. Most video cameras don't output videos with square pixels. To check that you have square pixels, open the video in MATLAB using VideoReader.m and look at it. </li>
-<li>To use video conversion, you need to a) figure out what the dimensions of each frame are with square pixels and b) alter the ConvertVideo script </li>
+<li>To use video conversion, you need to </li>
+<li>figure out what the dimensions of each frame are with square pixels and </li>
+<li>alter the ConvertVideo script </li>
 </ul><h2>
 <a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
 
@@ -99,8 +99,21 @@ This code came from a public repository at:
 <h3>
 <a name="git" class="anchor" href="#git"><span class="octicon octicon-link"></span></a>git</h3>
 
+<p>If you know what git is, use:</p>
+
+<pre><code>git clone https://github.com/sg-s/fly-voyeur.git
+git clone https://github.com/sg-s/srinivas.gs_mtools.git
+</code></pre>
+
 <h3>
-<a name="downloads" class="anchor" href="#downloads"><span class="octicon octicon-link"></span></a>Downloads</h3>
+<a name="automatic-installation" class="anchor" href="#automatic-installation"><span class="octicon octicon-link"></span></a>automatic installation</h3>
+
+<p>To automatically download and install Fly-Voyeur, paste the following code in your MATLAB command window and press "Enter"</p>
+
+<div class="highlight highlight-matlab"><pre><span class="n">urlwrite</span><span class="p">(</span><span class="s">'https://raw.githubusercontent.com/sg-s/kontroller/master/install_Fly_Voyeur.m'</span><span class="p">,</span><span class="s">'install_Fly_Voyeur.m'</span><span class="p">)</span>
+<span class="n">install_Fly_Voyeur</span><span class="p">;</span>
+
+</pre></div>
 
 <h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
@@ -124,10 +137,11 @@ This code came from a public repository at:
 initialisation of GPU resources fails.</p>
       </section>
       <footer>
-        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+        <p>This project is maintained by <a href="https://github.com/sg-s">sg-s</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
