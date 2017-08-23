@@ -106,15 +106,19 @@ for fi = 1:length(thesefiles)
                     StartFromHere = StartTracking;
                     try
                         TrackCore3;
-                    catch
-                        disp('Something wrong with tracking. I will try the next file.')
+                    catch err
+                        disp(err.message)
+                        disp('Error 110 Something wrong with tracking. I will try the next file.')
+                        
                     end
                 else
                     disp('File fully analysed, but Starting from specified location...')
                     try
                         TrackCore3;
-                    catch
-                        disp('Something wrong with tracking. I will try the next file.')
+                    catch err 
+                        disp(err.message)
+                        disp('error 118. Something wrong with tracking. I will try the next file.')
+                        
                     end
                 end
                 
@@ -133,8 +137,10 @@ for fi = 1:length(thesefiles)
                     disp(StartFromHere)
                     try
                         TrackCore3;
-                    catch
-                        disp('Something wrong with tracking. I will try the next file.')
+                    catch err
+                        disp(err.message)
+                        disp('Error 140. Something wrong with tracking. I will try the next file.')
+                        
                     end
                 else
                     disp('Partially analysed file; will continue where I left off...')
@@ -143,8 +149,10 @@ for fi = 1:length(thesefiles)
                     disp(StartFromHere)
                     try
                         TrackCore3;
-                    catch
-                        disp('Something wrong with tracking. I will try the next file.')
+                    catch err
+                        disp(err.message)
+                        disp('Error 150. Something wrong with tracking. I will try the next file.')
+                        
                     end
                 end
             end
@@ -175,8 +183,9 @@ for fi = 1:length(thesefiles)
         StartFromHere =StartTracking;
          try
             TrackCore3;
-         catch
-           disp('Something wrong with tracking. I will try the next file.')
+         catch err
+           disp('Error 183 Something wrong with tracking. I will try the next file.')
+           keyboard
         end
     end
 end

@@ -210,6 +210,7 @@ function  [] = cpuTrackCore()
     flylimits = zeros(2,n);
 
     
+    
     for frame = StartFromHere:StopTracking  
         % prep image
         

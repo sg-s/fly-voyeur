@@ -1,6 +1,6 @@
 #!/bin/bash
 # converts raw videos to MJPG in a ts container.
-# usage: convert FORMAT_FROM CODEC CONTAINER EXT
+# usage: convert EXTENTION_FROM CODEC CONTAINER EXTENTION_TO
 # explanatin:
 #
 # FORMAT_FROM: what format are the videos you want to convert in?
